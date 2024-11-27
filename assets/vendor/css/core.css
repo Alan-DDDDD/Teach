@@ -91,7 +91,7 @@ hr:not([size]) {
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   font-weight: 500;
   line-height: 1.1;
   color: #566a7f;
@@ -15905,7 +15905,10 @@ html:not(.layout-footer-fixed) .content-wrapper {
   position: relative;
   display: inline-block;
   font-size: 0.8rem;
-  padding: 0rem 1rem;
+  padding: 0rem 0rem;
+}
+.divider-text h6{
+  padding:0rem 0.5rem;
 }
 .divider .divider-text i {
   font-size: 1rem;
