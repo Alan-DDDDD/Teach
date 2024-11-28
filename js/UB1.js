@@ -19,3 +19,9 @@ $(`#datatable`).DataTable({
 $(`#datatable`).on('click','tbody tr',function(){
     //alert($($(this).find('td').get(2)).html())
 });
+
+$(`#datatable`).css("cursor","pointer")
+AreaHide('EArea')
+function AreaHide(Area){
+    $(`#${Area}`).hide(200);
+}
