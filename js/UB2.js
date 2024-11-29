@@ -1,4 +1,4 @@
-export class UB1 extends baseObject {
+export class UB2 extends baseObject {
     constructor() {
         super();
     }
@@ -20,11 +20,6 @@ export class UB1 extends baseObject {
             alert($($(this).find('td').get(2)).html())
         });
     }
-    remove(){
-        super.Deconstructor();
-        $(`#search`).unbind("click");
-        $(`#save`).unbind("click");
-    }
     Search(){
         if(super.verification("QArea")){
             let table = $(`#datatable`).DataTable()
@@ -39,4 +34,4 @@ export class UB1 extends baseObject {
         }
     }
 }
-currentview = new UB1();
+currentview = new UB2();

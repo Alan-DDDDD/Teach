@@ -1,5 +1,12 @@
-<div class="card mb-3">
-  <div class="divider text-start px-3 my-1" id="QBar" style="cursor:pointer">
+<div class="card-body" style="padding: 0;">
+  <div class="btn-group mb-2">
+    <button class="btn btn-primary" id="search"><i class='sbx bx bx-search'></i></button>
+    <button class="btn btn-primary" id="insert"><i class='sbx bx bx-plus-medical'></i></button>
+    <button class="btn btn-primary" id="save"><i class='sbx bx bx-save'></i></button>
+  </div>
+</div>
+<div class="card mb-3" id="Q">
+  <div class="divider text-start px-3 my-1 AreaBar" id="QBar" style="cursor:pointer">
     <div class="divider-text">
       <h6>條件區</h6>
     </div>
@@ -9,7 +16,7 @@
       <div class="col-lg mb-2">
         <div class="form-floating">
           <input type="text" class="form-control" id="emplid" placeholder=""/>
-          <label for="emplid">員工編號</label>
+          <label for="emplid"><span class="require" data-require="true"></span>員工編號</label>
         </div>
       </div>
       <div class="col-lg mb-2">
@@ -28,8 +35,8 @@
   </div>
 </div>
 
-<div class="card mb-3">
-  <div class="divider text-start px-3 my-1" id="LBar" style="cursor:pointer">
+<div class="card mb-3" id="L">
+  <div class="divider text-start px-3 my-1 AreaBar" id="LBar" style="cursor:pointer">
     <div class="divider-text">
       <h6>資料列表</h6>
     </div>
@@ -140,20 +147,16 @@
   </div>
 </div>
 
-<div class="card mb-3">
-  <div class="divider text-start px-3 my-1" id="EBar" style="cursor:pointer">
+<div class="card mb-3" id="E">
+  <div class="divider text-start px-3 my-1 AreaBar" id="EBar" style="cursor:pointer">
     <div class="divider-text">
       <h6>資料明細</h6>
     </div>
   </div>
   <div class="card-body" id="EArea">
-    <div class="btn-group mb-2">
-      <button class="btn btn-primary" id="">新增</button>
-      <button class="btn btn-primary" id="">儲存</button>
-    </div>
     <div class="row">
       <div class="mb-2 col-lg">
-        <label for="emplid" class="form-label">員工編號</label>
+        <label for="emplid" class="form-label"><span class="require" data-require="true"></span>員工編號</label>
         <input id="emplid" class="form-control" type="text"/>
       </div>
       <div class="mb-2 col-lg">
@@ -192,4 +195,3 @@
     </div>
   </div>
 </div>
-

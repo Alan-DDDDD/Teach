@@ -1,3 +1,4 @@
+var currentview;
 $(`#pageList .PU,.PA`).on(`click`,function(event){
     event.preventDefault();
     let me = $(this);
@@ -23,17 +24,20 @@ async function reView(page){
     let view = $(`#view`);
     var r = await fetch("../html/"+page+".html");
     var t = await r.text();
+    if(currentview != undefined)
+        currentview.remove();
     view.html(t);
-    reJs(page);
+    //if(!currentview || currentview.constructor.name != page){
+        reJs(page);
+    //}
 }
 
 function reJs(page){
     let js = $(`.myjs`);
-    $.each(js,function(i,d){
-        $(d).remove();
-    });
+    $(js).remove();
     let script = document.createElement('script');
-    script.src = "../js/"+page+".js";
+    script.src = "../js/"+page+".js?v=" + Math.random();
+    script.type = "module";
     script.classList.add("myjs");
     document.body.appendChild(script);
 }

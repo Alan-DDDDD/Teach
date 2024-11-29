@@ -1,0 +1,11 @@
+.sbx{
+    font-size: 1.375rem;
+}
+
+.require{
+    color:red;
+}
+
+.require::before{
+    content: "*";
+}
