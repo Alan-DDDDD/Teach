@@ -31,4 +31,12 @@ class pageaction {
     static AreaBarUnClick(){
         $(`#view .AreaBar`).unbind('click');
     }
+
+    static ToolBarDisabled(id){
+        $(`#${id}`).attr("disabled","disabled");
+    }
+
+    static ToolBarUnDisabled(id){
+        $(`#${id}`).removeAttr("disabled");
+    }
 }

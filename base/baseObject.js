@@ -4,12 +4,14 @@ class baseObject {
         this.LoadBefore();
         this.Init();
         this.LoadAfter();
-        this.DefLoadHide();
+        this.DefaultLoadHide();
+        this.DefaultLoadToolBarDisabled();
     }
     
     
-    tablesetting = "/json/datatable-zh-HANT.json"
-    defHideArea = [];
+    tablesetting = "/json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
+    defaultHideArea = [];//預設隱藏區域
+    defaultToolBarDisabled = [];//預設禁用ToolBar按鈕
     Init(){
     }
 
@@ -23,9 +25,15 @@ class baseObject {
     LoadAfter(){
     }
 
-    DefLoadHide(){
-        $.each(this.defHideArea,(i,d)=>{
+    DefaultLoadHide(){
+        $.each(this.defaultHideArea,(i,d)=>{
             pageaction.areahide(d);
+        })
+    }
+
+    DefaultLoadToolBarDisabled(){
+        $.each(this.defaultToolBarDisabled,(i,d)=>{
+            pageaction.ToolBarDisabled(d);
         })
     }
 
@@ -39,7 +47,7 @@ class baseObject {
     * @param {Array} Columns - 欄位標頭 [{data:'name',title:'姓名'},...]
     * @param {methods} trclick - 委派方法 function(){}
     */
-    bindTable(id,Data,Columns,trclick){
+    setTable(id,Data,Columns,trclick){
         let table = $(`#${id}`)
         table.DataTable({
             data:Data,
@@ -79,5 +87,37 @@ class baseObject {
             }
         });
         return result;
+    }
+
+    /**
+     * @param {string} LockArea -要鎖住的區域id
+     * @param {boolean} lock -鎖定狀態(true鎖定/false解除鎖定)
+     */
+    LockArea(LockArea,lock){
+        let ob = $(`#${LockArea}`).find("input,select,textarea");
+        if(lock){
+            ob.attr("disabled","disabled");
+        }else{
+            ob.remvoeAttr("disabled");
+        }
+    }
+
+    /**
+     * @param {string} ClearArea -要清空的區域id
+     */
+    ClearArea(ClearArea){
+        let ob = $(`#${ClearArea}`).find("input,select,textarea");
+        $(ob).val("");
+    }
+
+    /**
+     * @param {string} List -綁定的資料列表Id
+     * @param {Array} Data -要綁定的資料
+     */
+    BindDataList(List,Data){
+        let table = $(`#${List}`).DataTable();
+        table.clear();
+        table.rows.add(Data);
+        table.draw();
     }
 }
