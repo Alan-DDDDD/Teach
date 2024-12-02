@@ -1,9 +1,10 @@
 class baseObject {
     constructor(parameters) {
         pageaction.AreaBarClick();
+        this.LoadBefore();
         this.Init();
         this.LoadAfter();
-        this.LoadHide();
+        this.DefLoadHide();
     }
     
     
@@ -16,10 +17,13 @@ class baseObject {
         pageaction.AreaBarUnClick();
     }
 
+    LoadBefore(){
+    }
+
     LoadAfter(){
     }
 
-    LoadHide(){
+    DefLoadHide(){
         $.each(this.defHideArea,(i,d)=>{
             pageaction.areahide(d);
         })
