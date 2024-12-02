@@ -76,7 +76,7 @@ class baseObject {
             let chk = $(d).next();
             if(chk.length == 0)
                 chk = $(d).prev();
-            if(chk.find('span').data("require") == true){
+            if(chk.find('.require').length > 0){
                 let value = $(d).val()
                 if(!value){
                     result = false;
