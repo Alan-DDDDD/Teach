@@ -120,4 +120,17 @@ class baseObject {
         table.rows.add(Data);
         table.draw();
     }
+
+    /***
+     * @param {string} Msg -輸入提示字串
+     */
+    errorMsg(Msg){
+        $(`#teachalert`).html(`<div class="alert alert-danger alert-dismissible" role="alert">
+                        ${Msg}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>`);
+        setTimeout(function(){
+            $(`#teachalert`).html("");
+        },3000);
+    }
 }

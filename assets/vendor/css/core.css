@@ -14723,6 +14723,13 @@ body {
   box-shadow: none;
 }
 
+.buy-now .teachalert {
+  position: fixed;
+  top: 3rem;
+  right: 1.625rem;
+  z-index: 999999;
+}
+
 .ui-square,
 .ui-rect,
 .ui-rect-30,

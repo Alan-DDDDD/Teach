@@ -44,11 +44,15 @@ export class UB1 extends baseObject {
             setTimeout(function(){
                 pageaction.hideLoading();
             },3000);
+        }else{
+            super.errorMsg("請輸入必填資料")
         }
     }
     Save(){
         if(super.verification("EArea")){
             alert("成功")
+        }else{
+            super.errorMsg("請輸入必填資料")
         }
     }
     Insert(){
@@ -60,3 +64,4 @@ export class UB1 extends baseObject {
     }
 }
 currentview = new UB1();
+reList("UB1");
