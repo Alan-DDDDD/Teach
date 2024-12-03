@@ -39,4 +39,11 @@ class pageaction {
     static ToolBarUnDisabled(id){
         $(`#${id}`).removeAttr("disabled");
     }
+    static showLoading(){
+        document.querySelector('.loading-overlay').style.display = 'flex';
+    }
+
+    static hideLoading(){
+        document.querySelector('.loading-overlay').style.display = 'none';
+    }
 }

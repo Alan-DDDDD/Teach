@@ -22,9 +22,10 @@ export class UB1 extends baseObject {
         ]
         super.setTable(`datatable`,[],columns,function(){
             //設定L區DataTable點擊動作
-            alert($($(this).find('td').get(2)).html())
+            //alert($($(this).find('td').get(2)).html())
             pageaction.areahide("L");
             pageaction.areashow("E");
+            pageaction.ToolBarUnDisabled("save");
         });
     }
     remove(){
@@ -35,10 +36,14 @@ export class UB1 extends baseObject {
     }
     Search(){
         if(super.verification("QArea")){
+            pageaction.showLoading();
             let Data = [{name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'}]
             super.BindDataList(`datatable`,Data);//重新綁定DataTable資料
             pageaction.areashow("L");
             pageaction.areahide("Q");
+            setTimeout(function(){
+                pageaction.hideLoading();
+            },3000);
         }
     }
     Save(){
