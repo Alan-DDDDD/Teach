@@ -4,7 +4,7 @@ let chk = [false,false,false]
 pages.forEach(async (d,i)=>{
   await gethtml(d,area[i]).then(x=>{
     chk[i] = true;
-    action();
+    action(d);
   });
 })
 async function gethtml(url,id){
@@ -15,18 +15,18 @@ async function gethtml(url,id){
   document.getElementById(id).innerHTML = data;
 }
 
-function action(){
+function action(d){
   chk.forEach(x=>{
     if(!x)
       return;
   })
-  startAnnouncement();
+  startAnnouncement(d);
 }
 
 //公告顯示
-function startAnnouncement() {
+function startAnnouncement(d) {
   const announcementList = document.getElementById('announcement-list');
-  console.log(announcementList)
+  console.log(d,announcementList)
   const items = announcementList.children;
   const itemHeight = items[0].offsetHeight; // 每行的高度
   let index = 0;
