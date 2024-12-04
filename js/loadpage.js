@@ -26,6 +26,7 @@ function action(){
 //公告顯示
 function startAnnouncement() {
   const announcementList = document.getElementById('announcement-list');
+  console.log(announcementList)
   const items = announcementList.children;
   const itemHeight = items[0].offsetHeight; // 每行的高度
   let index = 0;
