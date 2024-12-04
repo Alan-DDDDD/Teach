@@ -1,3 +1,4 @@
+reList("UB1");
 export class UB1 extends baseObject {
     constructor() {
         super();
@@ -64,4 +65,3 @@ export class UB1 extends baseObject {
     }
 }
 currentview = new UB1();
-reList("UB1");
