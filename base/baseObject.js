@@ -66,8 +66,8 @@ class baseObject {
     }
     
     /**
-    @param {string} conditionArea -要驗證的區域id
-    @return {boolean} -驗證狀態
+    * @param {string} conditionArea -要驗證的區域id
+    * @return {boolean} -驗證狀態
     */
     verification(conditionArea){
         let result = true;
