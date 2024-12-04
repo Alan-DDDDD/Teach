@@ -20,6 +20,7 @@ function reList(page){
     });
     $(`#`+page).addClass("active")
     $(`#`+page).parent().parent().addClass("open")
+    $(`#`+page).parent().parent().addClass("active")
 }
 
 async function reView(page){
