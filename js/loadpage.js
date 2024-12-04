@@ -1,4 +1,3 @@
-alert("test");
 let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html","../footer-loading.html"];
 let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 pages.forEach(async (d,i)=>{
