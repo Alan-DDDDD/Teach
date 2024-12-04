@@ -45,19 +45,19 @@ function reJs(page){
     document.body.appendChild(script);
 }
 
-//公告顯示
-function startAnnouncement() {
-    const announcementList = document.getElementById('announcement-list');
-    const items = announcementList.children;
-    const itemHeight = items[0].offsetHeight; // 每行的高度
-    let index = 0;
+// //公告顯示
+// function startAnnouncement() {
+//     const announcementList = document.getElementById('announcement-list');
+//     const items = announcementList.children;
+//     const itemHeight = items[0].offsetHeight; // 每行的高度
+//     let index = 0;
 
-    setInterval(() => {
-      // 計算新的位置
-      index = (index + 1) % items.length; // 循環顯示
-      announcementList.style.top = `-${index * itemHeight}px`;
-    }, 10000); // 每 10 秒切换一次
-  }
+//     setInterval(() => {
+//       // 計算新的位置
+//       index = (index + 1) % items.length; // 循環顯示
+//       announcementList.style.top = `-${index * itemHeight}px`;
+//     }, 10000); // 每 10 秒切换一次
+//   }
 
-  // 初始化
-  document.addEventListener('DOMContentLoaded', startAnnouncement);
+//   // 初始化
+//   document.addEventListener('DOMContentLoaded', startAnnouncement);
