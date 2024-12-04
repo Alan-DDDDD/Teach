@@ -27,7 +27,6 @@ function action(d){
 function startAnnouncement(d) {
   const announcementList = document.getElementById('announcement-list');
   if(announcementList){
-
     const items = announcementList.children;
     const itemHeight = items[0].offsetHeight; // 每行的高度
     let index = 0;
