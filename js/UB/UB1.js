@@ -42,9 +42,9 @@ export class UB1 extends baseObject {
             super.BindDataList(`datatable`,Data);//重新綁定DataTable資料
             pageaction.areashow("L");
             pageaction.areahide("Q");
-            setTimeout(function(){
-                pageaction.hideLoading();
-            },3000);
+            // setTimeout(function(){
+            //     pageaction.hideLoading();
+            // },3000);
         }else{
             super.errorMsg("請輸入必填資料")
         }

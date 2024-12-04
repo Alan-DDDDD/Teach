@@ -45,6 +45,7 @@ function reJs(page){
     document.body.appendChild(script);
 }
 
+//公告顯示
 function startAnnouncement() {
     const announcementList = document.getElementById('announcement-list');
     const items = announcementList.children;
@@ -52,8 +53,8 @@ function startAnnouncement() {
     let index = 0;
 
     setInterval(() => {
-      // 计算新的位置
-      index = (index + 1) % items.length; // 循环显示
+      // 計算新的位置
+      index = (index + 1) % items.length; // 循環顯示
       announcementList.style.top = `-${index * itemHeight}px`;
     }, 10000); // 每 10 秒切换一次
   }
