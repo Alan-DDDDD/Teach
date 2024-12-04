@@ -3,10 +3,12 @@ let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 let chk = [false,false,false]
 pages.forEach(async (d,i)=>{
   await gethtml(d,area[i]).then(x=>{
-    chk[i] = true
+    chk[i] = true;
+    action();
   }).catch(async error=>{
     await gethtml(d.substring(3,d.length),area[i]).then(x=>{
-      chk[i] = true
+      chk[i] = true;
+      action();
     })
   });
 })
