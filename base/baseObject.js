@@ -9,7 +9,7 @@ class baseObject {
     }
     
     
-    tablesetting = "/json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
+    tablesetting = "../../json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
     defaultHideArea = [];//預設隱藏區域
     defaultToolBarDisabled = [];//預設禁用ToolBar按鈕
     Init(){
