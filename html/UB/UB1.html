@@ -79,14 +79,15 @@
           <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y" id="view">
               <div class="card-body" style="padding: 0;">
-                <div class="btn-group mb-2">
+                <div class="btn-group mb-2 toolbar">
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
                   <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
                   <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
+                  <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
               </div>
               <div class="card mb-3" id="Q">
-                <div class="divider text-start px-3 my-1 AreaBar" id="QBar" style="cursor:pointer">
+                <div class="divider text-start px-3 my-1 AreaBar" id="QBar">
                   <div class="divider-text">
                     <h6>條件區</h6>
                   </div>
@@ -116,7 +117,7 @@
               </div>
               
               <div class="card mb-3" id="L">
-                <div class="divider text-start px-3 my-1 AreaBar" id="LBar" style="cursor:pointer">
+                <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
                   <div class="divider-text">
                     <h6>資料列表</h6>
                   </div>
@@ -228,7 +229,7 @@
               </div>
               
               <div class="card mb-3" id="E">
-                <div class="divider text-start px-3 my-1 AreaBar" id="EBar" style="cursor:pointer">
+                <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
                   <div class="divider-text">
                     <h6>資料明細</h6>
                   </div>
@@ -271,8 +272,8 @@
                       <label for="address" class="form-label">地址</label>
                       <input id="address" class="form-control" type="text"/>
                     </div>
-                    <div class="mb-2 col-lg" style="align-content: end;">
-                      <p id="lineid" class="fs-4" style="text-align: center;">Line ID ✔️❌</p>
+                    <div class="mb-2 col-lg rowtext">
+                      <p id="lineid" class="fs-4 text">Line ID ✔️❌</p>
                     </div>
                     <div class="col-lg">
                     </div>

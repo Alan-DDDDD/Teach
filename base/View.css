@@ -9,3 +9,46 @@
 .require::before{
     content: "*";
 }
+
+.AreaBar{
+    cursor: pointer;
+}
+
+.toolbar .btn{
+    padding: 0.5rem 1rem;
+}
+
+.rowtext{
+    align-content: end;
+}
+
+.rowtext .text{
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.nav-item .alert{
+    margin-bottom: 0rem;
+}
+
+#announcement {
+    width: 300px; /* 公告栏宽度 */
+    height: 50px; /* 每行的高度 */
+    overflow: hidden; /* 隐藏超出范围的文字 */
+    position: relative;
+    /* border: 1px solid #ccc; */
+  }
+  #announcement ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: top 0.5s ease; /* 平滑过渡 */
+  }
+  #announcement li {
+    height: 50px; /* 与公告栏高度一致 */
+    line-height: 50px; /* 垂直居中 */
+    text-align: center;
+  }

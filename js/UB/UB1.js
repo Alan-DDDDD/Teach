@@ -7,7 +7,7 @@ export class UB1 extends baseObject {
     Init(){
         let me = this;
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
-        me.defaultToolBarDisabled = ["save"]//設定ToolBar按鈕狀態，預設全開
+        me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
         me.InitL();//初始化L區
         $(`#search`).on("click",me.Search);
         $(`#save`).on("click",me.Save);

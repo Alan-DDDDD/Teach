@@ -45,3 +45,18 @@ function reJs(page){
     document.body.appendChild(script);
 }
 
+function startAnnouncement() {
+    const announcementList = document.getElementById('announcement-list');
+    const items = announcementList.children;
+    const itemHeight = items[0].offsetHeight; // 每行的高度
+    let index = 0;
+
+    setInterval(() => {
+      // 计算新的位置
+      index = (index + 1) % items.length; // 循环显示
+      announcementList.style.top = `-${index * itemHeight}px`;
+    }, 10000); // 每 10 秒切换一次
+  }
+
+  // 初始化
+  document.addEventListener('DOMContentLoaded', startAnnouncement);
