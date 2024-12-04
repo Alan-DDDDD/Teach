@@ -26,14 +26,16 @@ function action(d){
 //公告顯示
 function startAnnouncement(d) {
   const announcementList = document.getElementById('announcement-list');
-  console.log(d,announcementList)
-  const items = announcementList.children;
-  const itemHeight = items[0].offsetHeight; // 每行的高度
-  let index = 0;
+  if(announcementList){
 
-  setInterval(() => {
-    // 計算新的位置
-    index = (index + 1) % items.length; // 循環顯示
-    announcementList.style.top = `-${index * itemHeight}px`;
-  }, 10000); // 每 10 秒切换一次
+    const items = announcementList.children;
+    const itemHeight = items[0].offsetHeight; // 每行的高度
+    let index = 0;
+    
+    setInterval(() => {
+      // 計算新的位置
+      index = (index + 1) % items.length; // 循環顯示
+      announcementList.style.top = `-${index * itemHeight}px`;
+    }, 10000); // 每 10 秒切换一次
+  }
 }
