@@ -5,16 +5,21 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   (function () {
-    const verticalExample = document.getElementById('vertical-example'),
+    const verticalExample = document.querySelectorAll('.vertical'),
       horizontalExample = document.getElementById('horizontal-example'),
       horizVertExample = document.getElementById('both-scrollbars-example');
 
     // Vertical Example
     // --------------------------------------------------------------------
     if (verticalExample) {
-      new PerfectScrollbar(verticalExample, {
-        wheelPropagation: false
+      verticalExample.forEach(element => {
+        new PerfectScrollbar(element, {
+          wheelPropagation: false
+        });
       });
+      // new PerfectScrollbar(verticalExample, {
+      //   wheelPropagation: false
+      // });
     }
 
     // Horizontal Example
