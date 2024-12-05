@@ -41,12 +41,14 @@
     margin-bottom: 0rem;
     border: 0 solid transparent;
     border-radius: 0.375rem;
+    text-align: left;
+    font-size:x-large;
 }
 
 #announcement {
-    width: 300px; /* 公告栏宽度 */
+    width: 550px; /*公告欄寬度*/
     height: 50px; /* 每行的高度 */
-    overflow: hidden; /* 隐藏超出范围的文字 */
+    overflow: hidden; /* 隱藏超出範圍的文字 */
     position: relative;
     /* border: 1px solid #ccc; */
   }
@@ -57,12 +59,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  transition: top 0.5s ease; /* 平滑过渡 */
+  transition: top 0.5s ease; /* 平滑 */
 }
 #announcement li {
-  height: 50px; /* 与公告栏高度一致 */
-  line-height: 50px; /* 垂直居中 */
-  text-align: center;
+  height: 50px; 
+  line-height: 50px;
 }
 @media screen and (max-width: 600px) {
   #announcement {

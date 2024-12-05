@@ -1,17 +1,3 @@
-// function areahide(Area){
-//     $(`#${Area}Area`).hide(200);
-// }
-
-// function areaShow(Area){
-//     $(`#${Area}Area`).show(200);
-// }
-
-// $(`#view`).on('click','.AreaBar',function(){
-//     let me = this;
-//     let id = $(me).parent().attr("id");
-//     $(`#${id}Area`).toggle(200);
-// });
-
 class pageaction {
     constructor() {
     }
