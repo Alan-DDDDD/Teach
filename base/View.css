@@ -264,3 +264,8 @@
       transform: translate(100px,100px) rotate(112deg);
     }
   }
+
+.t-scollbar{
+  overflow-y: auto;
+}
+
