@@ -269,3 +269,34 @@
   overflow-y: auto;
 }
 
+/* 捲軸寬度及高度 */
+.t-scollbar::-webkit-scrollbar {
+  width: 5px; /*右側捲軸寬度*/
+  height: 0px; /*下方捲軸高度*/
+}
+/* 軌道背景底色 */
+.t-scollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* 滑桿顏色 */
+.t-scollbar::-webkit-scrollbar-thumb {
+  background: rgb(192, 192, 192);
+  border-radius: 20px;
+}
+/* 滑桿滑鼠滑入時的顏色 */
+.t-scollbar::-webkit-scrollbar-thumb:hover {
+    background: gray;
+}
+/* 捲軸兩側頂端的按鈕 */
+.t-scollbar::-webkit-scrollbar-button {
+  background-color: rgba(0, 0, 0, 0);
+  height: 5px;
+  border-radius: 20px;
+  opacity: 0;
+}
+/* 捲軸兩側頂端的按鈕滑鼠滑入時的顏色 */
+.t-scollbar::-webkit-scrollbar-button:hover {
+    background-color: rgba(0, 0, 0, 0);
+    height: 5px;
+    opacity: 0;
+}
