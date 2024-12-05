@@ -50,21 +50,27 @@
     position: relative;
     /* border: 1px solid #ccc; */
   }
-  #announcement ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: top 0.5s ease; /* 平滑过渡 */
+#announcement ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: top 0.5s ease; /* 平滑过渡 */
+}
+#announcement li {
+  height: 50px; /* 与公告栏高度一致 */
+  line-height: 50px; /* 垂直居中 */
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+  #announcement {
+    content: "";
+    visibility: hidden;
+    width: 0px;
   }
-  #announcement li {
-    height: 50px; /* 与公告栏高度一致 */
-    line-height: 50px; /* 垂直居中 */
-    text-align: center;
-  }
-
+}
 
 .nav-notify{
     line-height: 0;
