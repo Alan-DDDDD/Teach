@@ -301,3 +301,17 @@
     height: 5px;
     opacity: 0;
 }
+
+.tree-subgroup{
+  display: none;
+  margin-left: 0.25rem;
+}
+
+
+.tree-lable{
+  cursor: pointer;
+}
+
+.tree-item input{
+ margin-bottom: 0.5rem;
+}
