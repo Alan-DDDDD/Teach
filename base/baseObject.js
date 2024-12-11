@@ -45,7 +45,7 @@ class baseObject {
     * @param {string} id - 要設定的Table Id
     * @param {Array} Data - 資料內容
     * @param {Array} Columns - 欄位標頭 [{data:'name',title:'姓名'},...]
-    * @param {methods} trclick - 委派方法 function(){}
+    * @param {methods} trclick - tr點擊委派方法 function(){}
     */
     setTable(id,Data,Columns,trclick){
         let table = $(`#${id}`)
