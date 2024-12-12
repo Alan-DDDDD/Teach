@@ -13,6 +13,11 @@ async function gethtml(url,id){
     throw new Error(""); 
   let data = await response.text();
   document.getElementById(id).innerHTML = data;
+  if(id == "layout-menu"){
+    let script = document.createElement('script');
+    script.src = "../../assets/js/main.js";
+    document.body.appendChild(script);
+  }
 }
 
 function action(d){
