@@ -1,5 +1,5 @@
 let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html","../footer-loading.html"];
-let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
+let area = ["layout-menu","t_navbar","buynow","loadingArea"];
 let chk = [false,false,false]
 pages.forEach(async (d,i)=>{
   await gethtml(d,area[i]).then(x=>{
