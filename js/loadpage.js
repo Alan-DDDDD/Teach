@@ -13,10 +13,14 @@ async function gethtml(url,id){
     throw new Error(""); 
   let data = await response.text();
   $(`#${id}`).append(data);
-  if(id == "layout-menu"){
-    let script = document.createElement('script');
-    script.src = "../../assets/js/main.js";
-    document.body.appendChild(script);
+  switch (id){
+    case "layout-menu":
+      let script = document.createElement('script');
+      script.src = "../../assets/js/main.js";
+      document.body.appendChild(script);
+      break;
+    default:
+      break;
   }
 }
 
