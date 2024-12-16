@@ -36,6 +36,11 @@ class baseObject {
     SearchAfter(){
     }
 
+    /**
+     * 打包指定區域內input,select,textarea的資料
+     * @param {string} Area -要取得資料區域的Id 
+     * @returns {object} -傳回打包好的資料
+     */
     GetAreaData(Area){
         let params = $(`#${Area}`).find("input,select,textarea");
         let data = {};
@@ -79,9 +84,14 @@ class baseObject {
             lengthMenu:[5,10,15,20],
             responsive: true,
             columnDefs:ColumnDefs,
-            stateSave:false
+            stateSave:false,
+            layout: {
+                topStart: {
+                    buttons: ['excel', 'pdf', 'print']
+                }
+            }
         });
-
+        
         table.css("cursor","pointer");
 
         if(trclick){
