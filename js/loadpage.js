@@ -12,11 +12,7 @@ async function gethtml(url,id){
   if(!response.ok)
     throw new Error(""); 
   let data = await response.text();
-  if(id == "layout-navbar"){
-    $(`#layout-navbar`).append(data);
-  }else{
-    document.getElementById(id).innerHTML = data;
-  }
+  $(`#${id}`).append(data);
   if(id == "layout-menu"){
     let script = document.createElement('script');
     script.src = "../../assets/js/main.js";
