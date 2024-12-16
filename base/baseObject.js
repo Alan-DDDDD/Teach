@@ -42,6 +42,7 @@ class baseObject {
     }
 
     /**
+     * 設定DataTable
     * @param {string} id - 要設定的Table Id
     * @param {Array} Data - 資料內容
     * @param {Array} Columns - 欄位標頭 [{data:'name',title:'姓名'},...]
@@ -69,6 +70,7 @@ class baseObject {
     }
     
     /**
+    * 驗證必填欄位
     * @param {string} conditionArea -要驗證的區域id
     * @return {boolean} -驗證狀態
     */
@@ -93,6 +95,7 @@ class baseObject {
     }
 
     /**
+     * 鎖定或解除鎖定指定區域input,select,textarea
      * @param {string} LockArea -要鎖住的區域id
      * @param {boolean} lock -鎖定狀態(true鎖定/false解除鎖定)
      */
@@ -114,6 +117,7 @@ class baseObject {
     }
 
     /**
+     * 資料列表重新綁定資料
      * @param {string} List -綁定的資料列表Id
      * @param {Array} Data -要綁定的資料
      */
@@ -125,15 +129,20 @@ class baseObject {
     }
 
     /***
+     * 系統提示訊息
      * @param {string} Msg -輸入提示字串
+     * @param {string} alertDegree -警示程度["success","primary","secondary","warning","danger"](預設值"secondary")
+     * @param {number} keepTime -持續時間(單位"秒")
      */
-    errorMsg(Msg){
-        $(`#teachalert`).html(`<div class="alert alert-danger alert-dismissible" role="alert">
-                        ${Msg}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>`);
+    alertMsg(Msg,alertDegree,keepTime){
+        let teachalert = $(`#teachalert`);
+        let div = document.createElement('div');
+        div.role = "alert";
+        div.classList.add("alert",`alert-${alertDegree ?? "secondary"}`,"alert-dismissible");
+        div.innerHTML = `${Msg}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+        teachalert.append(div);
         setTimeout(function(){
-            $(`#teachalert`).html("");
-        },3000);
+            div.remove();
+        },keepTime ? keepTime*1000:3000);
     }
 }

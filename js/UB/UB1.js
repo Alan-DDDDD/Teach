@@ -28,8 +28,7 @@ export class UB1 extends baseObject {
             {targets:[3],responsivePriority:4},
         ]
         super.setTable(`datatable`,[],columns,columnDefs,function(){
-            //設定L區DataTable點擊動作
-            //alert($($(this).find('td').get(2)).html())
+            //設定L區DataTable tr點擊動作
             pageaction.areahide("L");
             pageaction.areashow("E");
             pageaction.ToolBarUnDisabled("save");
@@ -52,14 +51,14 @@ export class UB1 extends baseObject {
                 pageaction.hideLoading();
             },3000);
         }else{
-            super.errorMsg("請輸入必填資料")
+            super.alertMsg("請輸入必填資料","danger")
         }
     }
     Save(){
         if(super.verification("EArea")){
-            alert("成功")
+            super.alertMsg("儲存成功","success")
         }else{
-            super.errorMsg("請輸入必填資料")
+            super.alertMsg("請輸入必填資料","danger")
         }
     }
     Insert(){
