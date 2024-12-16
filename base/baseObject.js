@@ -47,7 +47,7 @@ class baseObject {
     * @param {Array} Columns - 欄位標頭 [{data:'name',title:'姓名'},...]
     * @param {methods} trclick - tr點擊委派方法 function(){}
     */
-    setTable(id,Data,Columns,trclick){
+    setTable(id,Data,Columns,ColumnDefs,trclick){
         let table = $(`#${id}`)
         table.DataTable({
             data:Data,
@@ -55,7 +55,10 @@ class baseObject {
             language:{
                 url: this.tablesetting
             },
-            lengthMenu:[5,10,15,20]
+            lengthMenu:[5,10,15,20],
+            responsive: true,
+            columnDefs:ColumnDefs,
+            stateSave:false
         });
 
         table.css("cursor","pointer");

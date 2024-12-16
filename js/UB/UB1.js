@@ -21,7 +21,13 @@ export class UB1 extends baseObject {
             { data: 'tax',title: "市話" },
             { data: 'email',title: "Email(電子信箱)" },
         ]
-        super.setTable(`datatable`,[],columns,function(){
+        let columnDefs = [
+            {targets:[0],responsivePriority:1},
+            {targets:[1],responsivePriority:2},
+            {targets:[2],responsivePriority:3},
+            {targets:[3],responsivePriority:4},
+        ]
+        super.setTable(`datatable`,[],columns,columnDefs,function(){
             //設定L區DataTable點擊動作
             //alert($($(this).find('td').get(2)).html())
             pageaction.areahide("L");
