@@ -8,9 +8,9 @@ export class UA1 extends baseObject {
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
         me.defaultToolBarDisabled = ["save"]//設定ToolBar按鈕狀態，預設全開
         me.InitL();//初始化L區
-        $(`#search`).on("click",me.Search);
-        $(`#save`).on("click",me.Save);
-        $(`#insert`).on("click",me.Insert);
+        $(`#search`).on("click",me.Search.bind(this));
+        $(`#save`).on("click",me.Save.bind(this));
+        $(`#insert`).on("click",me.Insert.bind(this));
     }
     InitL(){
         //設定L區DataTable
@@ -34,25 +34,25 @@ export class UA1 extends baseObject {
         $(`#save`).unbind("click");
         $(`#insert`).unbind("click");
     }
-    Search(){
-        if(super.verification("QArea")){
-            pageaction.showLoading();
-            let Data = [{name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'}]
-            super.BindDataList(`datatable`,Data);//重新綁定DataTable資料
-            pageaction.areashow("L");
-            pageaction.areahide("Q");
-            setTimeout(function(){
-                pageaction.hideLoading();
-            },3000);
-        }else{
-            super.errorMsg("請輸入必填資料")
-        }
-    }
+    // Search(){
+    //     if(super.verification("QArea")){
+    //         pageaction.showLoading();
+    //         let Data = [{name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'}]
+    //         super.BindDataList(`datatable`,Data);//重新綁定DataTable資料
+    //         pageaction.areashow("L");
+    //         pageaction.areahide("Q");
+    //         setTimeout(function(){
+    //             pageaction.hideLoading();
+    //         },3000);
+    //     }else{
+    //         this.alertMsg("請輸入必填資料")
+    //     }
+    // }
     Save(){
         if(super.verification("EArea")){
-            alert("成功")
+            this.alertMsg("成功")
         }else{
-            super.errorMsg("請輸入必填資料")
+            this.alertMsg("請輸入必填資料")
         }
     }
     Insert(){

@@ -86,7 +86,7 @@
                   <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
               </div>
-              <div class="card mb-3" id="Q">
+              <!-- <div class="card mb-3" id="Q">
                 <div class="divider text-start px-3 my-1 AreaBar" id="QBar">
                   <div class="divider-text">
                     <h6>條件區</h6>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="card-body" id="QArea">
                 </div>
-              </div>
+              </div> -->
               
               <div class="card mb-3" id="L">
                 <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
@@ -102,154 +102,158 @@
                     <h6>班級列表</h6>
                   </div>
                 </div>
-                <div class="card-body" id="LArea" style="height: 500px;">
-                  <div class="row mb-1">
-                    <div class="col-lg">
-                      <input class="form-check-input" id="allchk" type="checkbox" value="" />
-                      <span>全選</span>
-                    </div>
-                  </div>
+                <div class="card-body" id="LArea" style="height: 550px;">
                   <div class="row">
-                    <div class="col-lg-6  t-scollbar" style="height:450px;" id="classList">
-                      <div class="demo-inline-spacing mt-3">
-                        <div class="list-group tree-group">
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國一A班</span>
-                            <div class="row tree-subgroup">
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span  class="tree-lable">王曉明</span>
-                                  <div class="row tree-subgroup">
-                                    <div class="tree-item">
-                                        <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                        <span>王曉明1</span>
-                                    </div>
-                                    <div class="tree-item">
-                                        <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                        <span class="tree-lable">王曉明2</span>
-                                        <div class="row tree-subgroup">
-                                          <div class="tree-item">
-                                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                              <span>王曉明1</span>
+                    <div class="col-lg-6">
+                      <div class="btn-group mb-2">
+                        <button type="button" class="btn btn-primary" id="keepclass">續班</button>
+                        <button type="button" class="btn btn-primary" id="upclass">升班</button>
+                      </div>
+                      <div class="col-lg">
+                        <input class="form-check-input" id="allchk" type="checkbox" value="" />
+                        <span>全選</span>
+                      </div>
+                      <div class="t-scollbar" style="height:450px;" id="classList">
+                        <div class="demo-inline-spacing mt-3">
+                          <div class="list-group tree-group">
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國一A班</span>
+                              <div class="row tree-subgroup">
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span  class="tree-lable">王曉明</span>
+                                    <div class="row tree-subgroup">
+                                      <div class="tree-item">
+                                          <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                          <span>王曉明1</span>
+                                      </div>
+                                      <div class="tree-item">
+                                          <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                          <span class="tree-lable">王曉明2</span>
+                                          <div class="row tree-subgroup">
+                                            <div class="tree-item">
+                                                <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                                <span>王曉明1</span>
+                                            </div>
+                                            <div class="tree-item">
+                                                <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                                <span>王曉明2</span>
+                                            </div>
+                                            <div class="tree-item">
+                                                <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                                <span>王曉明3</span>
+                                            </div>
+                                            <div class="tree-item">
+                                                <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                                <span>王曉明4</span>
+                                            </div>
                                           </div>
-                                          <div class="tree-item">
-                                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                              <span>王曉明2</span>
-                                          </div>
-                                          <div class="tree-item">
-                                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                              <span>王曉明3</span>
-                                          </div>
-                                          <div class="tree-item">
-                                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                              <span>王曉明4</span>
-                                          </div>
-                                        </div>
+                                      </div>
+                                      <div class="tree-item">
+                                          <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                          <span>王曉明3</span>
+                                      </div>
+                                      <div class="tree-item">
+                                          <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                          <span>王曉明4</span>
+                                      </div>
                                     </div>
-                                    <div class="tree-item">
-                                        <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                        <span>王曉明3</span>
-                                    </div>
-                                    <div class="tree-item">
-                                        <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                        <span>王曉明4</span>
-                                    </div>
-                                  </div>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>劉德華</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王建名</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>彭于晏</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>劉德華</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王建名</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>彭于晏</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國一B班</span>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國一C班</span>
-                            <div class="row tree-subgroup">
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王曉明</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>劉德華</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王建名</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>彭于晏</span>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國一B班</span>
+                            </div>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國一C班</span>
+                              <div class="row tree-subgroup">
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王曉明</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>劉德華</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王建名</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>彭于晏</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國二A班</span>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國二B班</span>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國二C班</span>
-                            <div class="row tree-subgroup">
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王曉明</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>劉德華</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王建名</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>彭于晏</span>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國二A班</span>
+                            </div>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國二B班</span>
+                            </div>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國二C班</span>
+                              <div class="row tree-subgroup">
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王曉明</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>劉德華</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王建名</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>彭于晏</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國三A班</span>
-                          </div>
-                          <div class="list-group-item tree-item">
-                            <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                            <span class="tree-lable">國三B班</span>
-                            <div class="row tree-subgroup">
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王曉明</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>劉德華</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>王建名</span>
-                              </div>
-                              <div class="tree-item">
-                                  <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
-                                  <span>彭于晏</span>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國三A班</span>
+                            </div>
+                            <div class="list-group-item tree-item">
+                              <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                              <span class="tree-lable">國三B班</span>
+                              <div class="row tree-subgroup">
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王曉明</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>劉德華</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>王建名</span>
+                                </div>
+                                <div class="tree-item">
+                                    <input class="form-check-input me-1 tree-checkbox" type="checkbox" value="" />
+                                    <span>彭于晏</span>
+                                </div>
                               </div>
                             </div>
                           </div>

@@ -9,9 +9,9 @@ export class UB1 extends baseObject {
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
         me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
         me.InitL();//初始化L區
-        $(`#search`).on("click",me.Search);
-        $(`#save`).on("click",me.Save);
-        $(`#insert`).on("click",me.Insert);
+        $(`#search`).on("click",me.Search.bind(this));
+        $(`#save`).on("click",me.Save.bind(this));
+        $(`#insert`).on("click",me.Insert.bind(this));
     }
     InitL(){
         //設定L區DataTable
@@ -27,7 +27,7 @@ export class UB1 extends baseObject {
             {targets:[2],responsivePriority:3},
             {targets:[3],responsivePriority:4},
         ]
-        super.setTable(`datatable`,[],columns,columnDefs,function(){
+        this.setTable(`datatable`,[],columns,columnDefs,function(){
             //設定L區DataTable tr點擊動作
             pageaction.areahide("L");
             pageaction.areashow("E");
@@ -43,26 +43,27 @@ export class UB1 extends baseObject {
     Search(){
         if(super.verification("QArea")){
             pageaction.showLoading();
+            console.log(this.GetAreaData("EArea"));
             let Data = [{name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'}]
-            super.BindDataList(`datatable`,Data);//重新綁定DataTable資料
+            this.BindDataList(`datatable`,Data);//重新綁定DataTable資料
             pageaction.areashow("L");
             pageaction.areahide("Q");
             setTimeout(function(){
                 pageaction.hideLoading();
             },3000);
         }else{
-            super.alertMsg("請輸入必填資料","danger")
+            this.alertMsg("請輸入必填資料","danger")
         }
     }
     Save(){
         if(super.verification("EArea")){
-            super.alertMsg("儲存成功","success")
+            this.alertMsg("儲存成功","success")
         }else{
-            super.alertMsg("請輸入必填資料","danger")
+            this.alertMsg("請輸入必填資料","danger")
         }
     }
     Insert(){
-        super.ClearArea("EArea");//清空E區資料
+        this.ClearArea("EArea");//清空E區資料
         pageaction.ToolBarUnDisabled("save");//解鎖save按鈕
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區

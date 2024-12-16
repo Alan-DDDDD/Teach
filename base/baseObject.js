@@ -8,7 +8,6 @@ class baseObject {
         this.DefaultLoadToolBarDisabled();
     }
     
-    
     tablesetting = "../../json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
     defaultHideArea = [];//預設隱藏區域
     defaultToolBarDisabled = [];//預設禁用ToolBar按鈕
@@ -23,6 +22,27 @@ class baseObject {
     }
 
     LoadAfter(){
+    }
+
+    SearchBefore(){
+        console.log(this.GetAreaData("QArea"));
+    }
+
+    Search(){
+        this.SearchBefore();
+        this.SearchAfter();
+    }
+
+    SearchAfter(){
+    }
+
+    GetAreaData(Area){
+        let params = $(`#${Area}`).find("input,select,textarea");
+        let data = {};
+        $.each(params,(i,d)=>{
+            data[$(d).attr("id")] = $(d).val();
+        })
+        return data;
     }
 
     DefaultLoadHide(){
