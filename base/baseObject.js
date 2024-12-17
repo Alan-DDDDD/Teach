@@ -3,6 +3,7 @@ class baseObject {
         pageaction.AreaBarClick();
         this.LoadBefore();
         this.Init();
+        this.setDropDownList();
         this.LoadAfter();
         this.DefaultLoadHide();
         this.DefaultLoadToolBarDisabled();
@@ -11,6 +12,7 @@ class baseObject {
     tablesetting = "../../json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
     defaultHideArea = [];//預設隱藏區域
     defaultToolBarDisabled = [];//預設禁用ToolBar按鈕
+    ClassName;
     Init(){
     }
 
@@ -206,5 +208,30 @@ class baseObject {
                 }
             }
         });
+    }
+
+    async setDropDownList(){
+        let ddls = $(`.t_ddl`);
+        let data = await this.getDropDownListDataSource();
+        if(data){
+            $.each(ddls,(i,d)=>{
+                let dataSource = $(d).data("ddlds");
+                $(d).empty().append(`<option>請選擇</option>`);
+                $.each(data[dataSource], function(index, option) {
+                    $(d).append(
+                        $('<option>', {value: option.Value,text: option.Text})
+                    );
+                });
+            })
+        }
+    }
+
+    async getDropDownListDataSource(){
+        //https://localhost:7036
+        let response = await fetch(`https://localhost:7036/api/${this.ClassName}/GetDDLDataSource`,{
+            method:"Post"
+        })
+        let data = await response.json()
+        return data.Data; 
     }
 }
