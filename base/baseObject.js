@@ -30,12 +30,31 @@ class baseObject {
         console.log(this.GetAreaData("QArea"));
     }
 
-    Search(){
+    async Search(){
+        pageaction.showLoading();
         this.SearchBefore();
+        let response = await fetch(`https://localhost:7036/api/${this.ClassName}/Search`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"  // 設定請求的 Content-Type
+            },
+            body:JSON.stringify(this.GetAreaData("QArea"))
+        })
+        try{
+            let data = await response.json();
+            if(data.s){
+                console.log(data.d)
+            }
+        }
+        catch{
+            this.alertMsg("系統錯誤","danger")
+            pageaction.hideLoading();
+        }
         this.SearchAfter();
     }
 
     SearchAfter(){
+        pageaction.hideLoading();
     }
 
     /**
@@ -216,7 +235,7 @@ class baseObject {
         if(data){
             $.each(ddls,(i,d)=>{
                 let dataSource = $(d).data("ddlds");
-                $(d).empty().append(`<option>請選擇</option>`);
+                $(d).empty().append(`<option value="">請選擇</option>`);
                 $.each(data[dataSource], function(index, option) {
                     $(d).append(
                         $('<option>', {value: option.Value,text: option.Text})
