@@ -33,7 +33,7 @@ class baseObject {
     async Search(){
         pageaction.showLoading();
         this.SearchBefore();
-        let response = await fetch(`https://localhost:7036/api/${this.ClassName}/Search`,{
+        let response = await fetch(`${url}/${this.ClassName}/Search`,{
             method:"POST",
             headers: {
                 "Content-Type": "application/json"  // 設定請求的 Content-Type
@@ -247,7 +247,7 @@ class baseObject {
 
     async getDropDownListDataSource(){
         //https://localhost:7036
-        let response = await fetch(`https://localhost:7036/api/${this.ClassName}/GetDDLDataSource`,{
+        let response = await fetch(`${url}/${this.ClassName}/GetDDLDataSource`,{
             method:"Post"
         })
         let data = await response.json()

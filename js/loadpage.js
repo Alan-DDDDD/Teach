@@ -1,10 +1,10 @@
 let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html","../footer-loading.html"];
 let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
-let chk = [false,false,false]
+let chk = [false,false,false,false];
+var url = "https://localhost:7036/api"
 pages.forEach(async (d,i)=>{
-  await gethtml(d,area[i]).then(x=>{
+  await gethtml(d,area[i]).then(async x=>{
     chk[i] = true;
-    action(d);
     switch (area[i]){
       case "layout-menu":
         const scripts = [
@@ -20,6 +20,21 @@ pages.forEach(async (d,i)=>{
           .catch((error) => {
             console.error(error);
           });
+        break;
+      case "layout-navbar":
+        let response = await fetch(`${url}/Teach/GetNotify`,{
+          method:"POST"
+        });
+        let data = await response.json();
+        let ul = document.getElementById(`announcement-list`);
+        data.Data.forEach(x=>{
+          let li = document.createElement('li')
+          li.classList.add(`alert`,`alert-${x.degree}`)
+          li.innerHTML = x.text;
+          ul.append(li);
+        })
+        if(data.Data)
+          action(d);
         break;
       default:
         break;
@@ -54,7 +69,7 @@ function startAnnouncement(d) {
       // 計算新的位置
       index = (index + 1) % items.length; // 循環顯示
       announcementList.style.top = `-${index * itemHeight}px`;
-    }, 10000); // 每 10 秒切换一次
+    }, 1000); // 每 10 秒切换一次
   }
 }
 
