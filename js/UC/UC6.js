@@ -12,7 +12,7 @@ export class UC6 extends baseObject {
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
         $(`#classList`).on("change",'input[type=checkbox]',function(){
-            alert($(`#classList input[type="checkbox"]:checked`).length)
+            //alert($(`#classList input[type="checkbox"]:checked`).length)
         });
     }
     InitL(){
