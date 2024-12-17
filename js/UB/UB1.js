@@ -37,7 +37,6 @@ export class UB1 extends baseObject {
             //設定L區DataTable tr點擊動作
             let table = $(`#datatable`).DataTable();
             var rowData = table.row(this).data();
-            console.log(rowData)
             if(rowData){   
                 pageaction.areahide("L");
                 pageaction.areashow("E");
