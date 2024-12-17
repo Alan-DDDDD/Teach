@@ -177,4 +177,34 @@ class baseObject {
             div.remove();
         },keepTime ? keepTime*1000:3000);
     }
+
+    /**
+     * 將物件綁定到指定區域的欄位
+     * @param {object} data -需要綁定的資料物件 
+     * @param {string} area -指定綁定區域
+     */
+    BindDataForArea(data,area){
+        $.each(data, function(key, value) {
+            var $input = $(`#${area} input[name="${key}"], select[name="${key}"], textarea[name="${key}"]`);
+            
+            if ($input.length) {
+                switch (true) {
+                    case $input.attr('type') === 'text':
+                        $input.val(value); // 處理 text 類型的 input
+                        break;
+                    case $input.attr('type') === 'checkbox':
+                        $input.prop('checked', value === 'Y' || value === true); // 處理 checkbox 類型的 input
+                        break;
+                    case $input.is('select'):
+                        $input.val(value); // 處理 select 元素
+                        break;
+                    case $input.is('textarea'):
+                        $input.val(value); // 處理 textarea 元素
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
 }
