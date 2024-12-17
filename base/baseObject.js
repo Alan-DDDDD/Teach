@@ -190,16 +190,16 @@ class baseObject {
             if ($input.length) {
                 switch (true) {
                     case $input.attr('type') === 'text':
-                        $input.val(value); // 處理 text 類型的 input
+                        $input.val(value);
                         break;
                     case $input.attr('type') === 'checkbox':
-                        $input.prop('checked', value === 'Y' || value === true); // 處理 checkbox 類型的 input
+                        $input.prop('checked', value === 'Y' || value === true);
                         break;
                     case $input.is('select'):
-                        $input.val(value); // 處理 select 元素
+                        $input.val(value);
                         break;
                     case $input.is('textarea'):
-                        $input.val(value); // 處理 textarea 元素
+                        $input.val(value);
                         break;
                     default:
                         break;
