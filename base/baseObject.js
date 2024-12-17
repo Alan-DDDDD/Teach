@@ -73,7 +73,7 @@ class baseObject {
     * @param {Array} Columns - 欄位標頭 [{data:'name',title:'姓名'},...]
     * @param {methods} trclick - tr點擊委派方法 function(){}
     */
-    setTable(id,Data,Columns,ColumnDefs,trclick){
+    setTable(id,Data,Columns,ColumnDefs,Buttons,trclick){
         let table = $(`#${id}`)
         table.DataTable({
             data:Data,
@@ -85,9 +85,9 @@ class baseObject {
             responsive: true,
             columnDefs:ColumnDefs,
             stateSave:false,
-            layout: {
-                topStart: {
-                    buttons: ['excel', 'pdf', 'print']
+            layout:{
+                top1Start:{
+                    buttons:Buttons
                 }
             }
         });
@@ -97,6 +97,8 @@ class baseObject {
         if(trclick){
             table.on('click','tbody tr',trclick);
         }
+
+        return table;
     }
     
     /**
