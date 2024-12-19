@@ -33,24 +33,26 @@ class baseObject {
     async Search(){
         pageaction.showLoading();
         this.SearchBefore();
-        let response = await fetch(`${url}/${this.ClassName}/Search`,{
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json"  // 設定請求的 Content-Type
-            },
-            body:JSON.stringify(this.GetAreaData("QArea"))
-        })
-        try{
-            let data = await response.json();
-            if(data.Status){
-                console.log(data.d)
-            }else{
-                this.alertMsg(data.Msg,"success")
+        if(this.GetAreaData("QArea")){
+            let response = await fetch(`${url}/${this.ClassName}/Search`,{
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json"  // 設定請求的 Content-Type
+                },
+                body:JSON.stringify(this.GetAreaData("QArea"))
+            })
+            try{
+                let data = await response.json();
+                if(data.Status){
+                    console.log(data.d)
+                }else{
+                    this.alertMsg(data.Msg,"success")
+                }
             }
-        }
-        catch{
-            this.alertMsg("系統錯誤","danger")
-            pageaction.hideLoading();
+            catch{
+                this.alertMsg("系統錯誤","danger")
+                pageaction.hideLoading();
+            }
         }
         this.SearchAfter();
     }
@@ -66,6 +68,9 @@ class baseObject {
      */
     GetAreaData(Area){
         let params = $(`#${Area}`).find("input,select,textarea");
+        if(params.length == 0){
+            return null;
+        }
         let data = {};
         $.each(params,(i,d)=>{
             data[$(d).attr("id")] = $(d).val();
