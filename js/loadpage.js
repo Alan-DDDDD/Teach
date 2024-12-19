@@ -99,10 +99,10 @@ async function getModule(){
 
 function setmodule(data){
   let module = document.querySelectorAll('#layout-menu .menu-toggle');
-  if(module.length != 0 && !Module.includes("ALL")){
+  if(module.length != 0 && !Module.Modules.includes("ALL")){
     module.forEach((d,i)=>{
       let m = $(d).parent()
-      if(!data.includes(m.attr("id"))){
+      if(!data.Modules.includes(m.attr("id"))){
         m.remove();
       }
     })

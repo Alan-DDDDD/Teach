@@ -3,8 +3,9 @@ class baseObject {
         pageaction.AreaBarClick();
         this.LoadBefore();
         this.Init();
-        this.setDropDownList();
         this.LoadAfter();
+        this.settingViewAuth();
+        this.setDropDownList();
         this.DefaultLoadHide();
         this.DefaultLoadToolBarDisabled();
     }
@@ -33,7 +34,7 @@ class baseObject {
     async Search(){
         pageaction.showLoading();
         this.SearchBefore();
-        if(this.GetAreaData("QArea")){
+        if(this.GetAreaData("QArea") && this.verification("QArea")){
             let response = await fetch(`${url}/${this.ClassName}/Search`,{
                 method:"POST",
                 headers: {
@@ -258,5 +259,30 @@ class baseObject {
         })
         let data = await response.json()
         return data.Data; 
+    }
+
+    settingViewAuth(){
+        if(Module){
+            let Auth = Module.EMPLModules.filter(x=>x.Functionid === this.ClassName)[0];
+            if(Auth && Auth.Mval){
+                switch(Auth.Mval){
+                    case "R":
+                        $(`.toolbar #insert, .toolbar #save`).remove();
+                        $(`.EditArea`).find(`input,select,textarea`).attr(`disabled`,`disabled`);
+                        break;
+                    case "N":
+                        $(`#view`).html("無使用權限")
+                        break;
+                    case "E":
+                        $(`.toolbar #insert`).remove();
+                        break;
+                    case "I":
+                    case "A":
+                    default:
+                        $(`.EditArea`).find(`input,select,textarea`).removeAttr(`disabled`);
+                        break;
+                }
+            }
+        }
     }
 }
