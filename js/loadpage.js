@@ -1,46 +1,52 @@
 let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html","../footer-loading.html"];
 let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 let chk = [false,false,false,false];
-var url = "https://localhost:7036/api"
-pages.forEach(async (d,i)=>{
-  await gethtml(d,area[i]).then(async x=>{
-    chk[i] = true;
-    switch (area[i]){
-      case "layout-menu":
-        const scripts = [
-          '../../assets/vendor/js/menu.js',
-          '../../assets/js/main.js'
-        ];
-        scripts.reduce((promise, scriptUrl) => {
-          return promise.then(() => loadScript(scriptUrl));
-        }, Promise.resolve()) // 開始一個空的 resolved promise
-          .then(() => {
-            console.log('All scripts loaded successfully');
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-        break;
-      case "layout-navbar":
-        let response = await fetch(`${url}/Teach/GetNotify`,{
-          method:"POST"
-        });
-        let data = await response.json();
-        let ul = document.getElementById(`announcement-list`);
-        data.Data.forEach(x=>{
-          let li = document.createElement('li')
-          li.classList.add(`alert`,`alert-${x.degree}`)
-          li.innerHTML = x.text;
-          ul.append(li);
-        })
-        if(data.Data)
-          action(d);
-        break;
-      default:
-        break;
-    }
-  });
-})
+var url = "https://localhost:7036/api";
+var Module;
+getModule().then(()=>{
+  if(Module){
+    pages.forEach(async (d,i)=>{
+      await gethtml(d,area[i]).then(async x=>{
+        chk[i] = true;
+        switch (area[i]){
+          case "layout-menu":
+            setmodule(Module);
+            const scripts = [
+              '../../assets/vendor/js/menu.js',
+              '../../assets/js/main.js'
+            ];
+            scripts.reduce((promise, scriptUrl) => {
+              return promise.then(() => loadScript(scriptUrl));
+            }, Promise.resolve()) // 開始一個空的 resolved promise
+              .then(() => {
+                console.log('All scripts loaded successfully');
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+            break;
+          case "layout-navbar":
+            let response = await fetch(`${url}/Teach/GetNotify`,{
+              method:"POST"
+            });
+            let data = await response.json();
+            let ul = document.getElementById(`announcement-list`);
+            data.Data.forEach(x=>{
+              let li = document.createElement('li')
+              li.classList.add(`alert`,`alert-${x.degree}`)
+              li.innerHTML = x.text;
+              ul.append(li);
+            })
+            if(data.Data)
+              action(d);
+            break;
+          default:
+            break;
+        }
+      });
+    })
+  }
+});
 async function gethtml(url,id){
   let response = await fetch(url);
   if(!response.ok)
@@ -81,4 +87,24 @@ function loadScript(url) {
     script.onerror = () => reject(new Error(`Failed to load script: ${url}`)); // 當載入失敗時，觸發 reject
     document.head.appendChild(script); // 將 script 元素添加到 head 標籤
   });
+}
+
+async function getModule(){
+  let response = await fetch(`${url}/Login/GetModuleAuth`,{method:"POST"});
+  let data = await response.json();
+  if(data.Status){
+    Module = data.Data;
+  }
+}
+
+function setmodule(data){
+  let module = document.querySelectorAll('#layout-menu .menu-toggle');
+  if(module.length != 0 && !Module.includes("ALL")){
+    module.forEach((d,i)=>{
+      let m = $(d).parent()
+      if(!data.includes(m.attr("id"))){
+        m.remove();
+      }
+    })
+  }
 }

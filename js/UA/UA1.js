@@ -5,6 +5,7 @@ export class UA1 extends baseObject {
     //初始化UB1
     Init(){
         let me = this;
+        me.ClassName = "UA1"
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
         me.defaultToolBarDisabled = ["save"]//設定ToolBar按鈕狀態，預設全開
         me.InitL();//初始化L區

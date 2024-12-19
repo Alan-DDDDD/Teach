@@ -6,6 +6,7 @@ export class UC6 extends baseObject {
     //初始化UB1
     Init(){
         let me = this;
+        me.ClassName = "UC6"
         me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
         me.InitL();//初始化L區
         $(`#search`).on("click",me.Search.bind(this));

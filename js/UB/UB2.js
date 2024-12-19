@@ -4,7 +4,8 @@ export class UB2 extends baseObject {
         super();
     }
     Init(){
-        
+        let me = this;
+        me.ClassName = "UB2"
     }
     InitL(){
         

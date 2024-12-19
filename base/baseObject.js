@@ -42,8 +42,10 @@ class baseObject {
         })
         try{
             let data = await response.json();
-            if(data.s){
+            if(data.Status){
                 console.log(data.d)
+            }else{
+                this.alertMsg(data.Msg,"success")
             }
         }
         catch{
@@ -246,7 +248,6 @@ class baseObject {
     }
 
     async getDropDownListDataSource(){
-        //https://localhost:7036
         let response = await fetch(`${url}/${this.ClassName}/GetDDLDataSource`,{
             method:"Post"
         })
