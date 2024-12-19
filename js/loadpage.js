@@ -3,14 +3,17 @@ let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 let chk = [false,false,false,false];
 var url = "https://localhost:7036/api";
 var Module;
-getModule().then(()=>{
-  if(Module){
+var headers = {
+  
+}
+//getModule().then(()=>{
+  //if(Module){
     pages.forEach(async (d,i)=>{
       await gethtml(d,area[i]).then(async x=>{
         chk[i] = true;
         switch (area[i]){
           case "layout-menu":
-            setmodule(Module);
+            //setmodule(Module);
             const scripts = [
               '../../assets/vendor/js/menu.js',
               '../../assets/js/main.js'
@@ -26,7 +29,7 @@ getModule().then(()=>{
               });
             break;
           case "layout-navbar":
-            let response = await fetch(`${url}/Teach/GetNotify`,{
+            let response = await fetch(`${url}/Login/GetNotify`,{
               method:"POST"
             });
             let data = await response.json();
@@ -45,8 +48,8 @@ getModule().then(()=>{
         }
       });
     })
-  }
-});
+  //}
+//});
 async function gethtml(url,id){
   let response = await fetch(url);
   if(!response.ok)
@@ -90,7 +93,9 @@ function loadScript(url) {
 }
 
 async function getModule(){
-  let response = await fetch(`${url}/Login/GetModuleAuth`,{method:"POST"});
+  let response = await fetch(`${url}/Login/GetModuleAuth`,{
+    method:"POST"
+  });
   let data = await response.json();
   if(data.Status){
     Module = data.Data;

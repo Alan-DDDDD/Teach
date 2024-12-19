@@ -255,7 +255,10 @@ class baseObject {
 
     async getDropDownListDataSource(){
         let response = await fetch(`${url}/${this.ClassName}/GetDDLDataSource`,{
-            method:"Post"
+            method:"Post",
+            headers:new Headers({
+              "authorization":""
+            })
         })
         let data = await response.json()
         return data.Data; 
