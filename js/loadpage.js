@@ -6,14 +6,14 @@ var Module;
 var headers = {
   
 }
-//getModule().then(()=>{
-  //if(Module){
+getModule().then(()=>{
+  if(Module){
     pages.forEach(async (d,i)=>{
       await gethtml(d,area[i]).then(async x=>{
         chk[i] = true;
         switch (area[i]){
           case "layout-menu":
-            //setmodule(Module);
+            setmodule(Module);
             const scripts = [
               '../../assets/vendor/js/menu.js',
               '../../assets/js/main.js'
@@ -48,8 +48,8 @@ var headers = {
         }
       });
     })
-  //}
-//});
+  }
+});
 async function gethtml(url,id){
   let response = await fetch(url);
   if(!response.ok)
@@ -93,7 +93,7 @@ function loadScript(url) {
 }
 
 async function getModule(){
-  let response = await fetch(`${url}/Login/GetModuleAuth`,{
+  let response = await fetch(`${url}/Login/GetModuleAuth?emplid=test`,{
     method:"POST"
   });
   let data = await response.json();

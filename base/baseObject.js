@@ -257,10 +257,14 @@ class baseObject {
         let response = await fetch(`${url}/${this.ClassName}/GetDDLDataSource`,{
             method:"Post",
             headers:new Headers({
-              "authorization":""
+            //   "authorization":localStorage.getItem("jwttoken"),
+              "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`
             })
         })
         let data = await response.json()
+        if(!data.Status){
+            this.alertMsg(data.Msg,"warning")
+        }
         return data.Data; 
     }
 
@@ -274,7 +278,7 @@ class baseObject {
                         $(`.EditArea`).find(`input,select,textarea`).attr(`disabled`,`disabled`);
                         break;
                     case "N":
-                        $(`#view`).html("無使用權限")
+                        $(`#view`).html("無使用權限");
                         break;
                     case "E":
                         $(`.toolbar #insert`).remove();

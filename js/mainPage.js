@@ -44,3 +44,19 @@ function reJs(page){
     script.classList.add("myjs");
     document.body.appendChild(script);
 }
+
+async function t_Post(Route,params){
+    try{
+        let response = await fetch(`${url}/${Route}`,{
+            method:"POST",
+            headers:new Headers({
+                "authorization":""
+            }),
+            body:JSON.stringify(params)
+        });
+        let data = await response.json();
+        return data;
+    }catch{
+        console.log(`系統異常`);
+    }
+}
