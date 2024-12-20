@@ -37,9 +37,10 @@ class baseObject {
         if(this.GetAreaData("QArea") && this.verification("QArea")){
             let response = await fetch(`${url}/${this.ClassName}/Search`,{
                 method:"POST",
-                headers: {
+                headers:new Headers({
+                    "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`,
                     "Content-Type": "application/json"  // 設定請求的 Content-Type
-                },
+                  }),
                 body:JSON.stringify(this.GetAreaData("QArea"))
             })
             try{
@@ -257,7 +258,6 @@ class baseObject {
         let response = await fetch(`${url}/${this.ClassName}/GetDDLDataSource`,{
             method:"Post",
             headers:new Headers({
-            //   "authorization":localStorage.getItem("jwttoken"),
               "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`
             })
         })

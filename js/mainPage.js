@@ -50,7 +50,7 @@ async function t_Post(Route,params){
         let response = await fetch(`${url}/${Route}`,{
             method:"POST",
             headers:new Headers({
-                "authorization":""
+                "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`,
             }),
             body:JSON.stringify(params)
         });
