@@ -3,6 +3,7 @@ class baseObject {
         pageaction.AreaBarClick();
         this.LoadBefore();
         this.Init();
+        this.CheckAuth();
         this.LoadAfter();
         this.settingViewAuth();
         this.setDropDownList();
@@ -38,7 +39,7 @@ class baseObject {
             let response = await fetch(`${url}/${this.ClassName}/Search`,{
                 method:"POST",
                 headers:new Headers({
-                    "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`,
+                    "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
                     "Content-Type": "application/json"  // 設定請求的 Content-Type
                   }),
                 body:JSON.stringify(this.GetAreaData("QArea"))
@@ -255,17 +256,8 @@ class baseObject {
     }
 
     async getDropDownListDataSource(){
-        let response = await fetch(`${url}/${this.ClassName}/GetDDLDataSource`,{
-            method:"Post",
-            headers:new Headers({
-              "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`
-            })
-        })
-        let data = await response.json()
-        if(!data.Status){
-            this.alertMsg(data.Msg,"warning")
-        }
-        return data.Data; 
+        let data = await t_Post(`${this.ClassName}/GetDDLDataSource`,this.ClassName);
+        return data.Data;
     }
 
     settingViewAuth(){
@@ -290,6 +282,14 @@ class baseObject {
                         break;
                 }
             }
+        }
+    }
+
+    CheckAuth(){
+        console.log(sessionStorage.getItem("jwttoken"))
+        if(!sessionStorage.getItem("jwttoken")){
+            sessionStorage.setItem("OriginalPage",this.ClassName);
+            window.open("../../html/base/login.html","_self");
         }
     }
 }

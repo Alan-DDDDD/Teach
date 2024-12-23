@@ -15,8 +15,10 @@ $(`#login`).on('click',async function(){
         let data = await response.json();
         if(data.Status){
             console.log(data.Data)
-            localStorage.setItem("jwttoken",data.Data);
-            window.open(`../../html/base/index.html`,`_self`)
+            sessionStorage.setItem("jwttoken",data.Data);
+            let OriginalPage = sessionStorage.getItem("OriginalPage");
+            console.log()
+            window.open(`../../html/${OriginalPage.substring(0,2) ?? "base"}/${OriginalPage ?? "index"}.html`,`_self`)
         }else{
             alert(data.Msg);
         }

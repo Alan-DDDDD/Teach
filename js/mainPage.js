@@ -45,15 +45,19 @@ function reJs(page){
     document.body.appendChild(script);
 }
 
-async function t_Post(Route,params){
+async function t_Post(Route,className,params){
     try{
         let response = await fetch(`${url}/${Route}`,{
             method:"POST",
             headers:new Headers({
-                "Authorization":`Bearer ${localStorage.getItem("jwttoken")}`,
+                "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
             }),
             body:JSON.stringify(params)
         });
+        if (response.status === 401) {
+            sessionStorage.setItem("OriginalPage",className);
+            window.open("../../html/base/login.html","_self");
+        }
         let data = await response.json();
         return data;
     }catch{

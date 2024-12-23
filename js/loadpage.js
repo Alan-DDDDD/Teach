@@ -6,8 +6,8 @@ var Module;
 var headers = {
   
 }
-//getModule().then(()=>{
-  //if(Module){
+getModule().then(()=>{
+  if(Module){
     pages.forEach(async (d,i)=>{
       await gethtml(d,area[i]).then(async x=>{
         chk[i] = true;
@@ -48,8 +48,8 @@ var headers = {
         }
       });
     })
-  //}
-//});
+  }
+});
 async function gethtml(url,id){
   let response = await fetch(url);
   if(!response.ok)
