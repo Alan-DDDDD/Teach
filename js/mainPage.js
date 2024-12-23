@@ -59,6 +59,10 @@ async function t_Post(Route,className,params){
             window.open("../../html/base/login.html","_self");
         }
         let data = await response.json();
+        if(data.Msg == "沒有權限"){
+            sessionStorage.setItem("OriginalPage",className);
+            window.open("../../html/base/login.html","_self");
+        }
         return data;
     }catch{
         console.log(`系統異常`);

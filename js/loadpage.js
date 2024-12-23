@@ -13,7 +13,7 @@ getModule().then(()=>{
         chk[i] = true;
         switch (area[i]){
           case "layout-menu":
-            //setmodule(Module);
+            setmodule(Module);
             const scripts = [
               '../../assets/vendor/js/menu.js',
               '../../assets/js/main.js'

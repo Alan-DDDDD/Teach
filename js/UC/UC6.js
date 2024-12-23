@@ -38,20 +38,13 @@ export class UC6 extends baseObject {
         $(`#save`).unbind("click");
         $(`#insert`).unbind("click");
     }
-    // Search(){
-    //     if(super.verification("QArea")){
-    //         pageaction.showLoading();
-    //         let Data = [{name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'}]
-    //         super.BindDataList(`datatable`,Data);//重新綁定DataTable資料
-    //         pageaction.areashow("L");
-    //         pageaction.areahide("Q");
-    //         setTimeout(function(){
-    //             pageaction.hideLoading();
-    //         },3000);
-    //     }else{
-    //         super.errorMsg("請輸入必填資料")
-    //     }
-    // }
+    async Search(){
+        pageaction.showLoading();
+        let data = await t_Post(`UC6/GetClassList`,this.ClassName);
+        console.log(data);
+        $(`#tree`).html(generateTreeHtml(data.Data,true));
+        pageaction.hideLoading();
+    }
     Save(){
         if(super.verification("EArea")){
             alert("成功")
