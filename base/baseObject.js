@@ -241,23 +241,18 @@ class baseObject {
 
     async setDropDownList(){
         let ddls = $(`.t_ddl`);
-        let data = await this.getDropDownListDataSource();
-        if(data){
+        let data = await t_Post(`${this.ClassName}/GetDDLDataSource`,this.ClassName);
+        if(data.Data){
             $.each(ddls,(i,d)=>{
                 let dataSource = $(d).data("ddlds");
                 $(d).empty().append(`<option value="">請選擇</option>`);
-                $.each(data[dataSource], function(index, option) {
+                $.each(data.Data[dataSource], function(index, option) {
                     $(d).append(
                         $('<option>', {value: option.Value,text: option.Text})
                     );
                 });
             })
         }
-    }
-
-    async getDropDownListDataSource(){
-        let data = await t_Post(`${this.ClassName}/GetDDLDataSource`,this.ClassName);
-        return data.Data;
     }
 
     settingViewAuth(){
@@ -286,7 +281,6 @@ class baseObject {
     }
 
     CheckAuth(){
-        console.log(sessionStorage.getItem("jwttoken"))
         if(!sessionStorage.getItem("jwttoken")){
             sessionStorage.setItem("OriginalPage",this.ClassName);
             window.open("../../html/base/login.html","_self");

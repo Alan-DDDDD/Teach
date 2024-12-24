@@ -2,6 +2,7 @@ let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html",
 let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 let chk = [false,false,false,false];
 var url = "https://localhost:7036/api";
+// var url = "https://localhost:7036/api";
 var Module;
 var headers = {
   
