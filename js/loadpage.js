@@ -1,8 +1,8 @@
 let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html","../footer-loading.html"];
 let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 let chk = [false,false,false,false];
-var url = "https://localhost:7036/api";
-// var url = "https://localhost:7036/api";
+//var url = "https://localhost:7036/api";
+var url = "https://f739-124-218-106-67.ngrok-free.app/api";
 var Module;
 var headers = {
   
@@ -31,7 +31,10 @@ getModule().then(()=>{
             break;
           case "layout-navbar":
             let response = await fetch(`${url}/Login/GetNotify`,{
-              method:"POST"
+              method:"POST",
+              headers :new Headers({
+                "ngrok-skip-browser-warning": "69420",
+              })
             });
             let data = await response.json();
             let ul = document.getElementById(`announcement-list`);
@@ -95,7 +98,10 @@ function loadScript(url) {
 
 async function getModule(){
   let response = await fetch(`${url}/Login/GetModuleAuth?emplid=test`,{
-    method:"POST"
+    method:"POST",
+    headers :new Headers({
+      "ngrok-skip-browser-warning": "69420",
+    })
   });
   let data = await response.json();
   if(data.Status){

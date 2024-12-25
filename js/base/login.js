@@ -5,7 +5,8 @@ $(`#login`).on('click',async function(){
         let response = await fetch(`${url}/Login/LogIn`,{
                 method:"POST",
                 headers:new Headers({
-                    "Content-type":"application/json"
+                    "Content-type":"application/json",
+                    "ngrok-skip-browser-warning": "69420",
                 }),
                 body:JSON.stringify({
                     emplid:emp,
