@@ -40,7 +40,8 @@ class baseObject {
                 method:"POST",
                 headers:new Headers({
                     "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
-                    "Content-Type": "application/json"  // 設定請求的 Content-Type
+                    "Content-Type": "application/json",  // 設定請求的 Content-Type
+                    "ngrok-skip-browser-warning": "69420",
                   }),
                 body:JSON.stringify(this.GetAreaData("QArea"))
             })
