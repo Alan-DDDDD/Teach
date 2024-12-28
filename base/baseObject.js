@@ -284,7 +284,7 @@ class baseObject {
     CheckAuth(){
         if(!sessionStorage.getItem("jwttoken")){
             sessionStorage.setItem("OriginalPage",this.ClassName);
-            window.open("../../html/base/login.html","_self");
+            //window.open("../../html/base/login.html","_self");
         }
     }
 }
