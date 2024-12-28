@@ -3,7 +3,7 @@ class baseObject {
         pageaction.AreaBarClick();
         this.LoadBefore();
         this.Init();
-        this.CheckAuth();
+        //this.CheckAuth();
         this.LoadAfter();
         this.settingViewAuth();
         this.setDropDownList();
