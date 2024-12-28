@@ -2,7 +2,7 @@ let pages = ["../header-aside.html","../header-nav.html","../footer-alert.html",
 let area = ["layout-menu","layout-navbar","buynow","loadingArea"];
 let chk = [false,false,false,false];
 //var url = "https://localhost:7036/api";
-var url = "https://f739-124-218-106-67.ngrok-free.app/api";
+var url = "https://02c0-124-218-106-67.ngrok-free.app/api";
 var Module;
 var headers = {
   
