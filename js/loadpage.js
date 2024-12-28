@@ -7,14 +7,14 @@ var Module;
 var headers = {
   
 }
-getModule().then(()=>{
-  if(Module){
+//getModule().then(()=>{
+  //if(Module){
     pages.forEach(async (d,i)=>{
       await gethtml(d,area[i]).then(async x=>{
         chk[i] = true;
         switch (area[i]){
           case "layout-menu":
-            setmodule(Module);
+            //setmodule(Module);
             const scripts = [
               '../../assets/vendor/js/menu.js',
               '../../assets/js/main.js'
@@ -52,8 +52,8 @@ getModule().then(()=>{
         }
       });
     })
-  }
-});
+  //}
+//});
 async function gethtml(url,id){
   let response = await fetch(url);
   if(!response.ok)
