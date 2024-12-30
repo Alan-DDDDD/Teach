@@ -127,7 +127,12 @@ class baseObject {
         table.css("cursor","pointer");
 
         if(trclick){
-            table.on('click','tbody tr',trclick);
+            table.on('click','tbody td',function(){
+                if($(this).index() != 0 && !$(this).hasClass('sorting_1')){
+                    trclick();
+                }
+                //sorting_1
+            });
         }
 
         return table;

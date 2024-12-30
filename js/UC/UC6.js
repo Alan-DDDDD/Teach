@@ -41,7 +41,6 @@ export class UC6 extends baseObject {
     async Search(){
         pageaction.showLoading();
         let data = await t_Post(`UC6/GetClassList`,this.ClassName);
-        console.log(data);
         $(`#tree`).html(generateTreeHtml(data.Data,true));
         pageaction.hideLoading();
     }

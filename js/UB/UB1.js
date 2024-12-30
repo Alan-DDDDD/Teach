@@ -14,6 +14,7 @@ export class UB1 extends baseObject {
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
+        $(`#datatable`).on("click",".data_detaile",me.DataDetail);
     }
     InitL(){
         //設定L區DataTable
@@ -22,6 +23,14 @@ export class UB1 extends baseObject {
             { data: 'phone',title: "行動電話"},
             { data: 'tax',title: "市話" },
             { data: 'email',title: "Email(電子信箱)"},
+            { 
+                data: null,
+                title:"操作功能",
+                render:function(data,type,row){
+                    var html = `<button class="btn btn-primary data_detaile" style="padding:0.125rem 0.375rem">明細</button>`
+                    return html
+                }
+            }
         ]
         let columnDefs = [
             {targets:[0],responsivePriority:1},
@@ -35,14 +44,14 @@ export class UB1 extends baseObject {
         ]
         this.setTable(`datatable`,[],columns,columnDefs,buttons,function(){
             //設定L區DataTable tr點擊動作
-            let table = $(`#datatable`).DataTable();
-            var rowData = table.row(this).data();
-            if(rowData){   
-                pageaction.areahide("L");
-                pageaction.areashow("E");
-                pageaction.ToolBarUnDisabled("save");
-                currentview.BindDataForArea(rowData,"EArea");
-            }
+            // let table = $(`#datatable`).DataTable();
+            // var rowData = table.row(this).data();
+            // if(rowData){   
+            //     pageaction.areahide("L");
+            //     pageaction.areashow("E");
+            //     pageaction.ToolBarUnDisabled("save");
+            //     currentview.BindDataForArea(rowData,"EArea");
+            // }
         });
     }
     remove(){
@@ -116,6 +125,17 @@ export class UB1 extends baseObject {
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
         pageaction.areashow("E");//展開E區
+    }
+
+    DataDetail(){
+        let table = $(`#datatable`).DataTable();
+        var rowData = table.rows($(this).parent()[0]).data()[0];
+        if(rowData){   
+            pageaction.areahide("L");
+            pageaction.areashow("E");
+            pageaction.ToolBarUnDisabled("save");
+            currentview.BindDataForArea(rowData,"EArea");
+        }
     }
 }
 currentview = new UB1();
