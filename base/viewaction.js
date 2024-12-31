@@ -53,3 +53,22 @@ function generateTreeHtml(nodes,border) {
     });
     return tree
 }
+
+function AllCheck(datatables,checkbox){
+    let table = $(`#${datatables}`).DataTable();
+    var rowData = table.rows().data();
+    if(rowData.length > 0){
+        $.each(rowData,(i,d)=>{
+            d["check"] = $(checkbox).prop('checked') ? "Y":"N";
+        });
+        $(`#${datatables} .list_checkbox`).prop('checked', $(checkbox).prop('checked'))
+    }
+}
+
+function ListCheckBox(datatables,checkbox){
+    let table = $(`#${datatables}`).DataTable();
+    var rowData = table.rows($(checkbox).parent()[0]).data()[0];
+    if(rowData){
+        rowData["check"] = $(checkbox).prop('checked') ? "Y":"N";
+    }
+}

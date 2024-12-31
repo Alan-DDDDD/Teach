@@ -19,24 +19,35 @@ export class UB1 extends baseObject {
     InitL(){
         //設定L區DataTable
         let columns = [
-            { data: 'name',title: "姓名" },
-            { data: 'phone',title: "行動電話"},
-            { data: 'tax',title: "市話" },
-            { data: 'email',title: "Email(電子信箱)"},
             { 
-                data: null,
-                title:"操作功能",
+                data: 'check',title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
+                orderable: false,
+                render: function(data,type,row){
+                    let html = `<input class="form-check-input list_checkbox" type="checkbox" `;
+                    html += data == 'Y' ? "checked":"";
+                    html += `/>`
+                    return html;
+                }
+            },
+            { data: 'name',title: "姓名" },
+            { data: 'phone',title: "行動電話" },
+            { data: 'tax',title: "市話" },
+            { data: 'email',title: "Email(電子信箱)" },
+            { 
+                data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){
-                    var html = `<button class="btn btn-primary data_detaile" style="padding:0.125rem 0.375rem">明細</button>`
+                    let html = `<button class="btn btn-primary data_detaile" style="padding:0.125rem 0.375rem">明細</button>`
                     return html
                 }
             }
         ]
         let columnDefs = [
             {targets:[0],responsivePriority:1},
-            {targets:[1],responsivePriority:2},
-            {targets:[2],responsivePriority:3},
-            {targets:[3],responsivePriority:4},
+            {targets:[1],responsivePriority:3},
+            {targets:[2],responsivePriority:4},
+            {targets:[3],responsivePriority:5},
+            {targets:[4],responsivePriority:6},
+            {targets:[5],responsivePriority:2},
         ]
         let buttons = [
             { extend: 'excel', className: 'excelButton btn-primary disabled' },
@@ -46,7 +57,7 @@ export class UB1 extends baseObject {
             //設定L區DataTable tr點擊動作
             // let table = $(`#datatable`).DataTable();
             // var rowData = table.row(this).data();
-            // if(rowData){   
+            // if(rowData){
             //     pageaction.areahide("L");
             //     pageaction.areashow("E");
             //     pageaction.ToolBarUnDisabled("save");
@@ -65,41 +76,41 @@ export class UB1 extends baseObject {
             pageaction.showLoading();
             console.log(this.GetAreaData("EArea"));
             let Data = [
-                {emplid:0,gender:"M",name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:1,gender:"F",name:'text',phone:'0977778112',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:2,gender:"M",name:'text',phone:'0977778113',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:3,gender:"M",name:'text',phone:'0977778114',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:4,gender:"F",name:'text',phone:'0977778115',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:5,gender:"F",name:'text',phone:'0977778116',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:6,gender:"M",name:'text',phone:'0977778117',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:7,gender:"M",name:'text',phone:'0977778118',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:8,gender:"F",name:'text',phone:'0977778119',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:9,gender:"M",name:'text',phone:'0977778120',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:10,gender:"M",name:'text',phone:'0977778121',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:11,gender:"F",name:'text',phone:'0977778122',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:12,gender:"M",name:'text',phone:'0977778123',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:13,gender:"F",name:'text',phone:'0977778124',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:14,gender:"M",name:'text',phone:'0977778125',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:15,gender:"M",name:'text',phone:'0977778126',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:16,gender:"M",name:'text',phone:'0977778127',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:17,gender:"F",name:'text',phone:'0977778128',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:18,gender:"F",name:'text',phone:'0977778129',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:19,gender:"F",name:'text',phone:'0977778130',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:20,gender:"M",name:'text',phone:'0977778131',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:21,gender:"F",name:'text',phone:'0977778132',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:22,gender:"M",name:'text',phone:'0977778133',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:23,gender:"M",name:'text',phone:'0977778134',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:24,gender:"F",name:'text',phone:'0977778135',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:25,gender:"F",name:'text',phone:'0977778136',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:26,gender:"M",name:'text',phone:'0977778137',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:27,gender:"F",name:'text',phone:'0977778138',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:28,gender:"M",name:'text',phone:'0977778139',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:29,gender:"F",name:'text',phone:'0977778140',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:30,gender:"M",name:'text',phone:'0977778141',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:31,gender:"F",name:'text',phone:'0977778142',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:32,gender:"M",name:'text',phone:'0977778143',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:33,gender:"F",name:'text',phone:'0977778144',tax:'0222151112',email:'0911511@gmail.com'},
-                {emplid:34,gender:"M",name:'text',phone:'0977778145',tax:'0222151112',email:'0911511@gmail.com'}
+                {check:"N",emplid:0,gender:"M",name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:1,gender:"F",name:'text',phone:'0977778112',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:2,gender:"M",name:'text',phone:'0977778113',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:3,gender:"M",name:'text',phone:'0977778114',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:4,gender:"F",name:'text',phone:'0977778115',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:5,gender:"F",name:'text',phone:'0977778116',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:6,gender:"M",name:'text',phone:'0977778117',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:7,gender:"M",name:'text',phone:'0977778118',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:8,gender:"F",name:'text',phone:'0977778119',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:9,gender:"M",name:'text',phone:'0977778120',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:10,gender:"M",name:'text',phone:'0977778121',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:11,gender:"F",name:'text',phone:'0977778122',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:12,gender:"M",name:'text',phone:'0977778123',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:13,gender:"F",name:'text',phone:'0977778124',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:14,gender:"M",name:'text',phone:'0977778125',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:15,gender:"M",name:'text',phone:'0977778126',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:16,gender:"M",name:'text',phone:'0977778127',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:17,gender:"F",name:'text',phone:'0977778128',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:18,gender:"F",name:'text',phone:'0977778129',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:19,gender:"F",name:'text',phone:'0977778130',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:20,gender:"M",name:'text',phone:'0977778131',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:21,gender:"F",name:'text',phone:'0977778132',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:22,gender:"M",name:'text',phone:'0977778133',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:23,gender:"M",name:'text',phone:'0977778134',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:24,gender:"F",name:'text',phone:'0977778135',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:25,gender:"F",name:'text',phone:'0977778136',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:26,gender:"M",name:'text',phone:'0977778137',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:27,gender:"F",name:'text',phone:'0977778138',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:28,gender:"M",name:'text',phone:'0977778139',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:29,gender:"F",name:'text',phone:'0977778140',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:30,gender:"M",name:'text',phone:'0977778141',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:31,gender:"F",name:'text',phone:'0977778142',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:32,gender:"M",name:'text',phone:'0977778143',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:33,gender:"F",name:'text',phone:'0977778144',tax:'0222151112',email:'0911511@gmail.com'},
+                {check:"N",emplid:34,gender:"M",name:'text',phone:'0977778145',tax:'0222151112',email:'0911511@gmail.com'}
             ]
             this.BindDataList(`datatable`,Data);//重新綁定DataTable資料
             pageaction.areashow("L");

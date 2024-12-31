@@ -3,7 +3,7 @@ class baseObject {
         pageaction.AreaBarClick();
         this.LoadBefore();
         this.Init();
-        //this.CheckAuth();
+        this.CheckAuth();
         this.LoadAfter();
         this.settingViewAuth();
         this.setDropDownList();
@@ -131,9 +131,15 @@ class baseObject {
                 if($(this).index() != 0 && !$(this).hasClass('sorting_1')){
                     trclick();
                 }
-                //sorting_1
             });
         }
+
+        $(`#${id}`).on("change",".list_checkbox",function(){
+            ListCheckBox(id,this);
+        });
+        $(`#${id}`).on(`change`,".all_checkbox",function(){
+            AllCheck(id,this);
+        });
 
         return table;
     }
