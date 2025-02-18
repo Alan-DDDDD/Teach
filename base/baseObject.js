@@ -32,7 +32,7 @@ class baseObject {
         console.log(this.GetAreaData("QArea"));
     }
 
-    async Search(){
+    async Search(action){
         pageaction.showLoading();
         this.SearchBefore();
         if(this.GetAreaData("QArea") && this.verification("QArea")){
@@ -77,7 +77,17 @@ class baseObject {
         }
         let data = {};
         $.each(params,(i,d)=>{
-            data[$(d).attr("id")] = $(d).val();
+            let $el = $(d);
+            let id = $el.attr("id");
+            
+            // 判斷是否是 checkbox
+            if ($el.attr("type") === "checkbox") {
+                // 如果是 checkbox，使用 .prop('checked') 判斷是否被選中
+                data[id] = $el.prop('checked') ? "Y":"N";
+            } else {
+                // 其他表單元素使用 .val()
+                data[id] = $el.val();
+            }
         })
         return data;
     }
@@ -153,10 +163,12 @@ class baseObject {
         let result = true;
         let ob = $(`#${conditionArea}`).find("input,select,textarea");
         $.each(ob,(i,d)=>{
-            let chk = $(d).next();
+            let chk = $(d).next().find('.require');
             if(chk.length == 0)
-                chk = $(d).prev();
-            if(chk.find('.require').length > 0){
+                chk = $(d).prev().find('.require');
+            if(chk.length == 0)
+                chk = $(d).parent().prev().find('.require');
+            if(chk.length > 0){
                 let value = $(d).val()
                 if(!value){
                     result = false;
@@ -235,6 +247,12 @@ class baseObject {
                     case $input.attr('type') === 'text':
                         $input.val(value);
                         break;
+                    case $input.attr('type') === 'date':
+                        $input.val(value);
+                        break;
+                    case $input.attr('type') === 'password':
+                        $input.val(value);
+                        break;
                     case $input.attr('type') === 'checkbox':
                         $input.prop('checked', value === 'Y' || value === true);
                         break;
@@ -295,7 +313,7 @@ class baseObject {
     CheckAuth(){
         if(!sessionStorage.getItem("jwttoken")){
             sessionStorage.setItem("OriginalPage",this.ClassName);
-            //window.open("../../html/base/login.html","_self");
+            window.open("../../html/base/login.html","_self");
         }
     }
 }
