@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Teach-員工管理</title>
+    <title>Teach-資料選單設定</title>
 
     <meta name="description" content="" />
 
@@ -89,7 +89,7 @@
               <div class="card-body" style="padding: 0;">
                 <div class="btn-group mb-2 toolbar">
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
-                  <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
+                  <!-- <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button> -->
                   <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
                   <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
@@ -102,135 +102,45 @@
                 </div>
                 <div class="card-body SearchArea" id="QArea">
                   <div class="row">
-                    <div class="col-md-6 col-lg mb-2">
+                    <div class="col-md-6 col-lg-3 mb-2">
                       <div class="form-floating">
-                        <input type="text" class="form-control" id="Q_emplid" placeholder=""/>
-                        <label for="Q_emplid"><span class="require"></span>員工編號</label>
+                        <input type="text" class="form-control" id="Q_DATAGP" placeholder=""/>
+                        <label for="Q_DATAGP">群組代號</label>
                       </div>
                     </div>
-                    <div class="col-md-6 col-lg mb-2">
+                    <div class="col-md-6 col-lg-3 mb-2">
                       <div class="form-floating">
-                        <input type="text" class="form-control" id="Q_emplname" placeholder=""/>
-                        <label for="Q_emplname">員工姓名</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg mb-2">
-                      <div class="form-floating">
-                        <input type="text" class="form-control" id="Q_email" placeholder=""/>
-                        <label for="Q_email">email</label>
+                        <input type="date" class="form-control" id="Q_INVALIDDT" placeholder=""/>
+                        <label for="Q_INVALIDDT">失效日期</label>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div class="card mb-3" id="L">
-                <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
+              <div class="card mb-3" id="L1">
+                <div class="divider text-start px-3 my-1 AreaBar" id="L1Bar">
                   <div class="divider-text">
-                    <h6>資料列表</h6>
+                    <h6>資料群組</h6>
                   </div>
                 </div>
-                <div class="card-body" id="LArea">
-                  <table class="table table-striped hover dt-responsive" id="datatable">
-                    <!-- <thead>
-                      <tr>
-                        <th>姓名</th>
-                        <th>行動電話</th>
-                        <th>市話</th>
-                        <th>Email(電子信箱)</th>
-                      </tr>
-                    </thead> -->
+                <div class="card-body" id="L1Area">
+                  <table class="table table-striped hover dt-responsive" id="DATAGP_LIST">
                     <tbody>
-                      <!-- <tr>
-                        <td>戴浩宇</td>
-                        <td>0999999999</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0988888888</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0997777777</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999666666</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0995555555</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999999999</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0988888888</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0997777777</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999666666</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0995555555</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999999999</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0988888888</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0997777777</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999666666</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0995555555</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card mb-3" id="L2">
+                <div class="divider text-start px-3 my-1 AreaBar" id="L2Bar">
+                  <div class="divider-text">
+                    <h6>群組明細</h6>
+                  </div>
+                </div>
+                <div class="card-body" id="L2Area">
+                  <h5>資料群組：<b id="datagpname"></b></h5>
+                  <table class="table table-striped hover dt-responsive" id="DATAID_LIST">
+                    <tbody>
                     </tbody>
                   </table>
                 </div>
@@ -244,48 +154,40 @@
                 </div>
                 <div class="card-body EditArea" id="EArea">
                   <div class="row">
+                    <input id="ID" name="ID" class="form-control" type="text" hidden/>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="emplid" class="form-label"><span class="require"></span>員工編號</label>
-                      <input id="emplid" name="emplid" class="form-control" type="text"/>
+                      <label for="DATAGP" class="form-label">群組代號</label>
+                      <input id="DATAGP" name="DATAGP" class="form-control" type="text" readonly/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="name" class="form-label">員工姓名</label>
-                      <input id="name" name="name" class="form-control" type="text"/>
+                      <label for="DATAGPNM" class="form-label">群組名稱</label>
+                      <input id="DATAGPNM" name="DATAGPNM" class="form-control" type="text" readonly/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="gender" class="form-label"><span class="require"></span>性別</label>
-                      <select id="gender" name="gender" class="form-select t_ddl" data-ddlds="FM"></select>
+                      <label for="PARENTGP" class="form-label">父層選單代號</label>
+                      <select id="PARENTGP" name="PARENTGP" class="form-select t_ddl" data-ddlds="FM"></select>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="phone" class="form-label">手機號碼</label>
-                      <input id="phone" name="phone" class="form-control" type="text"/>
-                    </div>
+                    <div class="mb-2 col-md-6 col-lg-3"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="email" class="form-label">Email(電子信箱)</label>
-                      <input id="email" name="email" class="form-control" type="text"/>
+                      <label for="DATAID" class="form-label">資料編碼</label>
+                      <input id="DATAID" name="DATAID" class="form-control" type="text"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="address" class="form-label">地址</label>
-                      <input id="address" name="address" class="form-control" type="text"/>
+                      <label for="DATA" class="form-label">資料值</label>
+                      <input id="DATA" name="DATA" class="form-control" type="text"/>
                     </div>
+                    <div class="mb-2 col-md-6 col-lg-3">
+                      <label for="INVALIDDT" class="form-label">失效日期</label>
+                      <input id="INVALIDDT" name="INVALIDDT" class="form-control" type="datetime-local"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg-3"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="tax" class="form-label">電話</label>
-                      <input id="tax" name="tax" class="form-control" type="text"/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg rowtext">
-                      <p id="lineid" name="lineid" class="fs-4 text">Line ID ✔️❌</p>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="test" class="form-label"><span class="require"></span>測試</label>
-                      <select id="test" name="test" class="form-select t_ddl" data-ddlds="TEST"></select>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="test" class="form-label"><span class="require"></span>使用者等級</label>
-                      <select id="test" name="test" class="form-select t_ddl" data-ddlds="EMPAU"></select>
+                      <label for="MEMO" class="form-label">備註</label>
+                      <textarea id="MEMO" name="MEMO" class="form-control" type="text"></textarea>
                     </div>
                   </div>
                 </div>
@@ -319,7 +221,6 @@
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-      <div class="modal fade" id="AnnouncementArea" tabindex="-1" aria-hidden="true"></div>
     </div>
     <!-- / Layout wrapper -->
 
@@ -355,6 +256,6 @@
     <script src="../../base/viewaction.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="../../js/UB/UB1.js" type="module"></script>
+    <script src="../../js/UA/UA5.js" type="module"></script>
   </body>
 </html>

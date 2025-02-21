@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Teach-通知設定</title>
+    <title>Teach-test</title>
 
     <meta name="description" content="" />
 
@@ -74,11 +74,6 @@
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
           >
-            <!-- <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                <i class="bx bx-menu bx-sm"></i>
-              </a>
-            </div> -->
           </nav>
 
           <!-- / Navbar -->
@@ -91,78 +86,208 @@
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
                   <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
                   <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
-                  <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
               </div>
               <div class="card mb-3" id="Q">
-                <div class="divider text-start px-3 my-1 AreaBar" id="QBar">
+                <div class="divider text-start px-3 my-1 AreaBar" id="QBar" style="cursor:pointer">
                   <div class="divider-text">
                     <h6>條件區</h6>
                   </div>
                 </div>
                 <div class="card-body SearchArea" id="QArea">
                   <div class="row">
-                    <div class="col-md-6 col-lg mb-2">
-                      <label for="Q_StartDT"><span class="require"></span>開始時間</label>
-                      <input class="form-control" type="datetime-local" id="Q_StartDT"/>
+                    <div class="col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="emplid" placeholder=""/>
+                        <label for="emplid"><span class="require"></span>員工編號</label>
+                      </div>
                     </div>
-                    <div class="col-md-6 col-lg mb-2">
-                      <label for="Q_emplname">員工姓名</label>
-                      <input type="text" class="form-control" id="Q_emplname" placeholder=""/>
+                    <div class="col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="emplname" placeholder=""/>
+                        <label for="emplname">員工姓名</label>
+                      </div>
                     </div>
-                    <div class="col-md-6 col-lg mb-2">
-                      <label for="Q_email">email</label>
-                      <input type="text" class="form-control" id="Q_email" placeholder=""/>
+                    <div class="col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="email" placeholder=""/>
+                        <label for="email"><span class="require"></span>email</label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div class="card mb-3" id="L">
-                <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
+                <div class="divider text-start px-3 my-1 AreaBar" id="LBar" style="cursor:pointer">
                   <div class="divider-text">
                     <h6>資料列表</h6>
                   </div>
                 </div>
                 <div class="card-body" id="LArea">
-                  <table class="table table-striped hover dt-responsive" id="datatable">
+                  <table class="table table-striped hover" id="datatable">
+                    <!-- <thead>
+                      <tr>
+                        <th>姓名</th>
+                        <th>行動電話</th>
+                        <th>市話</th>
+                        <th>Email(電子信箱)</th>
+                      </tr>
+                    </thead> -->
                     <tbody>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0999999999</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0988888888</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0997777777</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0999666666</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0995555555</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0999999999</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0988888888</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0997777777</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0999666666</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0995555555</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0999999999</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0988888888</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0997777777</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0999666666</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
+                      <tr>
+                        <td>戴浩宇</td>
+                        <td>0995555555</td>
+                        <td>0222222222</td>
+                        <td>aaaaaaaaaa@gmail.com</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               
               <div class="card mb-3" id="E">
-                <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
+                <div class="divider text-start px-3 my-1 AreaBar" id="EBar" style="cursor:pointer">
                   <div class="divider-text">
                     <h6>資料明細</h6>
                   </div>
                 </div>
                 <div class="card-body EditArea" id="EArea">
                   <div class="row">
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="Title" class="form-label"><span class="require"></span>標題</label>
-                      <input id="Title" name="Title" class="form-control" type="text"/>
+                    <div class="mb-2 col-lg">
+                      <label for="emplid" class="form-label"><span class="require"></span>員工編號</label>
+                      <input id="emplid" class="form-control" type="text"/>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="Startdt" class="form-label"><span class="require"></span>開始時間</label>
-                      <input class="form-control" type="datetime-local" id="Startdt" name="Startdt"/>
+                    <div class="mb-2 col-lg">
+                      <label for="name" class="form-label">員工姓名</label>
+                      <input id="name" class="form-control" type="text"/>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="Enddt" class="form-label">結束時間</label>
-                      <input class="form-control" type="datetime-local" id="Enddt" name="Enddt"/>
+                    <div class="mb-2 col-lg">
+                      <label for="gender" class="form-label"><span class="require"></span>性別</label>
+                      <select id="gender" class="form-select">
+                        <option value="">請選擇</option>
+                        <option value="M">男</option>
+                        <option value="F">女</option>
+                      </select>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-lg">
-                      <label for="Text" class="form-label">內容</label>
-                      <textarea id="Text" name="Text" class="form-control"></textarea>
+                      <label for="email" class="form-label">Email(電子信箱)</label>
+                      <input id="email" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-lg">
+                      <label for="phone" class="form-label">手機號碼</label>
+                      <input id="phone" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="test" class="form-label"><span class="require"></span>測試</label>
+                      <select id="test" name="test" class="form-select t_ddl" data-ddlds="TEST"></select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-lg">
+                      <label for="address" class="form-label">地址</label>
+                      <input id="address" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-lg" style="align-content: end;">
+                      <p id="lineid" class="fs-4" style="text-align: center;">Line ID ✔️❌</p>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="gender" class="form-label"><span class="require"></span>性別</label>
+                      <select id="gender" name="gender" class="form-select t_ddl" data-ddlds="FM"></select>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- Content -->
+            
+            <!-- / Content -->
 
             <!--loading-overlay-->
             <div class="loading-overlay" id="loadingArea"></div>
@@ -191,7 +316,6 @@
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-      <div class="modal fade" id="AnnouncementArea" tabindex="-1" aria-hidden="true"></div>
     </div>
     <!-- / Layout wrapper -->
 

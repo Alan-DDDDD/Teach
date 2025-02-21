@@ -7,27 +7,30 @@ var Module;
 var headers = {
   
 }
-//getModule().then(()=>{
-  //if(Module){
+
+getModule().then(()=>{
+  if(Module){
     pages.forEach(async (d,i)=>{
       await gethtml(d,area[i]).then(async x=>{
         chk[i] = true;
         switch (area[i]){
           case "layout-menu":
-            //setmodule(Module);
+            setmodule(Module);
             const scripts = [
+              "../../assets/vendor/js/helpers.js",
               '../../assets/vendor/js/menu.js',
-              '../../assets/js/main.js'
+              '../../assets/js/main.js',
             ];
             scripts.reduce((promise, scriptUrl) => {
               return promise.then(() => loadScript(scriptUrl));
             }, Promise.resolve()) // 開始一個空的 resolved promise
-              .then(() => {
-                console.log('All scripts loaded successfully');
-              })
-              .catch((error) => {
-                console.error(error);
-              });
+            .then(() => {
+              console.log('All scripts loaded successfully');
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+            
             break;
           case "layout-navbar":
             let response = await fetch(`${url}/Login/GetNotify`,{
@@ -52,8 +55,8 @@ var headers = {
         }
       });
     })
-  //}
-//});
+  }
+});
 async function gethtml(url,id){
   let response = await fetch(url);
   if(!response.ok)
@@ -82,7 +85,7 @@ function startAnnouncement(d) {
       // 計算新的位置
       index = (index + 1) % items.length; // 循環顯示
       announcementList.style.top = `-${index * itemHeight}px`;
-    }, 1000); // 每 10 秒切换一次
+    }, 5000); // 每 10 秒切换一次
   }
 }
 
@@ -97,15 +100,20 @@ function loadScript(url) {
 }
 
 async function getModule(){
-  let response = await fetch(`${url}/Login/GetModuleAuth?emplid=test`,{
-    method:"POST",
-    headers :new Headers({
-      "ngrok-skip-browser-warning": "69420",
-    })
-  });
-  let data = await response.json();
-  if(data.Status){
-    Module = data.Data;
+  let emplid = sessionStorage.getItem("emplid")
+  if(emplid){
+    let response = await fetch(`${url}/Login/GetModuleAuth?emplid=${emplid}`,{
+      method:"POST",
+      headers :new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      })
+    });
+    let data = await response.json();
+    if(data.Status){
+      Module = data.Data;
+    }
+  }else{
+    window.open("../../html/base/login.html","_self");
   }
 }
 

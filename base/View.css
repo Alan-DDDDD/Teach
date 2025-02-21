@@ -20,6 +20,12 @@
 
 .AreaBar{
     cursor: pointer;
+    background-color: #0066CC30;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.divider-text h6 {
+  color:#004b97
 }
 
 .toolbar .btn{

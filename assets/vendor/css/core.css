@@ -15940,7 +15940,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
 .divider {
   display: block;
   text-align: center;
-  margin: 1rem 0;
+  margin: 0 !important;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -15960,7 +15960,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
   content: "";
   position: absolute;
   top: 50%;
-  width: 100vw;
+  /* width: 100vw; */
   border-top: 1px solid rgba(67, 89, 113, 0.2);
 }
 .divider .divider-text:before {

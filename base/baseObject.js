@@ -29,13 +29,14 @@ class baseObject {
     }
 
     SearchBefore(){
-        console.log(this.GetAreaData("QArea"));
+        // console.log(this.GetAreaData("QArea"));
     }
 
-    async Search(){
+    async Search(action){
         pageaction.showLoading();
         this.SearchBefore();
         if(this.GetAreaData("QArea") && this.verification("QArea")){
+            pageaction.areahide("Q");
             let response = await fetch(`${url}/${this.ClassName}/Search`,{
                 method:"POST",
                 headers:new Headers({
@@ -48,7 +49,7 @@ class baseObject {
             try{
                 let data = await response.json();
                 if(data.Status){
-                    console.log(data.d)
+                    this.SearchAfter(data.Data);
                 }else{
                     this.alertMsg(data.Msg,"success")
                 }
@@ -58,10 +59,9 @@ class baseObject {
                 pageaction.hideLoading();
             }
         }
-        this.SearchAfter();
     }
 
-    SearchAfter(){
+    SearchAfter(data){
         pageaction.hideLoading();
     }
 
@@ -77,7 +77,17 @@ class baseObject {
         }
         let data = {};
         $.each(params,(i,d)=>{
-            data[$(d).attr("id")] = $(d).val();
+            let $el = $(d);
+            let id = $el.attr("id");
+            
+            // 判斷是否是 checkbox
+            if ($el.attr("type") === "checkbox") {
+                // 如果是 checkbox，使用 .prop('checked') 判斷是否被選中
+                data[id] = $el.prop('checked') ? "Y":"N";
+            } else {
+                // 其他表單元素使用 .val()
+                data[id] = $el.val();
+            }
         })
         return data;
     }
@@ -128,8 +138,11 @@ class baseObject {
 
         if(trclick){
             table.on('click','tbody td',function(){
-                if($(this).index() != 0 && !$(this).hasClass('sorting_1')){
-                    trclick();
+                var beforeContent = window.getComputedStyle(this, '::before').getPropertyValue('content');
+                var hasButton = this.querySelector('button') == null;
+                var hasAnchor = this.querySelector('a') == null;
+                if(beforeContent == 'none' && hasButton && hasAnchor){
+                    trclick(this);
                 }
             });
         }
@@ -153,10 +166,12 @@ class baseObject {
         let result = true;
         let ob = $(`#${conditionArea}`).find("input,select,textarea");
         $.each(ob,(i,d)=>{
-            let chk = $(d).next();
+            let chk = $(d).next().find('.require');
             if(chk.length == 0)
-                chk = $(d).prev();
-            if(chk.find('.require').length > 0){
+                chk = $(d).prev().find('.require');
+            if(chk.length == 0)
+                chk = $(d).parent().prev().find('.require');
+            if(chk.length > 0){
                 let value = $(d).val()
                 if(!value){
                     result = false;
@@ -213,7 +228,7 @@ class baseObject {
         let teachalert = $(`#teachalert`);
         let div = document.createElement('div');
         div.role = "alert";
-        div.classList.add("alert",`alert-${alertDegree ?? "secondary"}`,"alert-dismissible");
+        div.classList.add("alert",`alert-${alertDegree.toLowerCase() ?? "secondary"}`,"alert-dismissible");
         div.innerHTML = `${Msg}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
         teachalert.append(div);
         setTimeout(function(){
@@ -228,11 +243,20 @@ class baseObject {
      */
     BindDataForArea(data,area){
         $.each(data, function(key, value) {
+            key = key.toUpperCase();
             var $input = $(`#${area} input[name="${key}"], select[name="${key}"], textarea[name="${key}"]`);
-            
             if ($input.length) {
                 switch (true) {
                     case $input.attr('type') === 'text':
+                        $input.val(value);
+                        break;
+                    case $input.attr('type') === 'date':
+                        $input.val(value);
+                        break;
+                    case $input.attr('type') === 'datetime-local':
+                        $input.val(value);
+                        break;
+                    case $input.attr('type') === 'password':
                         $input.val(value);
                         break;
                     case $input.attr('type') === 'checkbox':
@@ -295,7 +319,7 @@ class baseObject {
     CheckAuth(){
         if(!sessionStorage.getItem("jwttoken")){
             sessionStorage.setItem("OriginalPage",this.ClassName);
-            //window.open("../../html/base/login.html","_self");
+            window.open("../../html/base/login.html","_self");
         }
     }
 }

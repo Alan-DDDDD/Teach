@@ -53,7 +53,7 @@ export class UB1 extends baseObject {
             { extend: 'excel', className: 'excelButton btn-primary disabled' },
             { extend: 'print', className: 'printButton btn-primary disabled' }
         ]
-        this.setTable(`datatable`,[],columns,columnDefs,buttons,function(){
+        this.setTable(`datatable`,[],columns,columnDefs,buttons,function(e){
             //設定L區DataTable tr點擊動作
             // let table = $(`#datatable`).DataTable();
             // var rowData = table.row(this).data();
@@ -71,7 +71,7 @@ export class UB1 extends baseObject {
         $(`#save`).unbind("click");
         $(`#insert`).unbind("click");
     }
-    Search(){
+    async Search(){
         if(super.verification("QArea")){
             pageaction.showLoading();
             console.log(this.GetAreaData("EArea"));
@@ -112,7 +112,12 @@ export class UB1 extends baseObject {
                 {check:"N",emplid:33,gender:"F",name:'text',phone:'0977778144',tax:'0222151112',email:'0911511@gmail.com'},
                 {check:"N",emplid:34,gender:"M",name:'text',phone:'0977778145',tax:'0222151112',email:'0911511@gmail.com'}
             ]
-            this.BindDataList(`datatable`,Data);//重新綁定DataTable資料
+            Data = await t_Post("UB1/Search",this.ClassName,this.GetAreaData("QArea"));
+            if(Data.Data){
+                this.BindDataList(`datatable`,Data.Data ?? null);//重新綁定DataTable資料
+            }else{
+                this.alertMsg(Data.Msg,"success")
+            }
             pageaction.areashow("L");
             pageaction.areahide("Q");
             $(`.dt-buttons`).find(`button`).removeClass('disabled')

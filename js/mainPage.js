@@ -53,6 +53,7 @@ async function t_Post(Route,className,params){
                 "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
                 "Content-Type":"application/json",
                 "ngrok-skip-browser-warning": "69420",
+                "Content-Type":"application/json"
             }),
             body:JSON.stringify(params)
         });
@@ -62,8 +63,9 @@ async function t_Post(Route,className,params){
         }
         let data = await response.json();
         if(data.Msg == "沒有權限"){
-            sessionStorage.setItem("OriginalPage",className);
-            window.open("../../html/base/login.html","_self");
+            //sessionStorage.setItem("OriginalPage",className);
+            //window.open("../../html/base/login.html","_self");
+            $(`#view`).html(data.Msg)
         }
         return data;
     }catch{
