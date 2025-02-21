@@ -53,7 +53,6 @@ async function t_Post(Route,className,params){
                 "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
                 "Content-Type":"application/json",
                 "ngrok-skip-browser-warning": "69420",
-                "Content-Type":"application/json"
             }),
             body:JSON.stringify(params)
         });
