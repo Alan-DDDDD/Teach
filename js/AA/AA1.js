@@ -20,7 +20,7 @@ export class AA1 extends baseObject {
         //設定L區DataTable
         let columns = [
             { 
-                data: 'CHK',title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
+                data: null,title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
                 orderable: false,
                 render: function(data,type,row){
                     let html = `<input class="form-check-input list_checkbox" type="checkbox" `;
@@ -29,10 +29,10 @@ export class AA1 extends baseObject {
                     return html;
                 }
             },
-            { data: 'NAME',title: "客戶名稱" },
-            { data: 'CONTACT',title: "聯絡人" },
-            { data: 'PHONE',title: "聯絡電話" },
-            { data: 'SYS_E_DT',title: "系統到期日" },
+            { data: 'Name',title: "客戶名稱" },
+            { data: 'Contact',title: "聯絡人" },
+            { data: 'Phone',title: "聯絡電話" },
+            { data: 'SysEDt',title: "系統到期日" },
             { 
                 data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){
@@ -42,12 +42,12 @@ export class AA1 extends baseObject {
             }
         ]
         let columnDefs = [
-            {targets:[0],responsivePriority:1},
-            {targets:[1],responsivePriority:3},
-            {targets:[2],responsivePriority:4},
-            {targets:[3],responsivePriority:5},
-            {targets:[4],responsivePriority:6},
-            {targets:[5],responsivePriority:2},
+            {width: '8%',targets:[0],responsivePriority:1},
+            {width: '30%',targets:[1],responsivePriority:3},
+            {width: '10%',targets:[2],responsivePriority:4},
+            {width: '10%',targets:[3],responsivePriority:5},
+            {width: '15%',targets:[4],responsivePriority:6},
+            {width: '10%',targets:[5],responsivePriority:2},
         ]
         let buttons = [
             { extend: 'excel', className: 'excelButton btn-primary disabled' },
@@ -74,78 +74,79 @@ export class AA1 extends baseObject {
     async Search(){
         if(super.verification("QArea")){
             pageaction.showLoading();
-            let Data = [
-                {
-                    CHK:"Y",
-                    ACCESS_TOKEN
-                    : 
-                    "qw51dq3561fwe2f31er5t634451rg2",
-                    ACCOUNT
-                    : 
-                    "haochung@gmail.com",
-                    ADDRESS
-                    : 
-                    "新北市土城區中央路三段178號1樓",
-                    API_KEY
-                    : 
-                    "we54r62351f23erf1w536yk516rss",
-                    COMID
-                    : 
-                    "A001",
-                    CONTACT
-                    : 
-                    "溫東宜",
-                    DIRECTOR
-                    : 
-                    "溫東宜",
-                    EMAIL
-                    : 
-                    "haochung@gmail.com",
-                    GRADE_CHK
-                    : 
-                    "Y",
-                    INCLASS_CHK
-                    : 
-                    "N",
-                    LINE_CHN_ID
-                    : 
-                    "ef56w4r5tw4e45561gt56g1k.5,uy",
-                    LINE_MSG_CHK
-                    : 
-                    "Y",
-                    MEMO
-                    : 
-                    "測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設",
-                    NAME
-                    : 
-                    "浩群文理補習班",
-                    NOTIFY_CHK
-                    : 
-                    "N",
-                    OUTCLASS_CHK
-                    : 
-                    "Y",
-                    OWNER
-                    : 
-                    "溫東宜",
-                    PASSWORD
-                    : 
-                    "qwe154565",
-                    PAY_CHK
-                    : 
-                    "N",
-                    PHONE
-                    : 
-                    "0911111111",
-                    SYS_E_DT
-                    : 
-                    "2026-02-17",
-                    SYS_S_DT
-                    : 
-                    "2025-02-18"}
-            ]
+            // let Data = [
+            //     {
+            //         CHK:"Y",
+            //         ACCESS_TOKEN
+            //         : 
+            //         "qw51dq3561fwe2f31er5t634451rg2",
+            //         ACCOUNT
+            //         : 
+            //         "haochung@gmail.com",
+            //         ADDRESS
+            //         : 
+            //         "新北市土城區中央路三段178號1樓",
+            //         API_KEY
+            //         : 
+            //         "we54r62351f23erf1w536yk516rss",
+            //         COMID
+            //         : 
+            //         "A001",
+            //         CONTACT
+            //         : 
+            //         "溫東宜",
+            //         DIRECTOR
+            //         : 
+            //         "溫東宜",
+            //         EMAIL
+            //         : 
+            //         "haochung@gmail.com",
+            //         GRADE_CHK
+            //         : 
+            //         "Y",
+            //         INCLASS_CHK
+            //         : 
+            //         "N",
+            //         LINE_CHN_ID
+            //         : 
+            //         "ef56w4r5tw4e45561gt56g1k.5,uy",
+            //         LINE_MSG_CHK
+            //         : 
+            //         "Y",
+            //         MEMO
+            //         : 
+            //         "測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設",
+            //         NAME
+            //         : 
+            //         "浩群文理補習班",
+            //         NOTIFY_CHK
+            //         : 
+            //         "N",
+            //         OUTCLASS_CHK
+            //         : 
+            //         "Y",
+            //         OWNER
+            //         : 
+            //         "溫東宜",
+            //         PASSWORD
+            //         : 
+            //         "qwe154565",
+            //         PAY_CHK
+            //         : 
+            //         "N",
+            //         PHONE
+            //         : 
+            //         "0911111111",
+            //         SYS_E_DT
+            //         : 
+            //         "2026-02-17",
+            //         SYS_S_DT
+            //         : 
+            //         "2025-02-18"}
+            // ]
+            let data = await t_Post(`AA1/Search`,this.ClassName,this.GetAreaData("QArea"))
             //Data = await t_Post("UB1/Search",this.ClassName,this.GetAreaData("QArea"));
-            this.BindDataList(`datatable`,Data);//重新綁定DataTable資料
+            this.BindDataList(`datatable`,data.Data);//重新綁定DataTable資料
             pageaction.areashow("L");
             pageaction.areahide("Q");
             $(`.dt-buttons`).find(`button`).removeClass('disabled')

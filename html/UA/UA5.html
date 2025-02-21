@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Teach-客戶公司管理</title>
+    <title>Teach-資料選單設定</title>
 
     <meta name="description" content="" />
 
@@ -52,7 +52,7 @@
     <!-- Helpers -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="../../js/loadpage.js"></script>
-    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!-- <script src="../../assets/vendor/js/helpers.js"></script> -->
 
     <script src="../../assets/js/config.js"></script>
   </head>
@@ -89,7 +89,7 @@
               <div class="card-body" style="padding: 0;">
                 <div class="btn-group mb-2 toolbar">
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
-                  <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
+                  <!-- <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button> -->
                   <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
                   <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
@@ -102,36 +102,44 @@
                 </div>
                 <div class="card-body SearchArea" id="QArea">
                   <div class="row">
-                    <div class="col-md-6 col-lg mb-2">
+                    <div class="col-md-6 col-lg-3 mb-2">
                       <div class="form-floating">
-                        <input type="text" class="form-control" id="Q_CUSTID" placeholder=""/>
-                        <label for="Q_CUSTID">統一編號</label>
+                        <input type="text" class="form-control" id="Q_DATAGP" placeholder=""/>
+                        <label for="Q_DATAGP">群組代號</label>
                       </div>
                     </div>
-                    <div class="col-md-6 col-lg mb-2">
+                    <div class="col-md-6 col-lg-3 mb-2">
                       <div class="form-floating">
-                        <input type="text" class="form-control" id="Q_CUSTNM" placeholder=""/>
-                        <label for="Q_CUSTNM">公司名稱</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg mb-2">
-                      <div class="form-floating">
-                        <input type="text" class="form-control" id="Q_TEL" placeholder=""/>
-                        <label for="Q_TEL">電話</label>
+                        <input type="date" class="form-control" id="Q_INVALIDDT" placeholder=""/>
+                        <label for="Q_INVALIDDT">失效日期</label>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div class="card mb-3" id="L">
-                <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
+              <div class="card mb-3" id="L1">
+                <div class="divider text-start px-3 my-1 AreaBar" id="L1Bar">
                   <div class="divider-text">
-                    <h6>資料列表</h6>
+                    <h6>資料群組</h6>
                   </div>
                 </div>
-                <div class="card-body" id="LArea">
-                  <table class="table table-striped hover dt-responsive" id="datatable">
+                <div class="card-body" id="L1Area">
+                  <table class="table table-striped hover dt-responsive" id="DATAGP_LIST">
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card mb-3" id="L2">
+                <div class="divider text-start px-3 my-1 AreaBar" id="L2Bar">
+                  <div class="divider-text">
+                    <h6>群組明細</h6>
+                  </div>
+                </div>
+                <div class="card-body" id="L2Area">
+                  <h5>資料群組：<b id="datagpname"></b></h5>
+                  <table class="table table-striped hover dt-responsive" id="DATAID_LIST">
                     <tbody>
                     </tbody>
                   </table>
@@ -146,111 +154,40 @@
                 </div>
                 <div class="card-body EditArea" id="EArea">
                   <div class="row">
+                    <input id="ID" name="ID" class="form-control" type="text" hidden/>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="COMID" class="form-label">客戶編號</label>
-                      <input id="COMID" name="COMID" class="form-control" type="text" readonly/>
+                      <label for="DATAGP" class="form-label">群組代號</label>
+                      <input id="DATAGP" name="DATAGP" class="form-control" type="text" readonly/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="NAME" class="form-label">客戶名稱(公司名稱)</label>
-                      <input id="NAME" name="NAME" class="form-control" type="text"/>
+                      <label for="DATAGPNM" class="form-label">群組名稱</label>
+                      <input id="DATAGPNM" name="DATAGPNM" class="form-control" type="text" readonly/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="OWNER" class="form-label">負責人</label>
-                      <input id="OWNER" name="OWNER" class="form-control" type="text"/>
+                      <label for="PARENTGP" class="form-label">父層選單代號</label>
+                      <select id="PARENTGP" name="PARENTGP" class="form-select t_ddl" data-ddlds="FM"></select>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="DIRECTOR" class="form-label">班主任</label>
-                      <input id="DIRECTOR" name="DIRECTOR" class="form-control" type="text"/>
-                    </div>
+                    <div class="mb-2 col-md-6 col-lg-3"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="ADDRESS" class="form-label">地址</label>
-                      <input id="ADDRESS" name="ADDRESS" class="form-control" type="text"/>
+                      <label for="DATAID" class="form-label">資料編碼</label>
+                      <input id="DATAID" name="DATAID" class="form-control" type="text"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="EMAIL" class="form-label">EMAIL</label>
-                      <input id="EMAIL" name="EMAIL" class="form-control" type="text"/>
+                      <label for="DATA" class="form-label">資料值</label>
+                      <input id="DATA" name="DATA" class="form-control" type="text"/>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="CONTACT" class="form-label">聯絡人</label>
-                      <input id="CONTACT" name="CONTACT" class="form-control" type="text" readonly/>
+                    <div class="mb-2 col-md-6 col-lg-3">
+                      <label for="INVALIDDT" class="form-label">失效日期</label>
+                      <input id="INVALIDDT" name="INVALIDDT" class="form-control" type="datetime-local"/>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="PHONE" class="form-label">聯絡電話</label>
-                      <input id="PHONE" name="PHONE" class="form-control" type="text" readonly/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="SYSSDT" class="form-label">系統啟用日</label>
-                      <input id="SYSSDT" name="SYSSDT" class="form-control" type="datetime-local"/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="SYSEDT" class="form-label">系統到期日</label>
-                      <input id="SYSEDT" name="SYSEDT" class="form-control" type="datetime-local"/>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="LINE_CHN_ID" class="form-label">Line Channel ID</label>
-                      <input id="LINE_CHN_ID" name="LINE_CHN_ID" class="form-control" type="text"/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="ACCESS_TOKEN" class="form-label">Line Access Token</label>
-                      <input id="ACCESS_TOKEN" name="ACCESS_TOKEN" class="form-control" type="text"/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="API_KEY" class="form-label">API金鑰</label>
-                      <input id="API_KEY" name="API_KEY" class="form-control" type="text"/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg"></div>
-                  </div>
-                  <div class="row">
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="ACCOUNT" class="form-label"><span class="require"></span>系統帳號</label>
-                      <input id="ACCOUNT" name="ACCOUNT" class="form-control" type="text"/>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg form-password-toggle">
-                      <label for="PASSWORD" class="form-label"><span class="require"></span>系統密碼</label>
-                      <div class="input-group">
-                        <input type="password" name="PASSWORD" class="form-control" id="PASSWORD" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="PASSWORD"/>
-                        <span id="PASSWORD" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                      </div>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg"></div>
-                    <div class="mb-2 col-md-6 col-lg"></div>
+                    <div class="mb-2 col-md-6 col-lg-3"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
                       <label for="MEMO" class="form-label">備註</label>
                       <textarea id="MEMO" name="MEMO" class="form-control" type="text"></textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-check">
-                      <label class="form-check-label" for="NOTIFYCHK">Notify通知</label>
-                      <input class="form-check-input" type="checkbox" value="" id="NOTIFYCHK" name="NOTIFYCHK"/>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label" for="LINEMSGCHK">Line Message</label>
-                      <input class="form-check-input" type="checkbox" value="" id="LINEMSGCHK" name="LINEMSGCHK"/>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label" for="INCLASSCHK">到班通知</label>
-                      <input class="form-check-input" type="checkbox" value="" id="INCLASSCHK" name="INCLASSCHK"/>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label" for="OUTCLASSCHK">離班通知</label>
-                      <input class="form-check-input" type="checkbox" value="" id="OUTCLASSCHK" name="OUTCLASSCHK"/>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label" for="GRADECHK">成績通知</label>
-                      <input class="form-check-input" type="checkbox" value="" id="GRADECHK" name="GRADECHK"/>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label" for="PAYCHK">繳費通知</label>
-                      <input class="form-check-input" type="checkbox" value="" id="PAYCHK" name="PAYCHK"/>
                     </div>
                   </div>
                 </div>
@@ -319,6 +256,6 @@
     <script src="../../base/viewaction.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="../../js/AA/AA1.js" type="module"></script>
+    <script src="../../js/UA/UA5.js" type="module"></script>
   </body>
 </html>

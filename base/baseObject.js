@@ -29,13 +29,14 @@ class baseObject {
     }
 
     SearchBefore(){
-        console.log(this.GetAreaData("QArea"));
+        // console.log(this.GetAreaData("QArea"));
     }
 
     async Search(action){
         pageaction.showLoading();
         this.SearchBefore();
         if(this.GetAreaData("QArea") && this.verification("QArea")){
+            pageaction.areahide("Q");
             let response = await fetch(`${url}/${this.ClassName}/Search`,{
                 method:"POST",
                 headers:new Headers({
@@ -48,7 +49,7 @@ class baseObject {
             try{
                 let data = await response.json();
                 if(data.Status){
-                    console.log(data.d)
+                    this.SearchAfter(data.Data);
                 }else{
                     this.alertMsg(data.Msg,"success")
                 }
@@ -58,10 +59,9 @@ class baseObject {
                 pageaction.hideLoading();
             }
         }
-        this.SearchAfter();
     }
 
-    SearchAfter(){
+    SearchAfter(data){
         pageaction.hideLoading();
     }
 
@@ -138,8 +138,11 @@ class baseObject {
 
         if(trclick){
             table.on('click','tbody td',function(){
-                if($(this).index() != 0 && !$(this).hasClass('sorting_1')){
-                    trclick();
+                var beforeContent = window.getComputedStyle(this, '::before').getPropertyValue('content');
+                var hasButton = this.querySelector('button') == null;
+                var hasAnchor = this.querySelector('a') == null;
+                if(beforeContent == 'none' && hasButton && hasAnchor){
+                    trclick(this);
                 }
             });
         }
@@ -225,7 +228,7 @@ class baseObject {
         let teachalert = $(`#teachalert`);
         let div = document.createElement('div');
         div.role = "alert";
-        div.classList.add("alert",`alert-${alertDegree ?? "secondary"}`,"alert-dismissible");
+        div.classList.add("alert",`alert-${alertDegree.toLowerCase() ?? "secondary"}`,"alert-dismissible");
         div.innerHTML = `${Msg}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
         teachalert.append(div);
         setTimeout(function(){
@@ -240,14 +243,17 @@ class baseObject {
      */
     BindDataForArea(data,area){
         $.each(data, function(key, value) {
+            key = key.toUpperCase();
             var $input = $(`#${area} input[name="${key}"], select[name="${key}"], textarea[name="${key}"]`);
-            
             if ($input.length) {
                 switch (true) {
                     case $input.attr('type') === 'text':
                         $input.val(value);
                         break;
                     case $input.attr('type') === 'date':
+                        $input.val(value);
+                        break;
+                    case $input.attr('type') === 'datetime-local':
                         $input.val(value);
                         break;
                     case $input.attr('type') === 'password':

@@ -1,3 +1,4 @@
+var url = "https://localhost:7036/api";
 $(`#login`).on('click',async function(){
     let emp = $(`#emplid`).val();
     let psw = $(`#password`).val();
@@ -16,14 +17,24 @@ $(`#login`).on('click',async function(){
         let data = await response.json();
         if(data.Status){
             console.log(data.Data)
-            sessionStorage.setItem("jwttoken",data.Data);
+            sessionStorage.setItem("jwttoken",data.Data.jwt);
+            sessionStorage.setItem("emplid",data.Data.emplid);
             let OriginalPage = sessionStorage.getItem("OriginalPage");
             console.log()
-            window.open(`../../html/${OriginalPage.substring(0,2) ?? "base"}/${OriginalPage ?? "index"}.html`,`_self`)
+            if(!OriginalPage || OriginalPage == "home")
+                window.open(`../../html/base/index.html`,`_self`)
+            else
+                window.open(`../../html/${OriginalPage.substring(0,2) ?? "base"}/${OriginalPage ?? "index"}.html`,`_self`)
         }else{
             alert(data.Msg);
         }
     }else{
         alert("請輸入帳號密碼")
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        $(`#login`).click();
     }
 });
