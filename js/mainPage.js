@@ -51,6 +51,7 @@ async function t_Post(Route,className,params){
             method:"POST",
             headers:new Headers({
                 "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
+                "Content-Type":"application/json",
                 "ngrok-skip-browser-warning": "69420",
             }),
             body:JSON.stringify(params)

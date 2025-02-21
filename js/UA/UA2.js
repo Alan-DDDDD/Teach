@@ -1,15 +1,15 @@
-reList("UB1");
-export class UB1 extends baseObject {
+reList("UA2");
+export class UA2 extends baseObject {
     constructor() {
         super();
     }
 
-    //初始化UB1
+    //UA2
     Init(){
         let me = this;
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
         me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
-        me.ClassName = "UB1"
+        me.ClassName = "UA2"
         me.InitL();//初始化L區
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
@@ -29,10 +29,10 @@ export class UB1 extends baseObject {
                     return html;
                 }
             },
-            { data: 'name',title: "姓名" },
-            { data: 'phone',title: "行動電話" },
-            { data: 'tax',title: "市話" },
-            { data: 'email',title: "Email(電子信箱)" },
+            { data: 'startdt',title: "開始時間" },
+            { data: 'enddt',title: "結束時間" },
+            { data: 'title',title: "標題" },
+            { data: 'text',title: "公告內容" },
             { 
                 data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){
@@ -153,4 +153,4 @@ export class UB1 extends baseObject {
         }
     }
 }
-currentview = new UB1();
+currentview = new UA2();
