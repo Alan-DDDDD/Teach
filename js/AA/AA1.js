@@ -144,15 +144,13 @@ export class AA1 extends baseObject {
             //         : 
             //         "2025-02-18"}
             // ]
-            let data = await t_Post(`AA1/Search`,this.ClassName,this.GetAreaData("QArea"))
+            let data = await t_Post(`AA1/Search`,this.ClassName,this.GetAreaData("QArea"));
             //Data = await t_Post("UB1/Search",this.ClassName,this.GetAreaData("QArea"));
             this.BindDataList(`datatable`,data.Data);//重新綁定DataTable資料
             pageaction.areashow("L");
             pageaction.areahide("Q");
             $(`.dt-buttons`).find(`button`).removeClass('disabled')
-            setTimeout(function(){
-                pageaction.hideLoading();
-            },3000);
+            pageaction.hideLoading();
         }else{
             this.alertMsg("請輸入必填資料","danger")
         }
