@@ -327,6 +327,7 @@ class baseObject {
             let data = await t_Post(`${this.ClassName}/LoginUser?userid=${userid}`,this.ClassName)
             if(data.Status){
                 this.CurrentUser = data.Data;
+                console.log(this.CurrentUser);
             }
         }
     }
