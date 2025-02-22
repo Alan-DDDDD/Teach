@@ -326,7 +326,7 @@ class baseObject {
             let userid = sessionStorage.getItem("emplid");
             let data = await t_Post(`${this.ClassName}/LoginUser?userid=${userid}`,this.ClassName)
             if(data.Status){
-                console.log(data.Data)
+                this.CurrentUser = data.Data;
             }
         }
     }
