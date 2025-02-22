@@ -15,6 +15,7 @@ class baseObject {
     defaultHideArea = [];//預設隱藏區域
     defaultToolBarDisabled = [];//預設禁用ToolBar按鈕
     ClassName;
+    CurrentUser;
     Init(){
     }
 
@@ -316,10 +317,17 @@ class baseObject {
         }
     }
 
-    CheckAuth(){
+    async CheckAuth(){
         if(!sessionStorage.getItem("jwttoken")){
             sessionStorage.setItem("OriginalPage",this.ClassName);
             window.open("../../html/base/login.html","_self");
+        }
+        else{
+            let userid = sessionStorage.getItem("emplid");
+            let data = await t_Post(`${this.ClassName}/LoginUser?userid=${userid}`,this.ClassName)
+            if(data.Status){
+                console.log(data.Data)
+            }
         }
     }
 }
