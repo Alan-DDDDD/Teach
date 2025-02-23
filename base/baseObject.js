@@ -332,7 +332,7 @@ class baseObject {
                 this.CurrentUser = data.Data;
                 this.settingViewAuth(this.CurrentUser.ModuleAuth)
                 $(`#nav_username`).html(this.CurrentUser.UserName);
-                $(`#nav_level`).html(this.CurrentUser.Level);
+                $(`#nav_level`).html(this.CurrentUser.LevelName);
             }
         }
     }
