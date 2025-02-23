@@ -7,6 +7,7 @@ var Module;
 var headers = {
   
 }
+var CurrentFunc;
 
 getModule().then(()=>{
   if(Module){
@@ -26,6 +27,7 @@ getModule().then(()=>{
             }, Promise.resolve()) // 開始一個空的 resolved promise
             .then(() => {
               console.log('All scripts loaded successfully');
+              setList();
             })
             .catch((error) => {
               console.error(error);
@@ -126,5 +128,14 @@ function setmodule(data){
         m.remove();
       }
     })
+  }
+}
+
+function setList(){
+  if(CurrentFunc){
+    reList(CurrentFunc);
+  }
+  else{
+    setList();
   }
 }

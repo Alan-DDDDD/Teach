@@ -1,4 +1,3 @@
-reList("UC6");
 export class UC6 extends baseObject {
     constructor() {
         super();

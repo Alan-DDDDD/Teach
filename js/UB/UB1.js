@@ -1,4 +1,3 @@
-reList("UB1");
 export class UB1 extends baseObject {
     constructor() {
         super();
@@ -20,7 +19,7 @@ export class UB1 extends baseObject {
         //設定L區DataTable
         let columns = [
             { 
-                data: 'check',title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
+                data: null,title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
                 orderable: false,
                 render: function(data,type,row){
                     let html = `<input class="form-check-input list_checkbox" type="checkbox" `;
@@ -29,10 +28,10 @@ export class UB1 extends baseObject {
                     return html;
                 }
             },
-            { data: 'name',title: "姓名" },
-            { data: 'phone',title: "行動電話" },
-            { data: 'tax',title: "市話" },
-            { data: 'email',title: "Email(電子信箱)" },
+            { data: 'Name',title: "姓名" },
+            { data: 'Phone',title: "行動電話" },
+            { data: 'Tax',title: "市話" },
+            { data: 'Email',title: "Email(電子信箱)" },
             { 
                 data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){

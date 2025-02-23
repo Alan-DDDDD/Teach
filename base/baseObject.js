@@ -60,6 +60,9 @@ class baseObject {
                 pageaction.hideLoading();
             }
         }
+        else{
+            pageaction.hideLoading();
+        }
     }
 
     SearchAfter(data){
@@ -323,6 +326,7 @@ class baseObject {
             window.open("../../html/base/login.html","_self");
         }
         else{
+            CurrentFunc = this.ClassName;
             let userid = sessionStorage.getItem("emplid");
             let data = await t_Post(`${this.ClassName}/LoginUser?userid=${userid}`,this.ClassName)
             if(data.Status){

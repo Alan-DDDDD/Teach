@@ -1,4 +1,3 @@
-reList("AA5");
 export class AA5 extends baseObject {
     constructor() {
         super();

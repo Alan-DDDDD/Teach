@@ -65,4 +65,3 @@ export class UA2 extends baseObject {
     }
 }
 currentview = new UA2();
-reList("UA2");
