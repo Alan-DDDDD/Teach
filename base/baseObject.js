@@ -5,7 +5,6 @@ class baseObject {
         this.Init();
         this.CheckAuth();
         this.LoadAfter();
-        this.settingViewAuth();
         this.setDropDownList();
         this.DefaultLoadHide();
         this.DefaultLoadToolBarDisabled();
@@ -295,9 +294,9 @@ class baseObject {
         }
     }
 
-    settingViewAuth(){
-        if(Module){
-            let Auth = Module.EMPLModules.filter(x=>x.Functionid === this.ClassName)[0];
+    settingViewAuth(module){
+        if(module){
+            let Auth = module.EMPLModules.filter(x=>x.Functionid === this.ClassName)[0];
             if(Auth && Auth.Mval){
                 switch(Auth.Mval){
                     case "R":
@@ -331,7 +330,7 @@ class baseObject {
             let data = await t_Post(`${this.ClassName}/LoginUser?userid=${userid}`,this.ClassName)
             if(data.Status){
                 this.CurrentUser = data.Data;
-                console.log(this.CurrentUser);
+                this.settingViewAuth(this.CurrentUser.ModuleAuth)
             }
         }
     }
