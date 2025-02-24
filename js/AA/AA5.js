@@ -38,7 +38,13 @@ export class AA5 extends baseObject {
         $(`#insert`).unbind("click");
     }
     SearchAfter(data){
-        $(`#tree`).html(generateTreeHtml(data,true));
+        $(`#tree`).html(generateTreeHtml(data.Tree,true));
+        let module = $(`.list-group-item`).children(`input`);
+        $.each(module,(i,d)=>{
+            let me = $(d);
+            if(data.Auth.indexOf(me.data(`id`)) > -1)
+                me.click();
+        })
         pageaction.hideLoading();
     }
     Save(){
