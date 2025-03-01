@@ -43,7 +43,7 @@ class baseObject {
                 if(data.Status){
                     this.SearchAfter(data.Data);
                 }else{
-                    this.alertMsg(data.Msg,"success")
+                    this.alertMsg(data.Msg,"danger")
                 }
             }
             catch{
