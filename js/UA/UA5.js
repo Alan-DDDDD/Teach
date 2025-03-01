@@ -65,6 +65,7 @@ export class UA5 extends baseObject {
         pageaction.areashow("L1");
     }
     async Save(){
+        pageaction.showLoading()
         let E = this.GetAreaData("EArea");
         let data = await t_Post("UA5/Save",this.ClassName,E);
         if(data.Status){
@@ -75,8 +76,11 @@ export class UA5 extends baseObject {
                 item.Id === data.Data.Id ? { ...item, ...data.Data } : item
             );
             this.BindDataList("DATAID_LIST",tableData);
+            pageaction.hideLoading();
         }else{
-            this.alertMsg(data.Msg);
+            this.alertMsg(data.Msg,"warning");
+            pageaction.hideLoading();
+
         }
     }
     Insert(){
