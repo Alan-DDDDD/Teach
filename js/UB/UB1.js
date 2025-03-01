@@ -54,14 +54,6 @@ export class UB1 extends baseObject {
         ]
         this.setTable(`datatable`,[],columns,columnDefs,buttons,function(e){
             //設定L區DataTable tr點擊動作
-            // let table = $(`#datatable`).DataTable();
-            // var rowData = table.row(this).data();
-            // if(rowData){
-            //     pageaction.areahide("L");
-            //     pageaction.areashow("E");
-            //     pageaction.ToolBarUnDisabled("save");
-            //     currentview.BindDataForArea(rowData,"EArea");
-            // }
         });
     }
     remove(){
@@ -73,45 +65,7 @@ export class UB1 extends baseObject {
     async Search(){
         if(super.verification("QArea")){
             pageaction.showLoading();
-            console.log(this.GetAreaData("EArea"));
-            let Data = [
-                {check:"N",emplid:0,gender:"M",name:'text',phone:'0977778111',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:1,gender:"F",name:'text',phone:'0977778112',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:2,gender:"M",name:'text',phone:'0977778113',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:3,gender:"M",name:'text',phone:'0977778114',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:4,gender:"F",name:'text',phone:'0977778115',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:5,gender:"F",name:'text',phone:'0977778116',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:6,gender:"M",name:'text',phone:'0977778117',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:7,gender:"M",name:'text',phone:'0977778118',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:8,gender:"F",name:'text',phone:'0977778119',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:9,gender:"M",name:'text',phone:'0977778120',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:10,gender:"M",name:'text',phone:'0977778121',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:11,gender:"F",name:'text',phone:'0977778122',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:12,gender:"M",name:'text',phone:'0977778123',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:13,gender:"F",name:'text',phone:'0977778124',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:14,gender:"M",name:'text',phone:'0977778125',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:15,gender:"M",name:'text',phone:'0977778126',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:16,gender:"M",name:'text',phone:'0977778127',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:17,gender:"F",name:'text',phone:'0977778128',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:18,gender:"F",name:'text',phone:'0977778129',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:19,gender:"F",name:'text',phone:'0977778130',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:20,gender:"M",name:'text',phone:'0977778131',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:21,gender:"F",name:'text',phone:'0977778132',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:22,gender:"M",name:'text',phone:'0977778133',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:23,gender:"M",name:'text',phone:'0977778134',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:24,gender:"F",name:'text',phone:'0977778135',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:25,gender:"F",name:'text',phone:'0977778136',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:26,gender:"M",name:'text',phone:'0977778137',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:27,gender:"F",name:'text',phone:'0977778138',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:28,gender:"M",name:'text',phone:'0977778139',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:29,gender:"F",name:'text',phone:'0977778140',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:30,gender:"M",name:'text',phone:'0977778141',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:31,gender:"F",name:'text',phone:'0977778142',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:32,gender:"M",name:'text',phone:'0977778143',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:33,gender:"F",name:'text',phone:'0977778144',tax:'0222151112',email:'0911511@gmail.com'},
-                {check:"N",emplid:34,gender:"M",name:'text',phone:'0977778145',tax:'0222151112',email:'0911511@gmail.com'}
-            ]
-            Data = await t_Post("UB1/Search",this.ClassName,this.GetAreaData("QArea"));
+            let Data = await t_Post("UB1/Search",this.ClassName,this.GetAreaData("QArea"));
             if(Data.Data){
                 this.BindDataList(`datatable`,Data.Data ?? null);//重新綁定DataTable資料
             }else{
@@ -120,9 +74,7 @@ export class UB1 extends baseObject {
             pageaction.areashow("L");
             pageaction.areahide("Q");
             $(`.dt-buttons`).find(`button`).removeClass('disabled')
-            setTimeout(function(){
-                pageaction.hideLoading();
-            },3000);
+            pageaction.hideLoading();
         }else{
             this.alertMsg("請輸入必填資料","danger")
         }
@@ -130,9 +82,15 @@ export class UB1 extends baseObject {
     async Save(){
         if(super.verification("EArea")){
             let data = this.GetAreaData("EArea");
-            let response = await t_Post(`${this.ClassName}/Save`,this.ClassName,data);
-            if(response.Data){
+            let response = await t_Post(`${this.ClassName}/DoSave`,this.ClassName,data);
+            if(response.Data[0]){
                 this.alertMsg("儲存成功","success")
+                let table = $(`#datatable`).DataTable();
+                let tableData = table.rows().data().toArray();
+                tableData = tableData.map(item => 
+                    item.Emplid === response.Data[0].Emplid ? { ...item, ...response.Data[0] } : item
+                );
+                this.BindDataList("datatable",tableData);
             }
         }else{
             this.alertMsg("請輸入必填資料","danger")
@@ -144,6 +102,9 @@ export class UB1 extends baseObject {
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
         pageaction.areashow("E");//展開E區
+        $(`#EMPLID`).removeAttr(`disabled`);
+        $(`#ACCOUNT`).removeAttr(`disabled`);
+        $(`#PASSWORD`).removeAttr(`disabled`);
     }
 
     DataDetail(){
@@ -154,6 +115,9 @@ export class UB1 extends baseObject {
             pageaction.areashow("E");
             pageaction.ToolBarUnDisabled("save");
             currentview.BindDataForArea(rowData,"EArea");
+            $(`#EMPLID`).attr(`disabled`,"disabled");
+            $(`#ACCOUNT`).attr(`disabled`,"disabled");
+            $(`#PASSWORD`).attr(`disabled`,"disabled");
         }
     }
 }

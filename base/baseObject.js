@@ -164,7 +164,7 @@ class baseObject {
             let chk = $(d).next().find('.require');
             if(chk.length == 0)
                 chk = $(d).prev().find('.require');
-            if(chk.length == 0)
+            if(chk.length == 0 && $(d).parent().hasClass('input-group'))
                 chk = $(d).parent().prev().find('.require');
             if(chk.length > 0){
                 let value = $(d).val()

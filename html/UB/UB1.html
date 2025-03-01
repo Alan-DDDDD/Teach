@@ -132,105 +132,7 @@
                 </div>
                 <div class="card-body" id="LArea">
                   <table class="table table-striped hover dt-responsive" id="datatable">
-                    <!-- <thead>
-                      <tr>
-                        <th>姓名</th>
-                        <th>行動電話</th>
-                        <th>市話</th>
-                        <th>Email(電子信箱)</th>
-                      </tr>
-                    </thead> -->
                     <tbody>
-                      <!-- <tr>
-                        <td>戴浩宇</td>
-                        <td>0999999999</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0988888888</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0997777777</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999666666</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0995555555</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999999999</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0988888888</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0997777777</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999666666</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0995555555</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999999999</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0988888888</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0997777777</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0999666666</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>戴浩宇</td>
-                        <td>0995555555</td>
-                        <td>0222222222</td>
-                        <td>aaaaaaaaaa@gmail.com</td>
-                      </tr> -->
                     </tbody>
                   </table>
                 </div>
@@ -246,10 +148,10 @@
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
                       <label for="EMPLID" class="form-label"><span class="require"></span>員工編號</label>
-                      <input id="EMPLID" name="EMPLID" class="form-control" type="text"/>
+                      <input id="EMPLID" name="EMPLID" class="form-control" type="text" disabled="true"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="NAME" class="form-label">員工姓名</label>
+                      <label for="NAME" class="form-label"><span class="require"></span>員工姓名</label>
                       <input id="NAME" name="NAME" class="form-control" type="text"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
@@ -277,15 +179,37 @@
                       <input id="TAX" name="TAX" class="form-control" type="text"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg rowtext">
-                      <p id="LINEID" name="LINEID" class="fs-4 text">Line ID ✔️❌</p>
-                    </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="TEST" class="form-label"><span class="require"></span>測試</label>
-                      <select id="TEST" name="TEST" class="form-select t_ddl" data-ddlds="TEST"></select>
+                      <label for="LINEID" class="form-label">LINE ID</label>
+                      <input id="LINEID" name="LINEID" class="form-control" type="text"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
                       <label for="LEVEL" class="form-label"><span class="require"></span>使用者等級</label>
                       <select id="LEVEL" name="LEVEL" class="form-select t_ddl" data-ddlds="EMPAU"></select>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="ACCOUNT" class="form-label">登入帳號</label>
+                      <input id="ACCOUNT" name="ACCOUNT" class="form-control" type="text" disabled="true"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg form-password-toggle">
+                      <label for="PASSWORD" class="form-label"><span class="require"></span>登入密碼</label>
+                      <div class="input-group">
+                        <input type="password" name="PASSWORD" class="form-control" id="PASSWORD" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="PASSWORD"/>
+                        <span id="PASSWORD" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                      </div>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="QUITDATE" class="form-label">離職日期</label>
+                      <input id="QUITDATE" name="QUITDATE" class="form-control" type="datetime-local"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="MEMO" class="form-label">備註</label>
+                      <textarea id="MEMO" name="MEMO" class="form-control" type="text"></textarea>
                     </div>
                   </div>
                 </div>
