@@ -38,17 +38,8 @@ class baseObject {
         this.SearchBefore();
         if(this.GetAreaData("QArea") && this.verification("QArea")){
             pageaction.areahide("Q");
-            let response = await fetch(`${url}/${this.ClassName}/Search`,{
-                method:"POST",
-                headers:new Headers({
-                    "Authorization":`Bearer ${sessionStorage.getItem("jwttoken")}`,
-                    "Content-Type": "application/json",  // 設定請求的 Content-Type
-                    "ngrok-skip-browser-warning": "69420",
-                  }),
-                body:JSON.stringify(this.GetAreaData("QArea"))
-            })
+            let data = await t_Post(`${this.ClassName}/Search`,this.ClassName,this.GetAreaData("QArea"));
             try{
-                let data = await response.json();
                 if(data.Status){
                     this.SearchAfter(data.Data);
                 }else{
