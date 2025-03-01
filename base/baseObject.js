@@ -8,6 +8,7 @@ class baseObject {
         this.setDropDownList();
         this.DefaultLoadHide();
         this.DefaultLoadToolBarDisabled();
+        this.SetDataValid;
     }
     
     tablesetting = "../../json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
@@ -335,5 +336,15 @@ class baseObject {
                 $(`#nav_level`).html(this.CurrentUser.LevelName);
             }
         }
+    }
+
+    DataValid(ElementId,Html,Pattern){
+        document.getElementById(ElementId).addEventListener(Html.toLowerCase(), function(event) {
+            this.value = this.value.replace(Pattern, '');
+          });
+    }
+    
+    SetDataValid(){
+
     }
 }

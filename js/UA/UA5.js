@@ -6,13 +6,11 @@ export class UA5 extends baseObject {
         let me = this;
         me.ClassName = "UA5";
         me.defaultHideArea = ["L1","L2","E"];//設定預設隱藏區域
-        me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
+        me.defaultToolBarDisabled = ["save"]//設定ToolBar按鈕狀態，預設全開
         me.InitL1();
         me.InitL2();
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
-        //$(`#insert`).on("click",me.Insert.bind(this));
-        // $(`#DATAID_LIST`).on("click",".data_detaile",me.DataDetail);
         $(`#DATAGP_LIST`).on("click",".datagpinsert",me.Insert);
     }
     InitL1(){
@@ -24,8 +22,7 @@ export class UA5 extends baseObject {
             { 
                 data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){
-                    let html = `<button class="btn btn-primary datagpupdate" style="padding:0.125rem 0.375rem">修改</button>
-                    <button class="btn btn-primary datagpinsert" style="padding:0.125rem 0.375rem">新增</button>`
+                    let html = `<button class="btn btn-primary datagpinsert" style="padding:0.125rem 0.375rem">新增</button>`
                     return html
                 }
             }
@@ -33,7 +30,6 @@ export class UA5 extends baseObject {
         let columnDefs = []
         let buttons = []
         this.setTable(`DATAGP_LIST`,[],columns,columnDefs,buttons,function(e){
-            //設定L區DataTable tr點擊動作
             let table = $(`#DATAGP_LIST`).DataTable();
             var rowData = table.row(e).data();
             if(rowData){
@@ -49,22 +45,14 @@ export class UA5 extends baseObject {
             { data: 'Dataid',title: "資料代號" },
             { data: 'Data',title: "中文" },
             { data: 'InvalidDt',title: "失效時間" },
-            // { 
-            //     data: null,title:"操作功能",orderable: false,
-            //     render:function(data,type,row){
-            //         let html = `<button class="btn btn-primary data_detaile" style="padding:0.125rem 0.375rem">明細</button>`
-            //         return html
-            //     }
-            // }
         ]
         let columnDefs = []
         let buttons = []
         this.setTable(`DATAID_LIST`,[],columns,columnDefs,buttons,function(e){
-            //設定L區DataTable tr點擊動作
             let table = $(`#DATAID_LIST`).DataTable();
             var rowData = table.row(e).data();
             if(rowData){
-                pageaction.areahide("L");
+                pageaction.areahide("L1");
                 pageaction.areashow("E");
                 pageaction.ToolBarUnDisabled("save");
                 currentview.BindDataForArea(rowData,"EArea");
@@ -111,16 +99,9 @@ export class UA5 extends baseObject {
         }
         pageaction.hideLoading();
     }
-    DataDetail(){
-        let table = $(`#DATAID_LIST`).DataTable();
-        var rowData = table.rows($(this).parent()[0]).data()[0];
-        console.log(rowData)
-        if(rowData){   
-            pageaction.areahide("L");
-            pageaction.areashow("E");
-            pageaction.ToolBarUnDisabled("save");
-            currentview.BindDataForArea(rowData,"EArea");
-        }
+    SetDataValid(){
+        let me = this;
+        me.DataValid('DATAID','input',/[^A-Za-z0-9]/g);
     }
 }
 currentview = new UA5();

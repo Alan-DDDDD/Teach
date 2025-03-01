@@ -91,7 +91,7 @@
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
                   <!-- <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button> -->
                   <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
-                  <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
+                  <!-- <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button> -->
                 </div>
               </div>
               <div class="card mb-3" id="Q">
@@ -110,8 +110,8 @@
                     </div>
                     <div class="col-md-6 col-lg-3 mb-2">
                       <div class="form-floating">
-                        <input type="date" class="form-control" id="Q_INVALIDDT" placeholder=""/>
-                        <label for="Q_INVALIDDT">失效日期</label>
+                        <input type="text" class="form-control" id="Q_DATAGPNM" placeholder=""/>
+                        <label for="Q_DATAGPNM">群組名稱</label>
                       </div>
                     </div>
                   </div>
@@ -163,16 +163,13 @@
                       <label for="DATAGPNM" class="form-label">群組名稱</label>
                       <input id="DATAGPNM" name="DATAGPNM" class="form-control" type="text" readonly/>
                     </div>
-                    <div class="mb-2 col-md-6 col-lg">
-                      <label for="PARENTGP" class="form-label">父層選單代號</label>
-                      <select id="PARENTGP" name="PARENTGP" class="form-select t_ddl" data-ddlds="FM"></select>
-                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
                     <div class="mb-2 col-md-6 col-lg-3"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="DATAID" class="form-label">資料編碼</label>
-                      <input id="DATAID" name="DATAID" class="form-control" type="text"/>
+                      <label for="DATAID" class="form-label">資料編碼<i class='bx bx-info-circle' data-bs-toggle="tooltip" data-bs-html="true" title="<span>只能輸入英文和數字</span>"></i></label>
+                      <input id="DATAID" name="DATAID" class="form-control" type="text"  maxlength="5"/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
                       <label for="DATA" class="form-label">資料值</label>
