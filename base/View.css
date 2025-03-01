@@ -321,7 +321,3 @@
 .tree-item input{
  margin-bottom: 0.5rem;
 }
-
-input:invalid {
-  border-color: red; /* 輸入不合法時，邊框變紅 */
-}

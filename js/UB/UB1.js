@@ -102,9 +102,9 @@ export class UB1 extends baseObject {
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
         pageaction.areashow("E");//展開E區
-        $(`#EMPLID`).removeAttr(`disabled`);
-        $(`#ACCOUNT`).removeAttr(`disabled`);
-        $(`#PASSWORD`).removeAttr(`disabled`);
+        $(`#Emplid`).removeAttr(`disabled`);
+        $(`#Account`).removeAttr(`disabled`);
+        $(`#Password`).removeAttr(`disabled`);
     }
 
     DataDetail(){
@@ -115,9 +115,9 @@ export class UB1 extends baseObject {
             pageaction.areashow("E");
             pageaction.ToolBarUnDisabled("save");
             currentview.BindDataForArea(rowData,"EArea");
-            $(`#EMPLID`).attr(`disabled`,"disabled");
-            $(`#ACCOUNT`).attr(`disabled`,"disabled");
-            $(`#PASSWORD`).attr(`disabled`,"disabled");
+            $(`#Emplid`).attr(`disabled`,"disabled");
+            $(`#Account`).attr(`disabled`,"disabled");
+            $(`#Password`).attr(`disabled`,"disabled");
         }
     }
 }

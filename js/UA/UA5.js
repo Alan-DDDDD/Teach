@@ -12,6 +12,7 @@ export class UA5 extends baseObject {
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
         $(`#DATAGP_LIST`).on("click",".datagpinsert",me.Insert);
+        
     }
     InitL1(){
         let me = this;
@@ -87,9 +88,9 @@ export class UA5 extends baseObject {
         currentview.ClearArea("EArea");//清空E區資料
         let table = $(`#DATAGP_LIST`).DataTable();
         var rowData = table.row($(this).parent()[0]).data();
-        $(`#ID`).val(0);
-        $(`#DATAGP`).val(rowData.Datagp);
-        $(`#DATAGPNM`).val(rowData.Datagpnm);
+        $(`#Id`).val(0);
+        $(`#Datagp`).val(rowData.Datagp);
+        $(`#Datagpnm`).val(rowData.Datagpnm);
         pageaction.ToolBarUnDisabled("save");//解鎖save按鈕
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L1");//隱藏L區
@@ -105,7 +106,7 @@ export class UA5 extends baseObject {
     }
     SetDataValid(){
         let me = this;
-        me.DataValid('DATAID','input',/[^A-Za-z0-9]/g);
+        me.DataValid('Dataid','input',/[^A-Za-z0-9]/g);
     }
 }
 currentview = new UA5();

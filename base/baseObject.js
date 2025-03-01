@@ -8,7 +8,7 @@ class baseObject {
         this.setDropDownList();
         this.DefaultLoadHide();
         this.DefaultLoadToolBarDisabled();
-        this.SetDataValid;
+        this.SetDataValid();
     }
     
     tablesetting = "../../json/datatable-zh-HANT.json";//DataTable使用語系(繁體中文)
@@ -238,7 +238,7 @@ class baseObject {
      */
     BindDataForArea(data,area){
         $.each(data, function(key, value) {
-            key = key.toUpperCase();
+            //key = key.toUpperCase();
             var $input = $(`#${area} input[name="${key}"], select[name="${key}"], textarea[name="${key}"]`);
             if ($input.length) {
                 switch (true) {

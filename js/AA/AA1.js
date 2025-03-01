@@ -52,16 +52,7 @@ export class AA1 extends baseObject {
             { extend: 'excel', className: 'excelButton btn-primary disabled' },
             { extend: 'print', className: 'printButton btn-primary disabled' }
         ]
-        this.setTable(`datatable`,[],columns,columnDefs,buttons,function(){
-            //設定L區DataTable tr點擊動作
-            // let table = $(`#datatable`).DataTable();
-            // var rowData = table.row(this).data();
-            // if(rowData){
-            //     pageaction.areahide("L");
-            //     pageaction.areashow("E");
-            //     pageaction.ToolBarUnDisabled("save");
-            //     currentview.BindDataForArea(rowData,"EArea");
-            // }
+        this.setTable(`datatable`,[],columns,columnDefs,buttons,function(e){
         });
     }
     remove(){
@@ -73,78 +64,7 @@ export class AA1 extends baseObject {
     async Search(){
         if(super.verification("QArea")){
             pageaction.showLoading();
-            // let Data = [
-            //     {
-            //         CHK:"Y",
-            //         ACCESS_TOKEN
-            //         : 
-            //         "qw51dq3561fwe2f31er5t634451rg2",
-            //         ACCOUNT
-            //         : 
-            //         "haochung@gmail.com",
-            //         ADDRESS
-            //         : 
-            //         "新北市土城區中央路三段178號1樓",
-            //         API_KEY
-            //         : 
-            //         "we54r62351f23erf1w536yk516rss",
-            //         COMID
-            //         : 
-            //         "A001",
-            //         CONTACT
-            //         : 
-            //         "溫東宜",
-            //         DIRECTOR
-            //         : 
-            //         "溫東宜",
-            //         EMAIL
-            //         : 
-            //         "haochung@gmail.com",
-            //         GRADE_CHK
-            //         : 
-            //         "Y",
-            //         INCLASS_CHK
-            //         : 
-            //         "N",
-            //         LINE_CHN_ID
-            //         : 
-            //         "ef56w4r5tw4e45561gt56g1k.5,uy",
-            //         LINE_MSG_CHK
-            //         : 
-            //         "Y",
-            //         MEMO
-            //         : 
-            //         "測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設測試測設",
-            //         NAME
-            //         : 
-            //         "浩群文理補習班",
-            //         NOTIFY_CHK
-            //         : 
-            //         "N",
-            //         OUTCLASS_CHK
-            //         : 
-            //         "Y",
-            //         OWNER
-            //         : 
-            //         "溫東宜",
-            //         PASSWORD
-            //         : 
-            //         "qwe154565",
-            //         PAY_CHK
-            //         : 
-            //         "N",
-            //         PHONE
-            //         : 
-            //         "0911111111",
-            //         SYS_E_DT
-            //         : 
-            //         "2026-02-17",
-            //         SYS_S_DT
-            //         : 
-            //         "2025-02-18"}
-            // ]
             let data = await t_Post(`AA1/Search`,this.ClassName,this.GetAreaData("QArea"));
-            //Data = await t_Post("UB1/Search",this.ClassName,this.GetAreaData("QArea"));
             this.BindDataList(`datatable`,data.Data);//重新綁定DataTable資料
             pageaction.areashow("L");
             pageaction.areahide("Q");
@@ -154,10 +74,15 @@ export class AA1 extends baseObject {
             this.alertMsg("請輸入必填資料","danger")
         }
     }
-    Save(){
+    async Save(){
         if(super.verification("EArea")){
-            this.alertMsg("儲存成功","success")
-            console.log(this.GetAreaData("EArea"));
+            let E = this.GetAreaData("EArea")
+            let Data = await t_Post("AA1/Save",this.ClassName,E);
+            if(Data.Status){
+                this.alertMsg("儲存成功","success")
+            }else{
+                this.alertMsg(Data.Msg,"danger")
+            }
         }else{
             this.alertMsg("請輸入必填資料","danger")
         }
@@ -168,6 +93,7 @@ export class AA1 extends baseObject {
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
         pageaction.areashow("E");//展開E區
+        $(`#Comid`).removeAttr("disabled");
     }
 
     DataDetail(){
@@ -178,7 +104,14 @@ export class AA1 extends baseObject {
             pageaction.areashow("E");
             pageaction.ToolBarUnDisabled("save");
             currentview.BindDataForArea(rowData,"EArea");
+            $(`#Comid`).attr("disabled","disabled");
         }
+    }
+    SetDataValid(){
+        let me = this;
+        me.DataValid('Comid','input',/[^A-Z0-9]/g);
+        me.DataValid('Account','input',/[^A-Za-z0-9]/g);
+        me.DataValid('Password','input',/[^A-Za-z0-9]/g);
     }
 }
 currentview = new AA1();
