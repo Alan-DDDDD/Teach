@@ -198,7 +198,24 @@ class baseObject {
      */
     ClearArea(ClearArea){
         let ob = $(`#${ClearArea}`).find("input,select,textarea");
-        $(ob).val("");
+        //$(ob).val("");
+        $.each(ob,(i,d)=>{
+            switch (true) {
+                case $(d).attr('type') === 'text':
+                case $(d).attr('type') === 'date':
+                case $(d).attr('type') === 'datetime-local':
+                case $(d).attr('type') === 'password':
+                case $(d).is('select'):
+                case $(d).is('textarea'):
+                    $(d).val("");
+                    break;
+                case $(d).attr('type') === 'checkbox':
+                    $(d).prop('checked',false);
+                    break;
+                default:
+                    break;
+            }
+        })
     }
 
     /**
@@ -238,30 +255,19 @@ class baseObject {
      */
     BindDataForArea(data,area){
         $.each(data, function(key, value) {
-            //key = key.toUpperCase();
             var $input = $(`#${area} input[name="${key}"], select[name="${key}"], textarea[name="${key}"]`);
             if ($input.length) {
                 switch (true) {
                     case $input.attr('type') === 'text':
-                        $input.val(value);
-                        break;
                     case $input.attr('type') === 'date':
-                        $input.val(value);
-                        break;
                     case $input.attr('type') === 'datetime-local':
-                        $input.val(value);
-                        break;
                     case $input.attr('type') === 'password':
+                    case $input.is('select'):
+                    case $input.is('textarea'):
                         $input.val(value);
                         break;
                     case $input.attr('type') === 'checkbox':
                         $input.prop('checked', value === 'Y' || value === true);
-                        break;
-                    case $input.is('select'):
-                        $input.val(value);
-                        break;
-                    case $input.is('textarea'):
-                        $input.val(value);
                         break;
                     default:
                         break;

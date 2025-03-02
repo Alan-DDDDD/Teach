@@ -147,8 +147,11 @@
                 <div class="card-body EditArea" id="EArea">
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
-                      <label for="Comid" class="form-label">客戶編號<i class='bx bx-info-circle' data-bs-toggle="tooltip" data-bs-html="true" title="<span>只能輸入4碼(縣市代碼+流水AAA)</span>"></i></label>
-                      <input id="Comid" name="Comid" class="form-control" type="text" disabled  maxlength="4"/>
+                      <label for="Comid" class="form-label">
+                        客戶編號
+                        <i type="button" class="bx bxs-plus-square" data-bs-toggle="modal" data-bs-target="#smallModal"></i>
+                      </label>
+                      <input id="Comid" name="Comid" class="form-control" type="text" readonly/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
                       <label for="Name" class="form-label">客戶名稱(公司名稱)</label>
@@ -276,6 +279,31 @@
             <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
+          </div>
+
+          <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel2">產生客戶編號</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="buildCloseBtn"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col mb-3">
+                      <label for="buildComidCYID" class="form-label">縣市</label>
+                      <select id="buildComidCYID" name="buildComidCYID" class="form-select t_ddl" data-ddlds="CYID"></select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    關閉
+                  </button>
+                  <button type="button" class="btn btn-primary" id="SavebuildComid">代入資料</button>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Content wrapper -->
         </div>

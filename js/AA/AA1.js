@@ -14,6 +14,18 @@ export class AA1 extends baseObject {
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
         $(`#datatable`).on("click",".data_detaile",me.DataDetail);
+        $(`#SavebuildComid`).on("click",async function(e){
+            let data = $(`#buildComidCYID`).val();
+            let Comid = $(`#Comid`).val();
+            let Data = await t_Post(`AA1/BuildComid`,this.ClassName,{CYID:data,Comid:Comid});
+            if(Data.Status){
+                $(`#Comid`).val(Data.Data);
+                $(`#buildCloseBtn`).click();
+            }else{
+                this.alertMsg(Data.Msg,"danger");
+            }
+
+        }.bind(this));
     }
     InitL(){
         //設定L區DataTable
@@ -76,10 +88,18 @@ export class AA1 extends baseObject {
     }
     async Save(){
         if(super.verification("EArea")){
+            pageaction.showLoading();
             let E = this.GetAreaData("EArea")
             let Data = await t_Post("AA1/Save",this.ClassName,E);
             if(Data.Status){
-                this.alertMsg("儲存成功","success")
+                this.alertMsg("儲存成功","Success")
+                let table = $(`#datatable`).DataTable();
+                let tableData = table.rows().data().toArray();
+                tableData = tableData.map(item => 
+                    item.Comid === Data.Data.Comid ? { ...item, ...Data.Data } : item
+                );
+                this.BindDataList("datatable",tableData);
+                pageaction.hideLoading();
             }else{
                 this.alertMsg(Data.Msg,"danger")
             }
@@ -93,7 +113,6 @@ export class AA1 extends baseObject {
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
         pageaction.areashow("E");//展開E區
-        $(`#Comid`).removeAttr("disabled");
     }
 
     DataDetail(){
@@ -104,7 +123,6 @@ export class AA1 extends baseObject {
             pageaction.areashow("E");
             pageaction.ToolBarUnDisabled("save");
             currentview.BindDataForArea(rowData,"EArea");
-            $(`#Comid`).attr("disabled","disabled");
         }
     }
     SetDataValid(){
