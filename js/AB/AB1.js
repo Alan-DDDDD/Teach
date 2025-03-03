@@ -16,6 +16,10 @@ export class AB1 extends baseObject {
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
         $(`#datatable`).on("click",".data_detaile",me.DataDetail);
+        $(`#OrderDetail`).on("click",".minus",me.minus);
+        $(`#OrderDetail`).on("click",".plus",me.plus);
+        $(`#SavebuildM`).on("click",()=>{me.AddOrder("M")});
+        $(`#SavebuildP`).on("click",()=>{me.AddOrder("P")});
         $(`#Review`).attr("disabled","disabled");
     }
     InitL(){
@@ -76,8 +80,8 @@ export class AB1 extends baseObject {
         ]
         let Data = [
             {Mpid:"xxxxxxxxx1",Name:"測試產品名稱1",Price:5000,Count:1,Amount:5000},
-            {Mpid:"xxxxxxxxx2",Name:"測試產品名稱2",Price:3000,Count:1,Amount:5000},
-            {Mpid:"xxxxxxxxx3",Name:"測試產品名稱3",Price:8000,Count:1,Amount:5000},
+            {Mpid:"xxxxxxxxx2",Name:"測試產品名稱2",Price:3000,Count:1,Amount:3000},
+            {Mpid:"xxxxxxxxx3",Name:"測試產品名稱3",Price:8000,Count:1,Amount:8000},
             {Mpid:"xxxxxxxxx4",Name:"測試產品名稱4",Price:5000,Count:4,Amount:20000},
         ]
         let columnDefs = [
@@ -145,6 +149,85 @@ export class AB1 extends baseObject {
             currentview.BindDataForArea(rowData,"EArea");
         }
     }
+
+    minus(){
+        let table = $(`#OrderDetail`).DataTable();
+        let tableData = table.rows().data().toArray();
+        let rowData = table.rows($(this).parent()[0]).data()[0];
+        let deletetype = rowData.Count == 1;
+        if(deletetype){
+            if(confirm("是否確認刪除?")){
+                table.row($(this).parents('tr')).remove().draw();
+                tableData = table.rows().data().toArray();
+            }
+        } else{
+            rowData.Count--;
+            rowData.Amount = rowData.Price * rowData.Count;
+            tableData = tableData.map(item => 
+                item.Mpid === rowData.Mpid ? { ...item, ...rowData } : item
+            );
+        }
+        currentview.BindDataList("OrderDetail",tableData);
+        currentview.CalculateTotal();
+    }
+
+    plus(){
+        let table = $(`#OrderDetail`).DataTable();
+        let tableData = table.rows().data().toArray();
+        let rowData = table.rows($(this).parent()[0]).data()[0];
+        rowData.Count++;
+        rowData.Amount = rowData.Price * rowData.Count;
+        tableData = tableData.map(item => 
+            item.Mpid === rowData.Mpid ? { ...item, ...rowData } : item
+        );
+        currentview.BindDataList("OrderDetail",tableData);
+        currentview.CalculateTotal();
+    }
+
+    CalculateTotal(){
+        let table = $(`#OrderDetail`).DataTable();
+        let tableData = table.rows().data().toArray();
+        let amount = 0;
+        $.each(tableData,(i,d)=>{
+            amount += d.Amount;
+        })
+        let discount = $(`#Discount`).val() || 0;
+        $(`#Amount`).val(amount-discount);
+    }
+
+    AddOrder(type){
+        let table = $(`#OrderDetail`).DataTable();
+        let tableData = table.rows().data().toArray();
+        let chklist
+        let data = [];
+        switch(type){
+            case "M":
+                chklist = $(`#ModuleTree input[type=checkbox]`);
+                break;
+            case "P":
+                chklist = $(`#ProductTree input[type=checkbox]`);
+                break;
+            default:
+                break;
+        }
+        $.each(chklist,(i,d)=>{
+            let $d = $(d);
+            if($d.prop('checked')){
+                data.push({
+                    Mpid : $d.data('id'),
+                    Name : $d.data('name'),
+                    Price : $d.data('price'),
+                    Count : "1",
+                    Amount : $d.data('price')
+                });
+            }
+        })
+        tableData.push(...data);
+        console.log(tableData);
+        this.BindDataList("OrderDetail",tableData);
+        this.CalculateTotal()
+    }
+
     SetDataValid(){
         let me = this;
         // me.DataValid('Comid','input',/[^A-Z0-9]/g);
