@@ -10,6 +10,7 @@ export class AB1 extends baseObject {
         me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
         me.ClassName = "AB1"
         me.InitL();//初始化L區
+        me.InitEL();//初始化EL區
         me.InitModuleTree();
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
@@ -55,6 +56,40 @@ export class AB1 extends baseObject {
             { extend: 'print', className: 'printButton btn-primary disabled' }
         ]
         this.setTable(`datatable`,[],columns,columnDefs,buttons,function(e){
+        });
+    }
+    InitEL(){
+        let columns = [
+            { data: 'Mpid',title: "產品編號" },
+            { data: 'Name',title: "產品名稱" },
+            { data: 'Price',title: "單價" },
+            { data: 'Count',title: "數量" },
+            { data: 'Amount',title: "總價" },
+            { 
+                data: null,title:"操作功能",orderable: false,
+                render:function(data,type,row){
+                    let html = `<i class="bx bx-minus minus" style="padding:0.125rem 0.375rem"></i>
+                                <i class="bx bx-plus plus" style="padding:0.125rem 0.375rem"></i>`
+                    return html
+                }
+            }
+        ]
+        let Data = [
+            {Mpid:"xxxxxxxxx1",Name:"測試產品名稱1",Price:5000,Count:1,Amount:5000},
+            {Mpid:"xxxxxxxxx2",Name:"測試產品名稱2",Price:3000,Count:1,Amount:5000},
+            {Mpid:"xxxxxxxxx3",Name:"測試產品名稱3",Price:8000,Count:1,Amount:5000},
+            {Mpid:"xxxxxxxxx4",Name:"測試產品名稱4",Price:5000,Count:4,Amount:20000},
+        ]
+        let columnDefs = [
+            {width: '5%',targets:[0],responsivePriority:1},
+            {width: '5%',targets:[1],responsivePriority:3},
+            {width: '5%',targets:[2],responsivePriority:4},
+            {width: '5%',targets:[3],responsivePriority:5},
+            {width: '5%',targets:[4],responsivePriority:6},
+            {width: '5%',targets:[5],responsivePriority:2},
+        ]
+        let buttons = []
+        this.setTable(`OrderDetail`,Data,columns,columnDefs,buttons,function(e){
         });
     }
     async InitModuleTree(){
