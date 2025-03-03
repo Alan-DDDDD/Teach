@@ -11,7 +11,7 @@ export class AB1 extends baseObject {
         me.ClassName = "AB1"
         me.InitL();//初始化L區
         me.InitEL();//初始化EL區
-        me.InitModuleTree();
+        me.InitTree();
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
@@ -78,12 +78,6 @@ export class AB1 extends baseObject {
                 }
             }
         ]
-        let Data = [
-            {Mpid:"xxxxxxxxx1",Name:"測試產品名稱1",Price:5000,Count:1,Amount:5000},
-            {Mpid:"xxxxxxxxx2",Name:"測試產品名稱2",Price:3000,Count:1,Amount:3000},
-            {Mpid:"xxxxxxxxx3",Name:"測試產品名稱3",Price:8000,Count:1,Amount:8000},
-            {Mpid:"xxxxxxxxx4",Name:"測試產品名稱4",Price:5000,Count:4,Amount:20000},
-        ]
         let columnDefs = [
             {width: '5%',targets:[0],responsivePriority:1},
             {width: '5%',targets:[1],responsivePriority:3},
@@ -93,13 +87,14 @@ export class AB1 extends baseObject {
             {width: '5%',targets:[5],responsivePriority:2},
         ]
         let buttons = []
-        this.setTable(`OrderDetail`,Data,columns,columnDefs,buttons,function(e){
+        this.setTable(`OrderDetail`,[],columns,columnDefs,buttons,function(e){
         });
     }
-    async InitModuleTree(){
-        let data = await t_Post("AB1/ModuleTree",this.ClassName);
+    async InitTree(){
+        let data = await t_Post("AB1/Tree",this.ClassName);
         if(data.Status){
-            $(`#ModuleTree`).html(generateTreeHtml(data.Data,true));
+            $(`#ModuleTree`).html(generateTreeHtml(data.Data.Module,true));
+            $(`#ProductTree`).html(generateTreeHtml(data.Data.Product,true));
         }else{
             this.alertMsg(data.Msg,"danger");
         }
@@ -133,6 +128,7 @@ export class AB1 extends baseObject {
     }
     Insert(){
         this.ClearArea("EArea");//清空E區資料
+        this.BindDataList("OrderDetail",[]);
         pageaction.ToolBarUnDisabled("save");//解鎖save按鈕
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
@@ -225,7 +221,7 @@ export class AB1 extends baseObject {
         tableData.push(...data);
         console.log(tableData);
         this.BindDataList("OrderDetail",tableData);
-        this.CalculateTotal()
+        this.CalculateTotal();
     }
 
     SetDataValid(){

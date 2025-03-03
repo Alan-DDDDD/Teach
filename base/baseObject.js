@@ -203,6 +203,7 @@ class baseObject {
             switch (true) {
                 case $(d).attr('type') === 'text':
                 case $(d).attr('type') === 'date':
+                case $(d).attr('type') === 'number':
                 case $(d).attr('type') === 'datetime-local':
                 case $(d).attr('type') === 'password':
                 case $(d).is('select'):
@@ -260,6 +261,7 @@ class baseObject {
                 switch (true) {
                     case $input.attr('type') === 'text':
                     case $input.attr('type') === 'date':
+                    case $input.attr('type') === 'number':
                     case $input.attr('type') === 'datetime-local':
                     case $input.attr('type') === 'password':
                     case $input.is('select'):
