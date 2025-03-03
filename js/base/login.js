@@ -1,5 +1,5 @@
-// var url = "https://narwhal-wired-platypus.ngrok-free.app/api";
-var url = "https://localhost:7036/api";
+ var url = "https://narwhal-wired-platypus.ngrok-free.app/api";
+//var url = "https://localhost:7036/api";
 $(`#login`).on('click',async function(){
     let emp = $(`#emplid`).val();
     let psw = $(`#password`).val();
