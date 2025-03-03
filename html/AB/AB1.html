@@ -180,11 +180,6 @@
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModuleList">模組清單</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="mb-2 col-md-6 col-lg">
                       <label for="Paycycle" class="form-label">繳費週期</label>
                       <select id="Paycycle" name="Paycycle" class="form-select t_ddl" data-ddlds="PAYT"></select>
                     </div>
@@ -267,6 +262,27 @@
                       <textarea id="Memo" name="Memo" class="form-control" type="text"></textarea>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModuleList">模組清單</button>
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProductList">產品清單</button>
+                    </div>
+                  </div>
+
+                  <div class="card mb-3" id="EL">
+                    <div class="divider text-start px-3 my-1 AreaBar" id="ELBar">
+                      <div class="divider-text">
+                        <h6>合約明細</h6>
+                      </div>
+                    </div>
+                    <div class="card-body" id="ELArea">
+                      <table class="table table-striped hover dt-responsive" id="OrderDetail">
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
