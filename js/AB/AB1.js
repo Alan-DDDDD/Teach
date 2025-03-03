@@ -10,6 +10,7 @@ export class AB1 extends baseObject {
         me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
         me.ClassName = "AB1"
         me.InitL();//初始化L區
+        me.InitModuleTree();
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
@@ -55,6 +56,14 @@ export class AB1 extends baseObject {
         ]
         this.setTable(`datatable`,[],columns,columnDefs,buttons,function(e){
         });
+    }
+    async InitModuleTree(){
+        let data = await t_Post("AB1/ModuleTree",this.ClassName);
+        if(data.Status){
+            $(`#ModuleTree`).html(generateTreeHtml(data.Data,true));
+        }else{
+            this.alertMsg(data.Msg,"danger");
+        }
     }
     remove(){
         super.Deconstructor();
