@@ -35,10 +35,10 @@ export class AB1 extends baseObject {
                     return html;
                 }
             },
-            { data: 'Name',title: "訂單編號" },
-            { data: 'Contact',title: "客戶名稱" },
+            { data: 'Coid',title: "訂單編號" },
+            { data: 'CustName',title: "客戶名稱" },
             { data: 'ConfirmDt',title: "簽約日" },
-            { data: 'Salesid',title: "負責業務" },
+            { data: 'SalesName',title: "負責業務" },
             { 
                 data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){
@@ -108,8 +108,13 @@ export class AB1 extends baseObject {
     async Save(){
         if(super.verification("EArea")){
             pageaction.showLoading();
-            let E = this.GetAreaData("EArea")
-            let Data = await t_Post("AA1/Save",this.ClassName,E);
+            let E = this.GetAreaData("EArea");
+            let EL = $(`#OrderDetail`).DataTable().rows().data().toArray();
+            let P = {
+                    Order : JSON.stringify(E),
+                    OrderDetail : JSON.stringify(EL)
+            }
+            let Data = await t_Post("AB1/Save",this.ClassName,P);
             if(Data.Status){
                 this.alertMsg("儲存成功","Success")
                 let table = $(`#datatable`).DataTable();
@@ -125,6 +130,11 @@ export class AB1 extends baseObject {
         }else{
             this.alertMsg("請輸入必填資料","danger")
         }
+    }
+    SearchAfter(data){
+        this.BindDataList("datatable",data);
+        pageaction.areashow("L");//展開E區
+        pageaction.hideLoading();
     }
     Insert(){
         this.ClearArea("EArea");//清空E區資料
@@ -143,6 +153,7 @@ export class AB1 extends baseObject {
             pageaction.areashow("E");
             pageaction.ToolBarUnDisabled("save");
             currentview.BindDataForArea(rowData,"EArea");
+            currentview.BindDataList("OrderDetail",rowData.Detail);
         }
     }
 
