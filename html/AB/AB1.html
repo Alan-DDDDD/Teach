@@ -137,6 +137,16 @@
                   </table>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="mb-2 col-md-6 col-lg">
+                  <div class="btn-group">
+                    <button class="btn btn-primary" id="entry">進件簽核</button>
+                    <button class="btn btn-warning" id="invalid">作廢</button>
+                    <button class="btn btn-success" id="done">完成</button>
+                  </div>
+                </div>
+              </div>
               
               <div class="card mb-3" id="E">
                 <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
@@ -151,6 +161,14 @@
                       <input id="Coid" name="Coid" class="form-control" type="text" readonly/>
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
+                      <label for="Status" class="form-label">訂單狀態</label>
+                      <select id="Status" name="Status" class="form-select t_ddl" data-ddlds="COTP"></select>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
                       <label for="Comid" class="form-label">客戶編號</label>
                       <select id="Comid" name="Comid" class="form-select t_ddl" data-ddlds="COMID"></select>
                     </div>
@@ -162,6 +180,7 @@
                       <label for="Director" class="form-label">班主任</label>
                       <input id="Director" name="Director" class="form-control" type="text"/>
                     </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
                   </div>
                   <div class="row">
                     <div class="mb-2 col-md-6 col-lg">
@@ -280,16 +299,6 @@
                         <tbody>
                         </tbody>
                       </table>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="mb-2 col-md-6 col-lg">
-                      <div class="btn-group">
-                        <button class="btn btn-primary" id="entry">進件簽核</button>
-                        <button class="btn btn-warning" id="invalid">作廢</button>
-                        <button class="btn btn-success" id="done">完成</button>
-                      </div>
                     </div>
                   </div>
                 </div>

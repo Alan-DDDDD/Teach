@@ -2,12 +2,11 @@ export class AB1 extends baseObject {
     constructor() {
         super();
     }
-
     //初始化UB1
     Init(){
         let me = this;
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
-        me.defaultToolBarDisabled = ["save","report"]//設定ToolBar按鈕狀態，預設全開
+        me.defaultToolBarDisabled = ["save","report","entry","invalid","done"]//設定ToolBar按鈕狀態，預設全開
         me.ClassName = "AB1"
         me.InitL();//初始化L區
         me.InitEL();//初始化EL區
@@ -16,25 +15,58 @@ export class AB1 extends baseObject {
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
         $(`#datatable`).on("click",".data_detaile",me.DataDetail);
-        $(`#OrderDetail`).on("click",".minus",me.minus);
-        $(`#OrderDetail`).on("click",".plus",me.plus);
+        $(`#OrderDetail`).on("click",".minus",function(){
+            if(me.EditLock)
+                return;
+            else
+            me.minus(this);
+        });
+        $(`#OrderDetail`).on("click",".plus",function(){
+            if(me.EditLock)
+                return;
+            else
+            me.plus(this);
+        });
         $(`#SavebuildM`).on("click",()=>{me.AddOrder("M")});
         $(`#SavebuildP`).on("click",()=>{me.AddOrder("P")});
+        $(`#Discount`).on(`change`,me.CalculateTotal);
+        $(`#invalid`).on("click",async function(){
+            let data = await t_Post("AB1/GiveUp",me.ClassName,{Coid:$(`#Coid`).val()});
+            if(data.Status){
+                me.LockArea("EArea",true);
+                me.alertMsg("儲存成功","Success");
+            }
+        });
+        $(`#entry`).on(`click`,async function(){
+            let data = await t_Post("AB1/InputCase",me.ClassName,{Coid:$(`#Coid`).val()});
+            if(data.Status){
+                me.LockArea("EArea",true);
+                me.alertMsg("儲存成功","Success");
+            }
+        })
+        $(`#done`).on(`click`,async function(){
+            let data = await t_Post("AB1/")
+        })
+    }
+
+    SetSingleTag(){
+        $(`#Status`).attr(`disabled`,`disabled`);
         $(`#Review`).attr("disabled","disabled");
     }
+
     InitL(){
         //設定L區DataTable
         let columns = [
-            { 
-                data: null,title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
-                orderable: false,
-                render: function(data,type,row){
-                    let html = `<input class="form-check-input list_checkbox" type="checkbox" `;
-                    html += data == 'Y' ? "checked":"";
-                    html += `/>`
-                    return html;
-                }
-            },
+            // { 
+            //     data: null,title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
+            //     orderable: false,
+            //     render: function(data,type,row){
+            //         let html = `<input class="form-check-input list_checkbox" type="checkbox" `;
+            //         html += data == 'Y' ? "checked":"";
+            //         html += `/>`
+            //         return html;
+            //     }
+            // },
             { data: 'Coid',title: "訂單編號" },
             { data: 'CustName',title: "客戶名稱" },
             { data: 'ConfirmDt',title: "簽約日" },
@@ -48,12 +80,12 @@ export class AB1 extends baseObject {
             }
         ]
         let columnDefs = [
-            {width: '8%',targets:[0],responsivePriority:1},
-            {width: '10%',targets:[1],responsivePriority:3},
-            {width: '10%',targets:[2],responsivePriority:4},
-            {width: '10%',targets:[3],responsivePriority:5},
-            {width: '15%',targets:[4],responsivePriority:6},
-            {width: '10%',targets:[5],responsivePriority:2},
+            {width:'5%',targets:[0],responsivePriority:1},
+            {targets:[1],responsivePriority:3},
+            {targets:[2],responsivePriority:4},
+            {targets:[3],responsivePriority:5},
+            {targets:[4],responsivePriority:2},
+            //{width: '10%',targets:[5],responsivePriority:2},
         ]
         let buttons = [
             { extend: 'excel', className: 'excelButton btn-primary disabled' },
@@ -72,8 +104,8 @@ export class AB1 extends baseObject {
             { 
                 data: null,title:"操作功能",orderable: false,
                 render:function(data,type,row){
-                    let html = `<i class="bx bx-minus minus" style="padding:0.125rem 0.375rem"></i>
-                                <i class="bx bx-plus plus" style="padding:0.125rem 0.375rem"></i>`
+                    let html = `<button class="bx bx-minus minus" style="padding:0.125rem 0.375rem"></button>
+                                <button class="bx bx-plus plus" style="padding:0.125rem 0.375rem"></button>`
                     return html
                 }
             }
@@ -138,7 +170,9 @@ export class AB1 extends baseObject {
     }
     Insert(){
         this.ClearArea("EArea");//清空E區資料
+        this.LockArea("EArea",false);
         this.BindDataList("OrderDetail",[]);
+        $(`#Status`).val("1");
         pageaction.ToolBarUnDisabled("save");//解鎖save按鈕
         pageaction.areahide("Q");//隱藏Q區
         pageaction.areahide("L");//隱藏L區
@@ -154,17 +188,46 @@ export class AB1 extends baseObject {
             pageaction.ToolBarUnDisabled("save");
             currentview.BindDataForArea(rowData,"EArea");
             currentview.BindDataList("OrderDetail",rowData.Detail);
+            rowData.Status > 1 ? 
+                currentview.LockArea("EArea",true):
+                currentview.LockArea("EArea",false);
+            switch(true){
+                case (rowData.Status == 1):
+                    currentview.LockArea("EArea",false);
+                    pageaction.ToolBarUnDisabled("entry");
+                    pageaction.ToolBarUnDisabled("invalid");
+                    pageaction.ToolBarUnDisabled("done");
+                    break;
+                case (1 < rowData.Status && rowData.Status < 5):
+                    currentview.LockArea("EArea",true);
+                    pageaction.ToolBarDisabled("entry");
+                    pageaction.ToolBarUnDisabled("invalid");
+                    pageaction.ToolBarUnDisabled("done");
+                    break;
+                case (rowData.Status == 5):
+                    currentview.LockArea("EArea",true);
+                    pageaction.ToolBarUnDisabled("entry");
+                    pageaction.ToolBarDisabled("invalid");
+                    pageaction.ToolBarUnDisabled("done");
+                    break;
+                default:
+                    currentview.LockArea("EArea",true);
+                    pageaction.ToolBarDisabled("entry");
+                    pageaction.ToolBarDisabled("invalid");
+                    pageaction.ToolBarDisabled("done");
+                    break;
+            }
         }
     }
 
-    minus(){
+    minus(btn){
         let table = $(`#OrderDetail`).DataTable();
         let tableData = table.rows().data().toArray();
-        let rowData = table.rows($(this).parent()[0]).data()[0];
+        let rowData = table.rows($(btn).parent()[0]).data()[0];
         let deletetype = rowData.Count == 1;
         if(deletetype){
             if(confirm("是否確認刪除?")){
-                table.row($(this).parents('tr')).remove().draw();
+                table.row($(btn).parents('tr')).remove().draw();
                 tableData = table.rows().data().toArray();
             }
         } else{
@@ -178,10 +241,10 @@ export class AB1 extends baseObject {
         currentview.CalculateTotal();
     }
 
-    plus(){
+    plus(btn){
         let table = $(`#OrderDetail`).DataTable();
         let tableData = table.rows().data().toArray();
-        let rowData = table.rows($(this).parent()[0]).data()[0];
+        let rowData = table.rows($(btn).parent()[0]).data()[0];
         rowData.Count++;
         rowData.Amount = rowData.Price * rowData.Count;
         tableData = tableData.map(item => 

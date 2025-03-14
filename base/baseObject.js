@@ -16,6 +16,7 @@ class baseObject {
     defaultToolBarDisabled = [];//預設禁用ToolBar按鈕
     ClassName;
     CurrentUser;
+    EditLock
     Init(){
     }
 
@@ -126,9 +127,12 @@ class baseObject {
                 top1Start:{
                     buttons:Buttons
                 }
-            }
+            },
+            error:function (e, settings, techNote, message) {
+                console.log("DataTables error: " + message);
+            },
+            stateSave: false
         });
-        
         table.css("cursor","pointer");
 
         if(trclick){
@@ -185,12 +189,15 @@ class baseObject {
      * @param {boolean} lock -鎖定狀態(true鎖定/false解除鎖定)
      */
     LockArea(LockArea,lock){
-        let ob = $(`#${LockArea}`).find("input,select,textarea");
+        this.EditLock = lock;
+        let ob = $(`#${LockArea}`).find("input,select,textarea,button");
         if(lock){
             ob.attr("disabled","disabled");
+            $(`.dt-container`).find("input,select,button").removeAttr("disabled");
         }else{
-            ob.remvoeAttr("disabled");
+            ob.removeAttr("disabled");
         }
+        this.SetSingleTag();
     }
 
     /**
@@ -330,7 +337,8 @@ class baseObject {
             let data = await t_Post(`${this.ClassName}/LoginUser?userid=${userid}`,this.ClassName)
             if(data.Status){
                 this.CurrentUser = data.Data;
-                this.settingViewAuth(this.CurrentUser.ModuleAuth)
+                this.settingViewAuth(this.CurrentUser.ModuleAuth);
+                this.SetSingleTag();
                 $(`#nav_username`).html(this.CurrentUser.UserName);
                 $(`#nav_level`).html(this.CurrentUser.LevelName);
             }
@@ -341,6 +349,10 @@ class baseObject {
         document.getElementById(ElementId).addEventListener(Html.toLowerCase(), function(event) {
             this.value = this.value.replace(Pattern, '');
           });
+    }
+
+    SetSingleTag(){
+
     }
     
     SetDataValid(){
