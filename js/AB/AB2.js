@@ -1,16 +1,15 @@
-export class AB1 extends baseObject {
+export class AB2 extends baseObject {
     constructor() {
         super();
     }
-    //初始化UB1
     Init(){
         let me = this;
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
         me.defaultToolBarDisabled = ["save","report","entry","invalid","done"]//設定ToolBar按鈕狀態，預設全開
-        me.ClassName = "AB1"
+        me.ClassName = "AB2"
         me.InitL();//初始化L區
-        me.InitEL();//初始化EL區
-        me.InitTree();
+        //me.InitEL();//初始化EL區
+        //me.InitTree();
         $(`#search`).on("click",me.Search.bind(this));
         $(`#save`).on("click",me.Save.bind(this));
         $(`#insert`).on("click",me.Insert.bind(this));
@@ -30,24 +29,7 @@ export class AB1 extends baseObject {
         $(`#SavebuildM`).on("click",()=>{me.AddOrder("M")});
         $(`#SavebuildP`).on("click",()=>{me.AddOrder("P")});
         $(`#Discount`).on(`change`,me.CalculateTotal);
-        $(`#invalid`).on("click",async function(){
-            let data = await t_Post("AB1/GiveUp",me.ClassName,{Coid:$(`#Coid`).val()});
-            if(data.Status){
-                me.LockArea("EArea",true);
-                me.alertMsg("儲存成功","Success");
-            }
-        });
-        $(`#entry`).on(`click`,async function(){
-            let data = await t_Post("AB1/InputCase",me.ClassName,{Coid:$(`#Coid`).val()});
-            if(data.Status){
-                me.LockArea("EArea",true);
-                me.alertMsg("儲存成功","Success");
-                pageaction.ToolBarDisabled("entry");
-            }
-        })
-        $(`#done`).on(`click`,async function(){
-            let data = await t_Post("AB1/")
-        })
+        me.LockArea("EArea",true);
     }
 
     SetSingleTag(){
@@ -56,21 +38,10 @@ export class AB1 extends baseObject {
     }
 
     InitL(){
-        //設定L區DataTable
         let columns = [
-            // { 
-            //     data: null,title:`<input class="form-check-input all_checkbox" type="checkbox"/>選取`,
-            //     orderable: false,
-            //     render: function(data,type,row){
-            //         let html = `<input class="form-check-input list_checkbox" type="checkbox" `;
-            //         html += data == 'Y' ? "checked":"";
-            //         html += `/>`
-            //         return html;
-            //     }
-            // },
-            { data: 'Coid',title: "訂單編號" },
+            { data: 'Cbid',title: "繳費單號" },
             { data: 'CustName',title: "客戶名稱" },
-            { data: 'ConfirmDt',title: "簽約日" },
+            { data: 'Estimate',title: "預計繳費日" },
             { data: 'SalesName',title: "負責業務" },
             { 
                 data: null,title:"操作功能",orderable: false,
@@ -81,12 +52,11 @@ export class AB1 extends baseObject {
             }
         ]
         let columnDefs = [
-            {width:'5%',targets:[0],responsivePriority:1},
+            {targets:[0],responsivePriority:1},
             {targets:[1],responsivePriority:3},
             {targets:[2],responsivePriority:4},
             {targets:[3],responsivePriority:5},
             {targets:[4],responsivePriority:2},
-            //{width: '10%',targets:[5],responsivePriority:2},
         ]
         let buttons = [
             { extend: 'excel', className: 'excelButton btn-primary disabled' },
@@ -94,43 +64,6 @@ export class AB1 extends baseObject {
         ]
         this.setTable(`datatable`,[],columns,columnDefs,buttons,function(e){
         });
-    }
-    InitEL(){
-        let columns = [
-            { data: 'Mpid',title: "產品編號" },
-            { data: 'Name',title: "產品名稱" },
-            { data: 'Price',title: "單價" },
-            { data: 'Count',title: "數量" },
-            { data: 'Amount',title: "總價" },
-            { 
-                data: null,title:"操作功能",orderable: false,
-                render:function(data,type,row){
-                    let html = `<button class="bx bx-minus minus" style="padding:0.125rem 0.375rem"></button>
-                                <button class="bx bx-plus plus" style="padding:0.125rem 0.375rem"></button>`
-                    return html
-                }
-            }
-        ]
-        let columnDefs = [
-            {width: '5%',targets:[0],responsivePriority:1},
-            {width: '5%',targets:[1],responsivePriority:3},
-            {width: '5%',targets:[2],responsivePriority:4},
-            {width: '5%',targets:[3],responsivePriority:5},
-            {width: '5%',targets:[4],responsivePriority:6},
-            {width: '5%',targets:[5],responsivePriority:2},
-        ]
-        let buttons = []
-        this.setTable(`OrderDetail`,[],columns,columnDefs,buttons,function(e){
-        });
-    }
-    async InitTree(){
-        let data = await t_Post("AB1/Tree",this.ClassName);
-        if(data.Status){
-            $(`#ModuleTree`).html(generateTreeHtml(data.Data.Module,true));
-            $(`#ProductTree`).html(generateTreeHtml(data.Data.Product,true));
-        }else{
-            this.alertMsg(data.Msg,"danger");
-        }
     }
     remove(){
         super.Deconstructor();
@@ -221,84 +154,6 @@ export class AB1 extends baseObject {
         }
     }
 
-    minus(btn){
-        let table = $(`#OrderDetail`).DataTable();
-        let tableData = table.rows().data().toArray();
-        let rowData = table.rows($(btn).parent()[0]).data()[0];
-        let deletetype = rowData.Count == 1;
-        if(deletetype){
-            if(confirm("是否確認刪除?")){
-                table.row($(btn).parents('tr')).remove().draw();
-                tableData = table.rows().data().toArray();
-            }
-        } else{
-            rowData.Count--;
-            rowData.Amount = rowData.Price * rowData.Count;
-            tableData = tableData.map(item => 
-                item.Mpid === rowData.Mpid ? { ...item, ...rowData } : item
-            );
-        }
-        currentview.BindDataList("OrderDetail",tableData);
-        currentview.CalculateTotal();
-    }
-
-    plus(btn){
-        let table = $(`#OrderDetail`).DataTable();
-        let tableData = table.rows().data().toArray();
-        let rowData = table.rows($(btn).parent()[0]).data()[0];
-        rowData.Count++;
-        rowData.Amount = rowData.Price * rowData.Count;
-        tableData = tableData.map(item => 
-            item.Mpid === rowData.Mpid ? { ...item, ...rowData } : item
-        );
-        currentview.BindDataList("OrderDetail",tableData);
-        currentview.CalculateTotal();
-    }
-
-    CalculateTotal(){
-        let table = $(`#OrderDetail`).DataTable();
-        let tableData = table.rows().data().toArray();
-        let amount = 0;
-        $.each(tableData,(i,d)=>{
-            amount += d.Amount;
-        })
-        let discount = $(`#Discount`).val() || 0;
-        $(`#Amount`).val(amount-discount);
-    }
-
-    AddOrder(type){
-        let table = $(`#OrderDetail`).DataTable();
-        let tableData = table.rows().data().toArray();
-        let chklist
-        let data = [];
-        switch(type){
-            case "M":
-                chklist = $(`#ModuleTree input[type=checkbox]`);
-                break;
-            case "P":
-                chklist = $(`#ProductTree input[type=checkbox]`);
-                break;
-            default:
-                break;
-        }
-        $.each(chklist,(i,d)=>{
-            let $d = $(d);
-            if($d.prop('checked')){
-                data.push({
-                    Mpid : $d.data('id'),
-                    Name : $d.data('name'),
-                    Price : $d.data('price'),
-                    Count : "1",
-                    Amount : $d.data('price')
-                });
-            }
-        })
-        tableData.push(...data);
-        console.log(tableData);
-        this.BindDataList("OrderDetail",tableData);
-        this.CalculateTotal();
-    }
-
     SetDataValid(){
         let me = this;
         // me.DataValid('Comid','input',/[^A-Z0-9]/g);
@@ -306,4 +161,4 @@ export class AB1 extends baseObject {
         // me.DataValid('Password','input',/[^A-Za-z0-9]/g);
     }
 }
-currentview = new AB1();
+currentview = new AB2();

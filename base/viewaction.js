@@ -1,3 +1,4 @@
+//------------------------------------------------------------------------------------------------------
 //[object action]-tree List action 
 $(`.tree-group`).on('click',`.tree-lable`,function(){
     $(this).next(".tree-subgroup").toggle(200);
@@ -53,37 +54,39 @@ function generateTreeHtml(nodes,border) {
     });
     return tree
 }
+//------------------------------------------------------------------------------------------------------
+//Datatables checkbox action
+function AllCheck(datatables,checkbox){
+    let table = $(`#${datatables}`).DataTable();
+    var rowData = table.rows().data();
+    if(rowData.length > 0){
+        $.each(rowData,(i,d)=>{
+            d["check"] = $(checkbox).prop('checked') ? "Y":"N";
+        });
+        table.rows().nodes().to$().find('.list_checkbox').prop('checked', $(checkbox).prop('checked'));
+    }
+}
 
-// function AllCheck(datatables,checkbox){
-//     let table = $(`#${datatables}`).DataTable();
-//     var rowData = table.rows().data();
-//     if(rowData.length > 0){
-//         $.each(rowData,(i,d)=>{
-//             d["check"] = $(checkbox).prop('checked') ? "Y":"N";
-//         });
-//         table.rows().nodes().to$().find('.list_checkbox').prop('checked', $(checkbox).prop('checked'));
-//     }
-// }
-
-// function ListCheckBox(datatables,checkbox){
-//     let table = $(`#${datatables}`).DataTable();
-//     let rowData = table.rows($(checkbox).parent()[0]).data()[0];
-//     if(rowData){
-//         rowData["check"] = $(checkbox).prop('checked') ? "Y":"N";
-//     }
+function ListCheckBox(datatables,checkbox){
+    let table = $(`#${datatables}`).DataTable();
+    let rowData = table.rows($(checkbox).parent()[0]).data()[0];
+    if(rowData){
+        rowData["check"] = $(checkbox).prop('checked') ? "Y":"N";
+    }
     
-//     let allData = table.rows().data();
-//     let chks = [];
-//     if(allData){
-//         $.each(allData,(i,d)=>{
-//             chks.push(d["check"] === "Y");
-//         })
-//         if(allData.length === chks.filter(x=>x===true).length){
-//             $('.all_checkbox').prop('checked', true).prop('indeterminate', false);
-//         }else if(allData.length === chks.filter(x=>x===false).length){
-//             $('.all_checkbox').prop('checked', false).prop('indeterminate', false);
-//         }else{
-//             $('.all_checkbox').prop('checked', false).prop('indeterminate', true);
-//         }
-//     }
-// }
+    let allData = table.rows().data();
+    let chks = [];
+    if(allData){
+        $.each(allData,(i,d)=>{
+            chks.push(d["check"] === "Y");
+        })
+        if(allData.length === chks.filter(x=>x===true).length){
+            $('.all_checkbox').prop('checked', true).prop('indeterminate', false);
+        }else if(allData.length === chks.filter(x=>x===false).length){
+            $('.all_checkbox').prop('checked', false).prop('indeterminate', false);
+        }else{
+            $('.all_checkbox').prop('checked', false).prop('indeterminate', true);
+        }
+    }
+}
+//------------------------------------------------------------------------------------------------------

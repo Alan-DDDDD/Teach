@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html
+  lang="zh-TW"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Teach-繳款作業</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.bootstrap5.css" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../base/View.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../js/loadpage.js"></script>
+    <!-- <script src="../../assets/vendor/js/helpers.js"></script> -->
+
+    <script src="../../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme"></aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <!-- <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div> -->
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y" id="view">
+              <div class="card-body" style="padding: 0;">
+                <div class="btn-group mb-2 toolbar">
+                  <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
+                  <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
+                  <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
+                  <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
+                </div>
+              </div>
+              <div class="card mb-3" id="Q">
+                <div class="divider text-start px-3 my-1 AreaBar" id="QBar">
+                  <div class="divider-text">
+                    <h6>條件區</h6>
+                  </div>
+                </div>
+                <div class="card-body SearchArea" id="QArea">
+                  <div class="row">
+                    <div class="col-md-6 col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="Q_custid" placeholder=""/>
+                        <label for="Q_emplid">客戶編號</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="Q_custname" placeholder=""/>
+                        <label for="Q_emplname">客戶名稱</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg mb-2"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card mb-3" id="L">
+                <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
+                  <div class="divider-text">
+                    <h6>資料列表</h6>
+                  </div>
+                </div>
+                <div class="card-body" id="LArea">
+                  <table class="table table-striped hover dt-responsive" id="datatable">
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="card mb-3" id="E">
+                <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
+                  <div class="divider-text">
+                    <h6>繳款單資料</h6>
+                  </div>
+                </div>
+                <div class="card-body EditArea" id="EArea">
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Cbid" class="form-label">繳費單編號</label>
+                      <input id="Cbid" name="Cbid" class="form-control" type="text" readonly/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Coid" class="form-label">訂單編號</label>
+                      <input id="Coid" name="Coid" class="form-control" type="text" readonly/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Comid" class="form-label">客戶編號</label>
+                      <select id="Comid" name="Comid" class="form-select t_ddl" data-ddlds="COMID"></select>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Status" class="form-label">繳費單狀態</label>
+                      <select id="Status" name="Status" class="form-select t_ddl" data-ddlds="CBTP"></select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Period" class="form-label">期數</label>
+                      <input id="Period" name="Period" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Estimate" class="form-label">預計繳款日</label>
+                      <input id="Estimate" name="Estimate" class="form-control" type="date"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Amount" class="form-label">繳款金額</label>
+                      <input id="Amount" name="Amount" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="SalesName" class="form-label">負責業務</label>
+                      <input id="SalesName" name="SalesName" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="ConfirmDt" class="form-label">簽約日</label>
+                      <input id="ConfirmDt" name="ConfirmDt" class="form-control" type="datetime-local"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--loading-overlay-->
+            <div class="loading-overlay" id="loadingArea"></div>
+            <!--/ loading-overlay-->
+            
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with by ALANDDDDD
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+      <div class="modal fade" id="AnnouncementArea" tabindex="-1" aria-hidden="true"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <div class="buy-now" id="buynow"></div>
+    <!-- Core JS -->
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.bootstrap5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <!-- <script src="../../assets/js/main.js"></script> -->
+    <script src="../../js/mainPage.js"></script>
+
+    <!-- Page JS -->
+    <script src="../../assets/js/dashboards-analytics.js"></script>
+    <script src="../../base/pageaction.js"></script>
+    <script src="../../base/baseObject.js"></script>
+    <script src="../../base/viewaction.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="../../js/AB/AB2.js" type="module"></script>
+  </body>
+</html>

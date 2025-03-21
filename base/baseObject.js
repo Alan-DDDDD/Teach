@@ -130,8 +130,7 @@ class baseObject {
             },
             error:function (e, settings, techNote, message) {
                 console.log("DataTables error: " + message);
-            },
-            stateSave: false
+            }
         });
         table.css("cursor","pointer");
 
@@ -319,7 +318,7 @@ class baseObject {
                     case "I":
                     case "A":
                     default:
-                        $(`.EditArea`).find(`input,select,textarea`).removeAttr(`disabled`);
+                        //$(`.EditArea`).find(`input,select,textarea`).removeAttr(`disabled`);
                         break;
                 }
             }
