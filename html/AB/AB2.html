@@ -89,8 +89,6 @@
               <div class="card-body" style="padding: 0;">
                 <div class="btn-group mb-2 toolbar">
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
-                  <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
-                  <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
                   <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
               </div>
@@ -132,7 +130,14 @@
                   </table>
                 </div>
               </div>
-
+              <div class="row">
+                <div class="mb-2 col-md-6 col-lg">
+                  <div class="btn-group">
+                    <button class="btn btn-primary" id="payY" data-bs-toggle="modal" data-bs-target="#ModuleList">繳款確認</button>
+                    <button class="btn btn-primary" id="payG"  data-type="G">作廢</button>
+                  </div>
+                </div>
+              </div>
               <div class="card mb-3" id="E">
                 <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
                   <div class="divider-text">
@@ -155,7 +160,7 @@
                     </div>
                     <div class="mb-2 col-md-6 col-lg">
                       <label for="Status" class="form-label">繳費單狀態</label>
-                      <select id="Status" name="Status" class="form-select t_ddl" data-ddlds="CBTP"></select>
+                      <select id="Status" name="Status" class="form-select t_ddl" data-ddlds="CBST"></select>
                     </div>
                   </div>
                   <div class="row">
@@ -182,8 +187,17 @@
                       <label for="ConfirmDt" class="form-label">簽約日</label>
                       <input id="ConfirmDt" name="ConfirmDt" class="form-control" type="datetime-local"/>
                     </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="PayDt" class="form-label">實際繳款日</label>
+                      <input id="PayDt" name="PayDt" class="form-control" type="datetime-local"/>
+                    </div>
                     <div class="mb-2 col-md-6 col-lg"></div>
-                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Memo" class="form-label">備註</label>
+                      <textarea id="Memo" name="Memo" class="form-control"></textarea>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -208,6 +222,30 @@
             <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
+          </div>
+          <div class="modal fade" id="ModuleList" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">繳費確認</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="buildMCloseBtn"></button>
+                </div>
+                <div class="modal-body" id="confirmArea">
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="ConfirmMemo" class="form-label">備註與確認資料</label>
+                      <textarea id="ConfirmMemo" name="ConfirmMemo" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    關閉
+                  </button>
+                  <button type="button" class="btn btn-primary" data-type="Y" id="confirm">送出</button>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Content wrapper -->
         </div>

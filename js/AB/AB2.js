@@ -5,30 +5,13 @@ export class AB2 extends baseObject {
     Init(){
         let me = this;
         me.defaultHideArea = ["L","E"];//設定預設隱藏區域
-        me.defaultToolBarDisabled = ["save","report","entry","invalid","done"]//設定ToolBar按鈕狀態，預設全開
+        me.defaultToolBarDisabled = ["report","entry","invalid","done"]//設定ToolBar按鈕狀態，預設全開
         me.ClassName = "AB2"
         me.InitL();//初始化L區
-        //me.InitEL();//初始化EL區
-        //me.InitTree();
         $(`#search`).on("click",me.Search.bind(this));
-        $(`#save`).on("click",me.Save.bind(this));
-        $(`#insert`).on("click",me.Insert.bind(this));
         $(`#datatable`).on("click",".data_detaile",me.DataDetail);
-        $(`#OrderDetail`).on("click",".minus",function(){
-            if(me.EditLock)
-                return;
-            else
-            me.minus(this);
-        });
-        $(`#OrderDetail`).on("click",".plus",function(){
-            if(me.EditLock)
-                return;
-            else
-            me.plus(this);
-        });
-        $(`#SavebuildM`).on("click",()=>{me.AddOrder("M")});
-        $(`#SavebuildP`).on("click",()=>{me.AddOrder("P")});
-        $(`#Discount`).on(`change`,me.CalculateTotal);
+        $(`#payG`).on(`click`,me.Save);
+        $(`#confirm`).on(`click`,me.Save);
         me.LockArea("EArea",true);
     }
 
@@ -72,29 +55,39 @@ export class AB2 extends baseObject {
         $(`#insert`).unbind("click");
     }
     async Save(){
+        console.log(this)
         if(super.verification("EArea")){
             pageaction.showLoading();
-            let E = this.GetAreaData("EArea");
-            let EL = $(`#OrderDetail`).DataTable().rows().data().toArray();
-            let P = {
-                    Order : JSON.stringify(E),
-                    OrderDetail : JSON.stringify(EL)
+            let confirmmem = $(`#ConfirmMemo`).val();
+            let status = $(this).data("type");
+            if(status == "Y" && (!confirmmem || confirmmem == "")){
+                currentview.alertMsg("請輸入必填資料","danger");
+                pageaction.hideLoading();
+                return;
             }
-            let Data = await t_Post("AB1/Save",this.ClassName,P);
+            $(`#Memo`).val(confirmmem);
+            if($(`#Status`).val() == status){
+                pageaction.hideLoading();
+                return;
+            }
+            $(`#Status`).val(status);
+            let E = currentview.GetAreaData("EArea");
+            let Data = await t_Post("AB2/Save",currentview.ClassName,E);
             if(Data.Status){
-                this.alertMsg("儲存成功","Success")
+                currentview.alertMsg("儲存成功","Success")
                 let table = $(`#datatable`).DataTable();
                 let tableData = table.rows().data().toArray();
                 tableData = tableData.map(item => 
-                    item.Comid === Data.Data.Comid ? { ...item, ...Data.Data } : item
+                    item.Cbid === Data.Data.Cbid ? { ...item, ...Data.Data } : item
                 );
-                this.BindDataList("datatable",tableData);
+                currentview.BindDataList("datatable",tableData);
+                currentview.ViewStatus(Data.Data);
                 pageaction.hideLoading();
             }else{
-                this.alertMsg(Data.Msg,"danger")
+                currentview.alertMsg(Data.Msg,"danger")
             }
         }else{
-            this.alertMsg("請輸入必填資料","danger")
+            currentview.alertMsg("請輸入必填資料","danger")
         }
     }
     SearchAfter(data){
@@ -116,42 +109,7 @@ export class AB2 extends baseObject {
     DataDetail(){
         let table = $(`#datatable`).DataTable();
         var rowData = table.rows($(this).parent()[0]).data()[0];
-        if(rowData){   
-            pageaction.areahide("L");
-            pageaction.areashow("E");
-            pageaction.ToolBarUnDisabled("save");
-            currentview.BindDataForArea(rowData,"EArea");
-            currentview.BindDataList("OrderDetail",rowData.Detail);
-            rowData.Status > 1 ? 
-                currentview.LockArea("EArea",true):
-                currentview.LockArea("EArea",false);
-            switch(true){
-                case (rowData.Status == 1):
-                    currentview.LockArea("EArea",false);
-                    pageaction.ToolBarUnDisabled("entry");
-                    pageaction.ToolBarUnDisabled("invalid");
-                    pageaction.ToolBarUnDisabled("done");
-                    break;
-                case (1 < rowData.Status && rowData.Status < 5):
-                    currentview.LockArea("EArea",true);
-                    pageaction.ToolBarDisabled("entry");
-                    pageaction.ToolBarUnDisabled("invalid");
-                    pageaction.ToolBarUnDisabled("done");
-                    break;
-                case (rowData.Status == 5):
-                    currentview.LockArea("EArea",true);
-                    pageaction.ToolBarUnDisabled("entry");
-                    pageaction.ToolBarDisabled("invalid");
-                    pageaction.ToolBarUnDisabled("done");
-                    break;
-                default:
-                    currentview.LockArea("EArea",true);
-                    pageaction.ToolBarDisabled("entry");
-                    pageaction.ToolBarDisabled("invalid");
-                    pageaction.ToolBarDisabled("done");
-                    break;
-            }
-        }
+        currentview.ViewStatus(rowData)
     }
 
     SetDataValid(){
@@ -159,6 +117,26 @@ export class AB2 extends baseObject {
         // me.DataValid('Comid','input',/[^A-Z0-9]/g);
         // me.DataValid('Account','input',/[^A-Za-z0-9]/g);
         // me.DataValid('Password','input',/[^A-Za-z0-9]/g);
+    }
+
+    ViewStatus(Data){
+        if(Data){   
+            pageaction.areahide("L");
+            pageaction.areashow("E");
+            currentview.BindDataForArea(Data,"EArea");
+            switch(Data.Status){
+                case "N":
+                    pageaction.ToolBarUnDisabled("payY");
+                    pageaction.ToolBarUnDisabled("payG");
+                    pageaction.ToolBarUnDisabled("confirm");
+                    break;
+                default:
+                    pageaction.ToolBarDisabled("payY");
+                    pageaction.ToolBarDisabled("payG");
+                    pageaction.ToolBarDisabled("confirm");
+                    break;
+            }
+        }
     }
 }
 currentview = new AB2();
