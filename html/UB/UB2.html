@@ -81,7 +81,134 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <div class="container-xxl flex-grow-1 container-p-y" id="view">
+              <div class="card-body" style="padding: 0;">
+                <div class="btn-group mb-2 toolbar">
+                  <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
+                  <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
+                  <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
+                  <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
+                </div>
+              </div>
+              <div class="card mb-3" id="Q">
+                <div class="divider text-start px-3 my-1 AreaBar" id="QBar">
+                  <div class="divider-text">
+                    <h6>條件區</h6>
+                  </div>
+                </div>
+                <div class="card-body SearchArea" id="QArea">
+                  <div class="row">
+                    <div class="col-md-6 col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="Q_emplid" placeholder=""/>
+                        <label for="Q_emplid">教師編號</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="Q_emplname" placeholder=""/>
+                        <label for="Q_emplname">員工姓名</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="Q_email" placeholder=""/>
+                        <label for="Q_email">email</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               
+              <div class="card mb-3" id="L">
+                <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
+                  <div class="divider-text">
+                    <h6>資料列表</h6>
+                  </div>
+                </div>
+                <div class="card-body" id="LArea">
+                  <table class="table table-striped hover dt-responsive" id="datatable">
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+              <div class="card mb-3" id="E">
+                <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
+                  <div class="divider-text">
+                    <h6>資料明細</h6>
+                  </div>
+                </div>
+                <div class="card-body EditArea" id="EArea">
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Emplid" class="form-label"><span class="require"></span>教師編號</label>
+                      <input id="Emplid" name="Emplid" class="form-control" type="text" disabled="true"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Name" class="form-label"><span class="require"></span>教師姓名</label>
+                      <input id="Name" name="Name" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Gender" class="form-label"><span class="require"></span>性別</label>
+                      <select id="Gender" name="Gender" class="form-select t_ddl" data-ddlds="FM"></select>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Phone" class="form-label">手機號碼</label>
+                      <input id="Phone" name="Phone" class="form-control" type="text"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Email" class="form-label">Email(電子信箱)</label>
+                      <input id="Email" name="Email" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Address" class="form-label">地址</label>
+                      <input id="Address" name="Address" class="form-control" type="text"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Tax" class="form-label">電話</label>
+                      <input id="Tax" name="Tax" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg rowtext">
+                      <label for="Lineid" class="form-label">LINE ID</label>
+                      <input id="Lineid" name="Lineid" class="form-control" type="text"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Level" class="form-label"><span class="require"></span>使用者等級</label>
+                      <select id="Level" name="Level" class="form-select t_ddl" data-ddlds="EMPAU"></select>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Account" class="form-label">登入帳號</label>
+                      <input id="Account" name="Account" class="form-control" type="text" disabled="true"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg form-password-toggle">
+                      <label for="Password" class="form-label"><span class="require"></span>登入密碼</label>
+                      <div class="input-group">
+                        <input type="password" name="Password" class="form-control" id="Password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="PASSWORD"/>
+                        <span id="Password" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                      </div>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="QuitDate" class="form-label">離職日期</label>
+                      <input id="QuitDate" name="QuitDate" class="form-control" type="datetime-local"/>
+                    </div>
+                    <div class="mb-2 col-md-6 col-lg"></div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-2 col-md-6 col-lg">
+                      <label for="Memo" class="form-label">備註</label>
+                      <textarea id="Memo" name="Memo" class="form-control" type="text"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- Content -->
             

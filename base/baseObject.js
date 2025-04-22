@@ -40,17 +40,17 @@ class baseObject {
         if(this.GetAreaData("QArea") && this.verification("QArea")){
             pageaction.areahide("Q");
             let data = await t_Post(`${this.ClassName}/Search`,this.ClassName,this.GetAreaData("QArea"));
-            try{
+            //try{
                 if(data.Status){
                     this.SearchAfter(data.Data);
                 }else{
                     this.alertMsg(data.Msg,"danger")
                 }
-            }
-            catch{
-                this.alertMsg("系統錯誤","danger")
-                pageaction.hideLoading();
-            }
+            //}
+            //catch{
+            //    this.alertMsg("系統錯誤","danger")
+            //    pageaction.hideLoading();
+            //}
         }
         else{
             pageaction.hideLoading();

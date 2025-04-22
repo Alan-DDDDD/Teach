@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Teach-客戶權限設定</title>
+    <title>Teach-員工權限設定</title>
 
     <meta name="description" content="" />
 
@@ -86,6 +86,7 @@
                   <button class="btn btn-primary" id="search" title="搜尋"><i class='sbx bx bx-search'></i></button>
                   <button class="btn btn-primary" id="insert" title="新增"><i class='sbx bx bx-plus-medical'></i></button>
                   <button class="btn btn-primary" id="save" title="儲存"><i class='sbx bx bx-save'></i></button>
+                  <button class="btn btn-primary" id="report" title="匯出"><i class='sbx bx bxs-report'></i></button>
                 </div>
               </div>
               <div class="card mb-3" id="Q">
@@ -94,41 +95,30 @@
                     <h6>條件區</h6>
                   </div>
                 </div>
-                <div class="card-body SearchArea" id="QArea">
-                  <div class="row">
-                    <div class="col-md-6 col-lg mb-2">
-                        <label for="Q_COMID" class="form-label"><span class="require"></span>客戶</label>
-                        <select id="Q_COMID" name="Q_COMID" class="form-select t_ddl" data-ddlds="CUST"></select>
-                    </div>
-                    <div class="col-md-6 col-lg mb-2"></div>
-                    <div class="col-md-6 col-lg mb-2"></div>
-                    <div class="col-md-6 col-lg mb-2"></div>
-                  </div>
+                <div class="card-body" id="QArea">
+                    <div class="row">
+                        <div class="col-md-6 col-lg mb-2">
+                            <label for="Q_EMPLID" class="form-label">員工</label>
+                            <select id="Q_EMPLID" name="Q_EMPLID" class="form-select t_ddl" data-ddlds="EMPL"></select>
+                        </div>
+                        <div class="col-md-6 col-lg mb-2"></div>
+                        <div class="col-md-6 col-lg mb-2"></div>
+                      </div>
                 </div>
               </div>
               
               <div class="card mb-3" id="L">
                 <div class="divider text-start px-3 my-1 AreaBar" id="LBar">
                   <div class="divider-text">
-                    <h6>合約明細</h6>
+                    <h6>功能清單</h6>
                   </div>
                 </div>
                 <div class="card-body t-scollbar" id="LArea">
-                  <table class="table table-striped hover dt-responsive" id="OrderDetail">
+                  <table class="table table-striped hover dt-responsive" id="datatable">
                     <tbody>
                     </tbody>
                   </table>
-                </div>
-              </div>
-              
-              <div class="card mb-3" id="E">
-                <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
-                  <div class="divider-text">
-                    <h6>功能模組</h6>
-                  </div>
-                </div>
-                <div class="card-body EditArea" id="EArea" style="height: 500px;">
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-lg-6">
                       <div class="col-lg">
                         <input class="form-check-input" id="allchk" type="checkbox" value="" />
@@ -137,12 +127,30 @@
                       <div class="t-scollbar" style="height:450px;" id="classList">
                         <div class="demo-inline-spacing mt-3">
                           <div class="list-group tree-group" id="tree">
-                            
                           </div>
                         </div>
                       </div>
                     </div>
+                    
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <div class="btn-group mb-2">
+                          <button type="button" class="btn btn-primary" id="gosetting">繼續設定</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              
+              <div class="card mb-3" id="E">
+                <div class="divider text-start px-3 my-1 AreaBar" id="EBar">
+                  <div class="divider-text">
+                    <h6>資料明細</h6>
                   </div>
+                </div>
+                <div class="card-body" id="EArea">
+                  
                 </div>
               </div>
             </div>
@@ -212,6 +220,6 @@
     <script src="../../base/viewaction.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="../../js/AA/AA3.js" type="module"></script>
+    <script src="../../js/UA/UA3.js" type="module"></script>
   </body>
 </html>
