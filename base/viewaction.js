@@ -19,6 +19,20 @@ $(`#allchk`).on("click",function(){
     $(`#classList input[type=checkbox]`).prop("checked",$(this).prop("checked"));
 })
 
+function validateTreeCheckboxes() {
+    $('.tree-group').find('.tree-subgroup').each(function () {
+        let subgroup = $(this);
+        let parentCheckbox = subgroup.prevAll('.tree-checkbox').first();
+        let all = subgroup.find('input[type="checkbox"]').length;
+        let checked = subgroup.find('input[type="checkbox"]:checked').length;
+        parentCheckbox.prop('checked', all > 0 && all === checked);
+    });
+
+    let total = $('#classList').find('input[type="checkbox"]').length;
+    let checkedTotal = $('#classList').find('input[type="checkbox"]:checked').length;
+    $('#allchk').prop('checked', total > 0 && total === checkedTotal);
+}
+
 function generateTreeHtml(nodes,border) {
     let tree = [];
 
